@@ -1,0 +1,12 @@
+tu-proyecto/
+├── index.html
+├── style.css
+├── script.js
+└── images/
+    ├── logo.png             (Tu logo de Aguamala)
+    ├── hero-bg.jpg          (Imagen de fondo para la sección principal)
+    ├── ceviche-aguamala.jpg (Foto del Ceviche Aguamala)
+    ├── pulpo-a-las-brasas.jpg (Foto del Pulpo a las Brasas)
+    ├── mariscada-real.jpg   (Foto de la Mariscada Real)
+    ├── chef.jpg             (Foto del chef o equipo)
+    └── (otras fotos de comida que quieras añadir)
