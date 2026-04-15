@@ -1,28 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Toggle para el menú de navegación en móviles
-    const menuToggle = document.querySelector('.menu-toggle');
-    const mainNav = document.querySelector('.main-nav');
-    const navList = document.querySelector('.nav-list');
+    const preloader = document.getElementById('preloader');
+    document.body.style.overflow = 'hidden';
 
-    menuToggle.addEventListener('click', () => {
-        mainNav.classList.toggle('active');
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            preloader.classList.add('fade-out');
+            document.body.style.overflow = 'auto';
+        }, 2800); 
     });
 
-    // Cerrar el menú al hacer clic en un enlace (en móviles)
-    navList.addEventListener('click', (event) => {
-        if (event.target.tagName === 'A') {
-            mainNav.classList.remove('active');
-        }
-    });
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.main-nav');
+    if(toggle) {
+        toggle.addEventListener('click', () => { nav.classList.toggle('active'); });
+    }
 
-    // Desplazamiento suave para los enlaces de navegación
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) { target.scrollIntoView({ behavior: 'smooth' }); }
         });
     });
 });

@@ -3,130 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aguanile Antojería del Mar</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Aguanile | Antojería del Mar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <div id="preloader">
+        <div class="preloader-content">
+            <img src="./logo.png" alt="Aguanile Logo" class="loader-logo">
+        </div>
+    </div>
+
     <header class="main-header">
-        <div class="container">
+        <div class="container header-flex">
             <a href="#" class="logo">
-                <img src="./images/logo.png" alt="Aguanile Antojería del Mar Logo">
+                <img src="./logo.png" alt="Aguanile Logo">
             </a>
             <nav class="main-nav">
                 <ul class="nav-list">
                     <li><a href="#hero">Inicio</a></li>
                     <li><a href="#menu">Menú</a></li>
+                    <li><a href="#delivery">Pedidos</a></li>
                     <li><a href="#about">Nosotros</a></li>
                     <li><a href="#contact">Contacto</a></li>
                 </ul>
-                <button class="menu-toggle" aria-label="Toggle navigation">
-                    <i class="fas fa-bars"></i>
-                </button>
             </nav>
+            <button class="menu-toggle" aria-label="Abrir Menú">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </header>
 
     <main>
         <section id="hero" class="hero-section">
-            <div class="container">
-                <img src="./images/logo.png" alt="Aguanile Logo" class="hero-logo">
-                <h1>El Sabor Fresco del Mar en Tampico</h1>
-                <p>Descubre los sabores auténticos del océano, preparados con pasión y frescura.</p>
-                <a href="#menu" class="btn primary-btn">Explora Nuestro Menú</a>
-            </div>
-        </section>
-
-        <section id="menu" class="menu-section">
-            <div class="container">
-                <h2>Nuestros Platillos Estrella</h2>
-                <div class="menu-grid">
-                    <div class="menu-item">
-                        <img src="./images/ceviche-aguamala.jpg" alt="Ceviche Aguamala">
-                        <h3>Ceviche Aguanile</h3>
-                        <p>Fresco y vibrante, con los mejores mariscos de la región.</p>
-                        <a href="#" class="btn secondary-btn">Ver Más</a>
-                    </div>
-                    <div class="menu-item">
-                        <img src="./images/pulpo-a-las-brasas.jpg" alt="Pulpo a las Brasas">
-                        <h3>Pulpo a las Brasas</h3>
-                        <p>Tierno pulpo marinado y cocinado a la perfección.</p>
-                        <a href="#" class="btn secondary-btn">Ver Más</a>
-                    </div>
-                    <div class="menu-item">
-                        <img src="./images/mariscada-real.jpg" alt="Mariscada Real">
-                        <h3>Mariscada Real</h3>
-                        <p>Una explosión de sabores del mar en un solo plato.</p>
-                        <a href="#" class="btn secondary-btn">Ver Más</a>
-                    </div>
-                    <!-- Puedes añadir más platillos aquí -->
-                    <div class="menu-item">
-                        <img src="./images/tacos-de-pescado.jpg" alt="Tacos de Pescado">
-                        <h3>Tacos de Pescado</h3>
-                        <p>Crujientes y llenos de sabor, ideales para cualquier antojo.</p>
-                        <a href="#" class="btn secondary-btn">Ver Más</a>
-                    </div>
-                    <div class="menu-item">
-                        <img src="./images/camarones-al-mojo.jpg" alt="Camarones al Mojo de Ajo">
-                        <h3>Camarones al Mojo</h3>
-                        <p>Clásicos camarones salteados con un toque de ajo y chile.</p>
-                        <a href="#" class="btn secondary-btn">Ver Más</a>
-                    </div>
-                    <div class="menu-item">
-                        <img src="./images/coctel-camaron.jpg" alt="Coctel de Camarón">
-                        <h3>Coctel de Camarón</h3>
-                        <p>Refrescante y sabroso, el favorito para abrir el apetito.</p>
-                        <a href="#" class="btn secondary-btn">Ver Más</a>
+            <div class="container hero-content">
+                <div class="hero-text-box">
+                    <span class="hero-subtitle">Tradición de Tampico</span>
+                    <h1>Sabor Fresco del Mar</h1>
+                    <p>Recetas auténticas preparadas con la frescura del océano y el corazón de nuestra cocina.</p>
+                    <div class="hero-actions">
+                        <a href="#menu" class="btn btn-primary">Ver Menú</a>
+                        <a href="#delivery" class="btn btn-outline">Pide en Línea</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="about" class="about-section">
+        <section id="menu" class="section-padding">
             <div class="container">
-                <div class="about-content">
+                <div class="section-title">
+                    <h2>Especialidades</h2>
+                    <div class="title-line"></div>
+                </div>
+                <div class="menu-grid">
+                    <div class="menu-card">
+                        <div class="card-img">
+                            <img src="./ceviche-aguamala.jpg" alt="Ceviche Aguanile">
+                        </div>
+                        <div class="card-body">
+                            <h3>Ceviche Aguanile</h3>
+                            <p>Mariscos seleccionados marinados en cítricos frescos.</p>
+                            <span class="card-price">$185.00</span>
+                        </div>
+                    </div>
+                    <div class="menu-card">
+                        <div class="card-img">
+                            <img src="./pulpo-a-las-brasas.jpg" alt="Pulpo a las Brasas">
+                        </div>
+                        <div class="card-body">
+                            <h3>Pulpo a las Brasas</h3>
+                            <p>Tierno pulpo al carbón con aderezo rústico de la casa.</p>
+                            <span class="card-price">$245.00</span>
+                        </div>
+                    </div>
+                    <div class="menu-card">
+                        <div class="card-img">
+                            <img src="./mariscada-real.jpg" alt="Mariscada Real">
+                        </div>
+                        <div class="card-body">
+                            <h3>Mariscada Real</h3>
+                            <p>La combinación perfecta para los amantes del mar.</p>
+                            <span class="card-price">$320.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="delivery" class="delivery-section section-padding">
+            <div class="container text-center">
+                <h2>¿Hambre en Casa?</h2>
+                <p>Ordena directamente desde tus plataformas favoritas</p>
+                <div class="delivery-grid">
+                    <a href="#" target="_blank" class="delivery-item">
+                        <div class="platform-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b3/Uber_Eats_2020_logo.svg" alt="Uber Eats">
+                        </div>
+                        <span class="platform-name">Uber Eats</span>
+                    </a>
+                    <a href="#" target="_blank" class="delivery-item">
+                        <div class="platform-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/d/df/Didi_Food_Logo_Logo.png" alt="DiDi Food">
+                        </div>
+                        <span class="platform-name">DiDi Food</span>
+                    </a>
+                    <a href="#" target="_blank" class="delivery-item">
+                        <div class="platform-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/06/Rappi_logo.svg" alt="Rappi">
+                        </div>
+                        <span class="platform-name">Rappi</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section-padding about-bg">
+            <div class="container">
+                <div class="about-wrapper">
                     <div class="about-image">
-                        <img src="./images/chef.jpg" alt="Chef de Aguanile">
+                        <img src="./chef.jpg" alt="Nuestro Chef">
                     </div>
                     <div class="about-text">
-                        <h2>Nuestra Historia</h2>
-                        <p>En Aguanile Antojería del Mar, nuestra pasión es llevarte los sabores más auténticos del océano. Ubicados en el corazón de Tampico, nos dedicamos a seleccionar los mariscos más frescos y a prepararlos con recetas tradicionales y un toque innovador.</p>
-                        <p>Creemos en la calidad, la frescura y la experiencia. Cada platillo es una celebración del mar y de la rica cultura culinaria de nuestra región. ¡Te invitamos a descubrir un viaje de sabor inigualable!</p>
-                        <a href="#contact" class="btn primary-btn">Conócenos Mejor</a>
+                        <span class="subtitle">Nuestra Historia</span>
+                        <h2>Pasión por el Mar</h2>
+                        <p>En Aguanile Antojería del Mar, seleccionamos diariamente los mejores mariscos de la zona para ofrecerte una experiencia inigualable que respeta la tradición de Tampico.</p>
+                        <p>Nuestro compromiso es con la calidad y el sabor auténtico, llevando lo mejor del océano directamente a tu mesa.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="contact-section">
+        <section id="contact" class="section-padding">
             <div class="container">
-                <h2>Ubicación y Contacto</h2>
-                <div class="contact-grid">
+                <div class="contact-wrapper">
                     <div class="contact-info">
-                        <h3>Encuéntranos</h3>
-                        <p><i class="fas fa-map-marker-alt"></i> Av. La Costa #123, Colonia Centro, Tampico, Tamps.</p>
-                        <p><i class="fas fa-phone"></i> +52 833 123 4567</p>
-                        <p><i class="fas fa-envelope"></i> info@aguamala.com</p>
-                        <p><i class="fas fa-clock"></i> Martes a Domingo: 12:00 PM - 10:00 PM</p>
-                        <div class="social-links">
-                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <h3>Visítanos</h3>
+                        <div class="info-block">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>Av. La Costa #123, Colonia Centro, Tampico, Tamps.</p>
+                        </div>
+                        <div class="info-block">
+                            <i class="fas fa-phone"></i>
+                            <p>+52 833 123 4567</p>
                         </div>
                     </div>
                     <div class="contact-map">
-                        <!-- Reemplaza con tu iframe de Google Maps -->
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3692.0830177848998!2d-97.87366482470823!3d22.274844879704915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d7f9f17116cba5%3A0xeea6d4942e3aa791!2sAguanile%20Antojer%C3%ADa%20del%20Mar!5e0!3m2!1ses-419!2smx!4v1758766276921!5m2!1ses-419!2smx" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                        <!-- Para obtener tu propio iframe, ve a Google Maps, busca tu ubicación, haz clic en "Compartir" -> "Insertar un mapa" y copia el código iframe. -->
-                    </div>
-                    <div class="contact-form">
-                        <h3>Envíanos un Mensaje</h3>
-                        <form>
-                            <input type="text" placeholder="Tu Nombre" required>
-                            <input type="email" placeholder="Tu Correo Electrónico" required>
-                            <textarea placeholder="Tu Mensaje" rows="5" required></textarea>
-                            <button type="submit" class="btn primary-btn">Enviar Mensaje</button>
-                        </form>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3688.000000000000!2d-97.85!3d22.25!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDE1JzAwLjAiTiA5N8KwNTEnMDAuMCJX!5e0!3m2!1ses!2smx!4v1600000000000!5m2!1ses!2smx" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </div>
             </div>
@@ -134,20 +158,36 @@
     </main>
 
     <footer class="main-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="./images/logo.png" alt="Aguanile Antojería del Mar Logo">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <img src="./logo.png" alt="Aguanile Logo" class="footer-logo">
+                <p>Frescura y sabor auténtico directo del puerto hasta tu mesa.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
                 </div>
-                <nav class="footer-nav">
-                    <ul>
-                        <li><a href="#">Aviso de Privacidad</a></li>
-                        <li><a href="#">Términos de Servicio</a></li>
-                    </ul>
-                </nav>
             </div>
-            <p class="copyright">&copy; 2025 Aguanile Antojería del Mar. Todos los derechos reservados.</p>
-            <p class="copyright">&copy; Designed By MZG</p>
+            <div class="footer-links">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="#hero">Inicio</a></li>
+                    <li><a href="#menu">Menú</a></li>
+                    <li><a href="#delivery">Pedidos</a></li>
+                    <li><a href="#about">Nosotros</a></li>
+                </ul>
+            </div>
+            <div class="footer-info">
+                <h4>Horarios</h4>
+                <p><i class="far fa-clock"></i> Mar - Dom: 12:00 PM - 10:00 PM</p>
+                <p><i class="fas fa-motorcycle"></i> Servicio a Domicilio</p>
+                <p><i class="fas fa-envelope"></i> info@aguanile.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>© 2026 Aguanile Antojería del Mar. Todos los derechos reservados.</p>
+                <p class="mzg-signature">Designed by <strong>MZG Systems</strong></p>
+            </div>
         </div>
     </footer>
 
