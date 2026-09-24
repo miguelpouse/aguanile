@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0A2A66">
+<title>Aguanile · Antojería del Mar</title>
+<meta name="description" content="Aguanile Antojería del Mar. Ceviches, aguachiles, tacos de especialidad, mixología.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul:#0A2A66;--azul2:#123C8F;--azul3:#071B44;
+  --turq:#2ED3C6;--turq2:#1BB8AC;
+  --naranja:#F26A1B;--naranja2:#FF8A3D;
+  --crema:#FFF8EF;--tinta:#12203A;--gris:#6B7A90;
+  --linea:#E6ECF5;--blanco:#fff;
+  --sh:0 10px 30px rgba(10,42,102,.10);
+  --sh2:0 18px 50px rgba(10,42,102,.20);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--crema);color:var(--tinta);
+  font-family:'Montserrat',system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+input{font-family:inherit;font-size:15px}
+a{color:inherit;text-decoration:none}
+.hide{display:none!important}
+.ico{display:inline-block;vertical-align:middle;flex-shrink:0}
+
+/* LOGO BLANCO — filtro limpio sin drop-shadow para evitar distorsión */
+.logo-mini img,
+.hero-logo{
+  filter: brightness(0) invert(1) drop-shadow(0 4px 14px rgba(0,0,0,.35));
+}
+/* Footer: filtro simple sin sombra, sin deformación */
+.f-logo-img{
+  filter: brightness(0) invert(1);
+  object-fit: contain;
+  object-position: center;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* TOPBAR */
+.topbar{position:sticky;top:0;z-index:60;background:rgba(10,42,102,.96);backdrop-filter:blur(12px);
+  color:#fff;box-shadow:0 8px 30px rgba(10,42,102,.25)}
+.topbar-in{max-width:1240px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:8px 16px}
+.logo-mini{display:flex;align-items:center;flex-shrink:0}
+.logo-mini img{height:54px;width:auto}
+@media(max-width:640px){.logo-mini img{height:44px}}
+.nav{display:none;gap:4px;margin-left:auto;align-items:center}
+@media(min-width:880px){.nav{display:flex}}
+.nav a{padding:9px 14px;border-radius:999px;font-size:13px;font-weight:700;color:#DCE9FF;transition:.2s}
+.nav a:hover{background:rgba(255,255,255,.12);color:#fff}
+.nav a.cta{background:var(--naranja);color:#fff;box-shadow:0 6px 18px rgba(242,106,27,.4);display:inline-flex;align-items:center;gap:7px}
+.nav a.cta:hover{background:var(--naranja2)}
+.burger{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.12);margin-left:auto;color:#fff}
+@media(min-width:880px){.burger{display:none}}
+.mobile-nav{display:none;flex-direction:column;padding:8px 16px 16px;gap:4px;border-top:1px solid rgba(255,255,255,.1)}
+.mobile-nav.on{display:flex}
+.mobile-nav a{padding:13px 16px;border-radius:12px;font-weight:700;font-size:14px;color:#DCE9FF}
+.mobile-nav a:hover{background:rgba(255,255,255,.1);color:#fff}
+.mobile-nav a.cta{background:var(--naranja);color:#fff;text-align:center;margin-top:6px}
+
+/* HERO */
+.hero{position:relative;min-height:min(92vh,780px);display:flex;align-items:flex-end;
+  background:linear-gradient(180deg,rgba(7,27,68,.30) 0%,rgba(7,27,68,.70) 60%,rgba(7,27,68,.94) 100%),
+             url('assets/hero.jpg') center/cover no-repeat,
+             linear-gradient(135deg,#071B44,#0A2A66);
+  color:#fff;overflow:hidden}
+.hero-in{position:relative;z-index:2;max-width:1240px;width:100%;margin:0 auto;padding:60px 22px 54px}
+.hero-logo{width:min(320px,68vw);height:auto;margin-bottom:22px}
+.hero h1{margin:0 0 12px;font-size:clamp(30px,6.5vw,60px);font-weight:900;line-height:1.02;letter-spacing:-1.5px;text-shadow:0 4px 24px rgba(0,0,0,.4)}
+.hero h1 em{font-style:normal;color:var(--turq);display:block}
+.hero p{margin:0 0 28px;font-size:clamp(14.5px,2.2vw,18px);color:#DCE9FF;max-width:600px;line-height:1.6;text-shadow:0 2px 12px rgba(0,0,0,.4)}
+.hero-btns{display:flex;flex-wrap:wrap;gap:11px}
+.btn{padding:15px 26px;border-radius:999px;font-weight:800;font-size:14.5px;display:inline-flex;align-items:center;gap:10px;transition:.22s;box-shadow:0 10px 26px rgba(0,0,0,.25);cursor:pointer}
+.btn-primary{background:var(--naranja);color:#fff}
+.btn-primary:hover{background:var(--naranja2);transform:translateY(-2px)}
+.btn-ghost{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.24);backdrop-filter:blur(8px)}
+.btn-ghost:hover{background:rgba(255,255,255,.24);transform:translateY(-2px)}
+.hero-badges{display:flex;flex-wrap:wrap;gap:9px;margin-top:30px}
+.hero-badges span{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);padding:8px 15px;border-radius:999px;font-size:12.5px;font-weight:700;backdrop-filter:blur(8px);display:inline-flex;align-items:center;gap:8px}
+
+/* SECCIONES */
+main{max-width:1240px;margin:0 auto;padding:0 20px 90px}
+section.block{padding:70px 0 40px;scroll-margin-top:80px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:var(--turq2);margin-bottom:12px}
+.eyebrow::before{content:'';width:28px;height:2px;background:var(--naranja);border-radius:2px}
+h2.big{font-size:clamp(26px,4.6vw,40px);font-weight:900;letter-spacing:-1px;color:var(--azul);line-height:1.1;margin:0 0 16px}
+p.lead{font-size:16px;color:var(--gris);line-height:1.7;max-width:680px;margin:0 0 26px;font-weight:500}
+
+/* NOSOTROS */
+.about{display:grid;gap:36px;align-items:center}
+@media(min-width:880px){.about{grid-template-columns:1.05fr 1fr}}
+.about-img{aspect-ratio:4/3;border-radius:24px;overflow:hidden;box-shadow:var(--sh2);position:relative;background:linear-gradient(135deg,#CFE9E6,#EAF3FF)}
+.about-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.feats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+.feat{background:#fff;border-radius:16px;padding:16px;box-shadow:var(--sh)}
+.feat b{display:block;font-size:13.5px;color:var(--azul);font-weight:800;margin-bottom:3px}
+.feat span{font-size:12px;color:var(--gris);line-height:1.5}
+
+/* DELIVERY */
+.delivery-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.dcard{border-radius:20px;padding:26px 22px 22px;color:#fff;display:flex;flex-direction:column;gap:14px;text-decoration:none;box-shadow:var(--sh2);transition:.25s;min-height:200px;justify-content:space-between}
+.dcard:hover{transform:translateY(-5px)}
+.dcard .brand-mark{display:flex;align-items:center;height:48px}
+.dcard .brand-mark svg{height:44px;width:auto;max-width:100%;display:block}
+.dcard p{margin:0;font-size:12.5px;opacity:.92;line-height:1.5;flex:1}
+.dcard .go{font-size:12.5px;font-weight:900;letter-spacing:.6px;display:flex;align-items:center;gap:6px;margin-top:4px;opacity:.95}
+.d-rappi{background:linear-gradient(135deg,#FF441F 0%,#E03000 100%)}
+.d-uber{background:linear-gradient(135deg,#0E0E0E 0%,#1B1B1B 100%)}
+.d-didi{background:linear-gradient(135deg,#FF7A00 0%,#E56600 100%)}
+.d-wa{background:linear-gradient(135deg,#25D366 0%,#128C7E 100%)}
+.d-tel{background:linear-gradient(135deg,var(--azul),var(--azul2))}
+
+/* MENÚ */
+.menu-toolbar{position:sticky;top:60px;z-index:40;background:var(--crema);padding:14px 0 12px;border-bottom:1px solid var(--linea);margin-bottom:30px}
+.search{display:flex;align-items:center;gap:10px;background:#fff;border:2px solid var(--linea);border-radius:999px;padding:12px 20px;max-width:520px;transition:.2s;box-shadow:var(--sh);color:var(--gris)}
+.search:focus-within{border-color:var(--turq);box-shadow:0 0 0 4px rgba(46,211,198,.15);color:var(--azul)}
+.search input{flex:1;background:none;border:0;outline:0;color:var(--tinta);font-size:14.5px;min-width:0}
+.search .clear{font-size:22px;line-height:1;opacity:.55;color:var(--gris);padding:0 4px}
+.filters{display:flex;gap:9px;overflow-x:auto;padding:16px 4px 14px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.filters::-webkit-scrollbar{display:none}
+.chip{white-space:nowrap;padding:11px 18px;border-radius:999px;font-size:13px;font-weight:800;background:#fff;color:var(--azul);border:2px solid var(--linea);transition:.2s;display:inline-flex;align-items:center;justify-content:center;gap:8px;flex-shrink:0;min-height:44px;line-height:1;cursor:pointer}
+.chip:hover{border-color:var(--turq);color:var(--turq2)}
+.chip.active{background:var(--azul);color:#fff;border-color:var(--azul);box-shadow:0 8px 20px rgba(10,42,102,.28)}
+.chip.filter.active{background:var(--naranja);border-color:var(--naranja)}
+.chip svg{display:block;flex-shrink:0}
+
+.menu-cat{margin-bottom:52px;scroll-margin-top:150px}
+.menu-cat h3{font-size:clamp(20px,3.4vw,28px);font-weight:900;color:var(--azul);letter-spacing:-.6px;margin:0 0 6px;display:flex;align-items:center;gap:12px}
+.menu-cat h3 svg{color:var(--turq2)}
+.menu-cat .note{color:var(--gris);font-size:13.5px;margin:0 0 20px;font-weight:500;line-height:1.55}
+.grp-title{font-size:12px;font-weight:900;letter-spacing:1.6px;text-transform:uppercase;color:var(--turq2);margin:22px 0 12px;display:flex;align-items:center;gap:10px}
+.grp-title::after{content:'';flex:1;height:1px;background:var(--linea)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+@media(max-width:600px){.grid{grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}}
+
+.card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:var(--sh);display:flex;flex-direction:column;transition:.3s;border:1px solid rgba(10,42,102,.05)}
+.card:hover{transform:translateY(-5px);box-shadow:var(--sh2)}
+.thumb{position:relative;height:170px;overflow:hidden;background:#EAF3FF;display:grid;place-items:center}
+@media(max-width:600px){.thumb{height:140px}}
+.thumb-fallback{color:#B8CBE6;z-index:0}
+.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;transition:transform .5s}
+.card:hover .thumb img{transform:scale(1.06)}
+.badge{position:absolute;top:10px;padding:5px 10px;border-radius:999px;font-size:10.5px;font-weight:900;letter-spacing:.5px;z-index:2;backdrop-filter:blur(8px);display:inline-flex;align-items:center;gap:5px}
+.badge.chef{left:10px;background:rgba(255,255,255,.96);color:var(--naranja)}
+.badge.pic{right:10px;background:rgba(255,255,255,.96);color:#E53935}
+.card-body{padding:14px 16px 16px;display:flex;flex-direction:column;flex:1;gap:7px}
+.card-body h4{margin:0;font-size:14.5px;font-weight:800;line-height:1.3;color:var(--azul)}
+.card-body p{margin:0;font-size:12px;color:var(--gris);line-height:1.5;flex:1}
+.unit{align-self:flex-start;font-size:10.5px;font-weight:800;color:var(--turq2);background:#E6FAF8;padding:3px 9px;border-radius:999px}
+.card-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px;padding-top:10px;border-top:1px solid var(--linea)}
+.price{font-weight:900;color:var(--azul);font-size:17px;display:flex;align-items:baseline;gap:5px}
+.price small{font-size:10px;font-weight:700;color:var(--gris);text-transform:uppercase}
+.add{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--naranja),var(--naranja2));color:#fff;display:grid;place-items:center;flex-shrink:0;box-shadow:0 6px 16px rgba(242,106,27,.38);transition:.2s}
+.add:hover{transform:scale(1.08)}
+
+/* UBICACIÓN */
+.loc-grid{display:grid;gap:22px}
+@media(min-width:880px){.loc-grid{grid-template-columns:1.3fr 1fr}}
+.map-wrap{border-radius:22px;overflow:hidden;box-shadow:var(--sh2);background:#EAF3FF;aspect-ratio:16/11}
+.map-wrap iframe{width:100%;height:100%;border:0;display:block}
+.loc-info{background:#fff;border-radius:22px;padding:26px;box-shadow:var(--sh);display:flex;flex-direction:column;gap:20px}
+.info-row{display:flex;gap:14px;align-items:flex-start}
+.info-row .ic{width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,#EAF3FF,#CFE9E6);display:grid;place-items:center;color:var(--turq2);flex-shrink:0}
+.info-row b{display:block;font-size:11.5px;color:var(--turq2);font-weight:900;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:4px}
+.info-row span{font-size:14.5px;color:var(--azul);font-weight:600;line-height:1.5}
+.info-row small{font-size:12.5px;color:var(--gris);display:block;margin-top:2px}
+.btn-full{width:100%;padding:15px;border-radius:14px;font-weight:900;font-size:14.5px;background:var(--azul);color:#fff;text-align:center;display:flex;align-items:center;justify-content:center;gap:9px;transition:.2s}
+.btn-full:hover{background:var(--azul2)}
+.hours{background:#F7FAFF;border-radius:14px;padding:14px 16px;border:1px solid var(--linea);margin-top:6px}
+.hours .h-row{display:flex;justify-content:space-between;font-size:13.5px;padding:5px 0;color:var(--azul);font-weight:600}
+.hours .h-row span:last-child{color:var(--gris)}
+
+/* FOOTER */
+footer{background:linear-gradient(160deg,#071B44 0%,#0A2A66 60%,#0E3272 100%);color:#B9CDF0;padding:70px 24px 30px;position:relative;overflow:hidden}
+footer::before{content:'';position:absolute;top:-80px;right:-80px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(46,211,198,.18),transparent 70%);pointer-events:none}
+footer::after{content:'';position:absolute;bottom:-100px;left:-60px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(242,106,27,.14),transparent 70%);pointer-events:none}
+.foot-grid{max-width:1240px;margin:0 auto;display:grid;gap:44px;grid-template-columns:1.4fr 1fr 1fr 1fr;position:relative;z-index:2}
+@media(max-width:980px){.foot-grid{grid-template-columns:1fr 1fr;gap:36px}}
+@media(max-width:600px){.foot-grid{grid-template-columns:1fr;gap:32px;text-align:center}}
+.foot-brand{display:flex;flex-direction:column;gap:18px}
+.f-logo-img{height:70px;width:auto;max-width:220px;margin:0;display:block}
+@media(max-width:600px){.f-logo-img{margin:0 auto}}
+.f-tagline{font-size:13.5px;line-height:1.75;color:#B9CDF0;margin:0;max-width:340px}
+@media(max-width:600px){.f-tagline{margin:0 auto}}
+.f-social{display:flex;gap:10px;margin-top:4px}
+@media(max-width:600px){.f-social{justify-content:center}}
+.f-social a{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);display:grid;place-items:center;color:#fff;transition:.25s}
+.f-social a:hover{background:var(--turq);border-color:var(--turq);color:#04302D;transform:translateY(-3px)}
+.foot-col h5{color:#fff;font-size:12px;font-weight:900;letter-spacing:2px;text-transform:uppercase;margin:0 0 20px;display:flex;align-items:center;gap:10px}
+.foot-col h5::before{content:'';width:22px;height:2px;background:var(--turq);border-radius:2px}
+@media(max-width:600px){.foot-col h5{justify-content:center}}
+.f-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.f-list li{display:flex;align-items:center;gap:11px;font-size:13.5px;line-height:1.5;color:#B9CDF0}
+@media(max-width:600px){.f-list li{justify-content:center}}
+.f-list li svg{color:var(--turq);flex-shrink:0}
+.f-list a{color:#B9CDF0;transition:.2s;font-weight:600}
+.f-list a:hover{color:var(--turq)}
+.hours-list li{justify-content:space-between;padding:8px 0;border-bottom:1px dashed rgba(255,255,255,.10);font-size:13px}
+.hours-list li:last-child{border-bottom:0}
+.hours-list li b{color:#fff;font-weight:800}
+@media(max-width:600px){.hours-list li{flex-direction:column;gap:3px;text-align:center}}
+.foot-bottom{max-width:1240px;margin:60px auto 0;padding-top:26px;border-top:1px solid rgba(255,255,255,.10);display:flex;flex-direction:column;gap:10px;align-items:center;text-align:center;position:relative;z-index:2}
+.f-note{font-size:11.5px;line-height:1.75;color:#8FA7CC;max-width:720px;margin:0 0 8px;opacity:.85}
+.f-copy{font-size:11.5px;color:#9BB1D4;margin:0;letter-spacing:.3px;line-height:1.6}
+.f-copy + .f-copy{font-size:11px;color:#7E95BB;opacity:.85}
+.f-admin-link{color:var(--turq);text-decoration:none;font-weight:700;transition:.2s;border-bottom:1px solid transparent}
+.f-admin-link:hover{color:#fff;border-bottom-color:var(--turq)}
+
+/* DRAWER */
+.backdrop{position:fixed;inset:0;background:rgba(7,27,68,.55);backdrop-filter:blur(3px);z-index:80;opacity:0;pointer-events:none;transition:.3s}
+.backdrop.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;height:100dvh;width:min(430px,100%);background:var(--crema);z-index:90;transform:translateX(105%);transition:transform .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:-20px 0 60px rgba(7,27,68,.3)}
+.drawer.on{transform:translateX(0)}
+.dr-head{background:linear-gradient(135deg,var(--azul),var(--azul2));color:#fff;padding:18px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.dr-head h3{margin:0;font-size:18px;font-weight:900;display:flex;align-items:center;gap:10px}
+.dr-close{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.14);display:grid;place-items:center;color:#fff;transition:.2s}
+.dr-close:hover{background:rgba(255,255,255,.26)}
+.dr-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px}
+.empty-cart{text-align:center;padding:50px 20px;color:var(--gris)}
+.empty-cart p{margin:6px 0;font-size:14px;font-weight:600}
+.mode-mini{display:flex;gap:6px;background:#fff;padding:5px;border-radius:14px;box-shadow:var(--sh)}
+.mode-mini button{flex:1;padding:11px 4px;border-radius:10px;font-size:11.5px;font-weight:800;color:var(--gris);transition:.2s;display:flex;flex-direction:column;align-items:center;gap:5px}
+.mode-mini button.active{background:var(--azul);color:#fff}
+.ci{background:#fff;border-radius:15px;padding:12px;display:flex;gap:11px;box-shadow:var(--sh)}
+.ci-thumb{width:56px;height:56px;border-radius:12px;overflow:hidden;background:#EAF3FF;flex-shrink:0;position:relative;display:grid;place-items:center;color:#B8CBE6}
+.ci-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ci-main{flex:1;min-width:0}
+.ci-main h5{margin:0 0 3px;font-size:13.5px;font-weight:800;color:var(--azul)}
+.ci-var{font-size:11px;color:var(--turq2);font-weight:800}
+.ci-note{font-size:11px;color:var(--gris);font-style:italic;margin-top:3px}
+.ci-row{display:flex;align-items:center;justify-content:space-between;margin-top:8px;gap:8px}
+.qty{display:flex;align-items:center;gap:2px;background:#F1F5FB;border-radius:999px;padding:3px}
+.qty button{width:28px;height:28px;border-radius:50%;background:#fff;color:var(--azul);display:grid;place-items:center;box-shadow:0 2px 6px rgba(10,42,102,.10)}
+.qty span{min-width:26px;text-align:center;font-weight:900;font-size:13.5px}
+.ci-price{font-weight:900;color:var(--azul);font-size:14.5px}
+.ci-del{color:#C8D2E0;padding:4px}
+.ci-del:hover{color:#E53935}
+.dr-foot{background:#fff;border-top:1px solid var(--linea);padding:16px;flex-shrink:0;padding-bottom:calc(16px + env(safe-area-inset-bottom))}
+.tot-row{display:flex;justify-content:space-between;font-size:13px;color:var(--gris);font-weight:600;margin-bottom:7px}
+.tot-row.big{font-size:19px;color:var(--azul);font-weight:900;margin:10px 0 14px;padding-top:10px;border-top:2px dashed var(--linea)}
+.btn-main{width:100%;padding:16px;border-radius:15px;font-size:15.5px;font-weight:900;color:#fff;background:linear-gradient(135deg,var(--naranja),var(--naranja2));box-shadow:0 12px 28px rgba(242,106,27,.40);display:flex;align-items:center;justify-content:center;gap:10px;transition:.2s;text-decoration:none;cursor:pointer}
+.btn-main:disabled{opacity:.42;cursor:not-allowed;box-shadow:none;filter:grayscale(.4)}
+.btn-ghost2{width:100%;padding:13px;border-radius:14px;font-size:13.5px;font-weight:800;color:var(--azul);background:#F1F5FB;margin-top:9px;cursor:pointer}
+
+/* MODAL */
+.modal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px;opacity:0;pointer-events:none;transition:.25s}
+.modal.on{opacity:1;pointer-events:auto}
+.modal-card{background:#fff;border-radius:24px;width:min(540px,100%);max-height:92dvh;overflow-y:auto;box-shadow:0 30px 80px rgba(7,27,68,.4);transform:scale(.94) translateY(14px);transition:.28s cubic-bezier(.34,1.56,.64,1)}
+.modal.on .modal-card{transform:none}
+.m-hero{height:200px;position:relative;background:#EAF3FF;display:grid;place-items:center;color:#B8CBE6;overflow:hidden}
+.m-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.m-close{position:absolute;top:12px;right:12px;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.95);display:grid;place-items:center;color:var(--azul);box-shadow:0 4px 14px rgba(0,0,0,.14);z-index:2;cursor:pointer}
+.m-body{padding:22px;position:relative}
+.m-body h3{margin:0 0 8px;font-size:22px;font-weight:900;color:var(--azul);line-height:1.2}
+.m-body .desc{color:var(--gris);font-size:13.5px;line-height:1.6;margin:0 0 16px}
+.opt-title{font-size:11.5px;font-weight:900;letter-spacing:1.3px;text-transform:uppercase;color:var(--turq2);margin-bottom:10px}
+.opt{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-radius:14px;border:2px solid var(--linea);margin-bottom:8px;cursor:pointer;transition:.18s;background:#fff}
+.opt.sel{border-color:var(--naranja);background:#FFF6F0}
+.opt-name{font-weight:800;font-size:14px;color:var(--azul)}
+.opt-dot{width:20px;height:20px;border-radius:50%;border:2px solid #CFDAEA;display:grid;place-items:center;flex-shrink:0;margin-right:10px}
+.opt.sel .opt-dot{border-color:var(--naranja)}
+.opt.sel .opt-dot::after{content:'';width:10px;height:10px;border-radius:50%;background:var(--naranja)}
+.opt-price{font-weight:900;color:var(--azul);font-size:14.5px}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:11.5px;font-weight:900;letter-spacing:1.1px;text-transform:uppercase;color:var(--gris);margin-bottom:7px}
+.field input,.field textarea{width:100%;padding:13px 14px;border:2px solid var(--linea);border-radius:13px;outline:0;transition:.2s;background:#fff;color:var(--tinta);font-family:inherit;font-size:15px}
+.field input:focus,.field textarea:focus{border-color:var(--turq);box-shadow:0 0 0 4px rgba(46,211,198,.14)}
+.field textarea{resize:vertical;min-height:70px}
+.m-qty{display:flex;align-items:center;justify-content:space-between;background:#F7FAFF;border-radius:15px;padding:9px 12px;margin-bottom:16px;border:1px solid var(--linea)}
+.sec-title{font-size:13px;font-weight:900;letter-spacing:1.3px;text-transform:uppercase;color:var(--naranja);margin:22px 0 12px;display:flex;align-items:center;gap:9px}
+.sec-title::after{content:'';flex:1;height:1px;background:var(--linea)}
+.summary{background:#F7FAFF;border-radius:16px;padding:14px;margin-bottom:16px;border:1px dashed #C7D8F5}
+.summary .row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;color:var(--gris);font-weight:600}
+.summary .row.total{font-size:17px;font-weight:900;color:var(--azul);margin:10px 0 0;padding-top:9px;border-top:2px dashed #C7D8F5}
+.success-msg{text-align:center;padding:30px 10px}
+.success-msg .ic{color:var(--turq2);margin-bottom:14px;display:grid;place-items:center}
+.success-msg h3{color:var(--azul);font-size:22px;margin:0 0 10px}
+.success-msg .folio{display:inline-block;background:#FFF6F0;color:var(--naranja);font-weight:900;padding:8px 18px;border-radius:999px;font-size:16px;letter-spacing:1px;margin-bottom:14px}
+
+/* FAB */
+.fab{position:fixed;bottom:18px;right:18px;z-index:70;display:none;align-items:center;gap:10px;background:linear-gradient(135deg,var(--naranja),var(--naranja2));color:#fff;padding:15px 22px;border-radius:999px;font-weight:900;font-size:14px;box-shadow:0 14px 34px rgba(242,106,27,.5);cursor:pointer}
+.fab.on{display:flex}
+.toast{position:fixed;bottom:26px;left:50%;transform:translate(-50%,120px);z-index:200;background:var(--azul);color:#fff;padding:14px 24px;border-radius:999px;font-weight:700;font-size:13.5px;box-shadow:0 16px 40px rgba(10,42,102,.45);transition:.35s;pointer-events:none;display:flex;align-items:center;gap:10px;max-width:92vw}
+.toast.on{transform:translate(-50%,0)}
+.spinner{width:18px;height:18px;border:3px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body id="top">
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a href="#top" class="logo-mini"><img src="assets/logo.png" alt="Aguanile"></a>
+    <nav class="nav">
+      <a href="#nosotros">Nosotros</a>
+      <a href="#menu">Menú</a>
+      <a href="#ubicacion">Cómo llegar</a>
+      <a href="#delivery">Delivery</a>
+      <a href="#menu" class="cta">Ver menú</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menú"></button>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#nosotros">Nosotros</a>
+    <a href="#menu">Menú</a>
+    <a href="#ubicacion">Cómo llegar</a>
+    <a href="#delivery">Delivery</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-in">
+    <img class="hero-logo" src="assets/logo.png" alt="Aguanile">
+    <h1>El mar sabe mejor<em>con tortilla.</em></h1>
+    <p>Ceviches, aguachiles, tacos de especialidad y mixología de la casa. Visítanos o pide a domicilio.</p>
+    <div class="hero-btns">
+      <a href="#menu" class="btn btn-primary">Ver el menú</a>
+      <a href="#delivery" class="btn btn-ghost">Pedir a domicilio</a>
+    </div>
+  </div>
+</section>
+
+<main>
+
+  <section class="block" id="nosotros">
+    <div class="about">
+      <div>
+        <span class="eyebrow">Sobre nosotros</span>
+        <h2 class="big">Antojería del mar, hecha con alma.</h2>
+        <p class="lead">En Aguanile combinamos lo mejor del mar con el sabor de la calle. Ceviches y aguachiles preparados al momento, tacos que enrollan el mar en tortilla y una barra de mixología con la personalidad de la casa.</p>
+      </div>
+      <div class="about-img">
+        <img src="assets/nosotros.jpg" alt="Aguanile" onerror="this.style.display='none'">
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="delivery">
+    <span class="eyebrow">Pide a domicilio</span>
+    <h2 class="big">Llevamos el mar hasta tu puerta.</h2>
+    <p class="lead">Elige tu app favorita o pide directo por WhatsApp.</p>
+
+    <div class="delivery-grid">
+      <a class="dcard d-rappi" href="https://www.rappi.com.mx/" target="_blank" rel="noopener">
+        <div class="brand-mark">
+          <svg viewBox="0 0 180 56"><rect x="0" y="4" width="48" height="48" rx="12" fill="#fff"/><text x="24" y="38" font-family="Montserrat,Arial Black,sans-serif" font-weight="900" font-size="30" fill="#FF441F" text-anchor="middle">R</text><text x="58" y="40" font-family="Montserrat,Arial,sans-serif" font-weight="900" font-size="34" fill="#fff">Rappi</text></svg>
+        </div>
+        <p>Entrega rápida en toda la zona. Rastrea tu pedido en tiempo real.</p>
+        <div class="go">Abrir Rappi →</div>
+      </a>
+      <a class="dcard d-uber" href="https://www.ubereats.com/mx" target="_blank" rel="noopener">
+        <div class="brand-mark">
+          <svg viewBox="0 0 200 56"><text x="0" y="40" font-family="Montserrat,Arial,sans-serif" font-weight="700" font-size="34" fill="#fff">Uber</text><text x="92" y="40" font-family="Montserrat,Arial,sans-serif" font-weight="700" font-size="34" fill="#06C167">Eats</text></svg>
+        </div>
+        <p>Cobertura amplia y seguimiento del repartidor.</p>
+        <div class="go">Abrir Uber Eats →</div>
+      </a>
+      <a class="dcard d-didi" href="https://www.didifood.com.mx/" target="_blank" rel="noopener">
+        <div class="brand-mark">
+          <svg viewBox="0 0 180 56"><text x="0" y="40" font-family="Montserrat,Arial,sans-serif" font-weight="900" font-size="34" fill="#fff">DiDi</text><text x="82" y="40" font-family="Montserrat,Arial,sans-serif" font-weight="700" font-size="26" fill="#fff" opacity="0.92">Food</text></svg>
+        </div>
+        <p>Promociones frecuentes y entregas rápidas.</p>
+        <div class="go">Abrir DiDi Food →</div>
+      </a>
+      <a class="dcard d-wa" id="waLink" href="#" target="_blank" rel="noopener">
+        <div class="brand-mark">
+          <svg viewBox="0 0 200 56"><g transform="translate(4,6)"><circle cx="22" cy="22" r="22" fill="#fff"/><path d="M22 8c-7.7 0-14 6.3-14 14 0 2.5.7 4.8 1.8 6.8L8 36l7.4-1.9c1.9 1 4.1 1.6 6.6 1.6 7.7 0 14-6.3 14-14S29.7 8 22 8zm8.1 19.6c-.3.9-1.9 1.7-2.6 1.8-.7.1-1.5.1-2.5-.2-.6-.2-1.3-.4-2.3-.8-4-1.7-6.6-5.8-6.8-6-.2-.3-1.6-2.2-1.6-4.2s1-3 1.4-3.4c.3-.4.7-.5 1-.5h.7c.2 0 .5-.1.8.6.3.8 1.1 2.8 1.2 3 .1.2.2.4 0 .7-.1.3-.2.4-.4.7-.2.2-.4.5-.5.6-.2.2-.4.4-.2.7.2.3.9 1.5 2 2.4 1.3 1.2 2.5 1.6 2.8 1.7.3.2.5.1.7-.1.2-.2.8-.9 1-1.2.2-.3.4-.3.7-.2.3.1 1.9.9 2.2 1.1.3.2.5.3.6.4.1.3.1 1.4-.2 2.4z" fill="#25D366"/></g><text x="62" y="40" font-family="Montserrat,Arial,sans-serif" font-weight="900" font-size="30" fill="#fff">WhatsApp</text></svg>
+        </div>
+        <p>Pide directo con nosotros. Sin comisiones.</p>
+        <div class="go">Escribir →</div>
+      </a>
+      <a class="dcard d-tel" id="telLink" href="#">
+        <div class="brand-mark">
+          <svg viewBox="0 0 180 56"><g transform="translate(4,6)"><circle cx="22" cy="22" r="22" fill="rgba(255,255,255,0.16)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/><path d="M30.5 24.5c-.4-.2-2.4-1.2-2.8-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.3 1.6-.2.3-.5.3-.9.1s-1.7-.6-3.2-2c-1.2-1.1-2-2.4-2.2-2.8-.2-.4 0-.6.2-.8.2-.2.4-.5.6-.8.2-.2.3-.4.4-.7.1-.3 0-.5-.1-.7-.1-.2-.8-2-1.1-2.7-.3-.7-.6-.6-.9-.6h-.7c-.3 0-.7.1-1 .5-.4.4-1.4 1.4-1.4 3.4 0 2 1.4 3.9 1.6 4.2.2.3 2.8 4.3 6.8 6 1 .4 1.8.7 2.3.8 1 .3 1.8.2 2.5.1.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.7.2-1.9-.1-.2-.3-.3-.6-.4z" fill="#fff"/></g><text x="62" y="40" font-family="Montserrat,Arial,sans-serif" font-weight="900" font-size="30" fill="#fff">Llamar</text></svg>
+        </div>
+        <p>Haz tu pedido por teléfono.</p>
+        <div class="go">Llamar ahora →</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="block" id="menu">
+    <span class="eyebrow">Nuestro menú</span>
+    <h2 class="big">Menú completo con precios.</h2>
+    <p class="lead">Explora todas nuestras categorías. Agrega al carrito y envía tu pedido directo a cocina.</p>
+
+    <div class="menu-toolbar">
+      <label class="search">
+        <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="q" type="search" placeholder="Buscar tacos, ceviches, mezcal..." aria-label="Buscar">
+        <button id="clearQ" class="clear hide" aria-label="Limpiar">×</button>
+      </label>
+      <div class="filters" id="filters"></div>
+    </div>
+
+    <div id="menuRender"></div>
+
+    <div id="noResults" class="hide" style="text-align:center;padding:60px 20px;color:var(--gris)">
+      <h3 style="color:var(--azul);margin:0 0 6px">Sin resultados</h3>
+      <p style="font-size:14px">Intenta con "taco", "ceviche" o "mezcal".</p>
+    </div>
+
+    <div style="text-align:center;margin-top:40px">
+      <button class="btn btn-primary" id="goCart" style="display:none">Ver mi pedido (<span id="cartCountInline">0</span>)</button>
+    </div>
+  </section>
+
+  <section class="block" id="ubicacion">
+    <span class="eyebrow">Cómo llegar</span>
+    <h2 class="big">Estamos más cerca de lo que crees.</h2>
+    <p class="lead">Visítanos y vive la experiencia completa.</p>
+    <div class="loc-grid">
+      <div class="map-wrap">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.5!2d-99.1332!3d19.4326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDI1JzU3LjMiTiA5OcKwMDcnNTkuNSJX!5e0!3m2!1ses!2smx!4v1700000000000" loading="lazy" title="Ubicación"></iframe>
+      </div>
+      <div class="loc-info">
+        <div class="info-row">
+          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><b>Dirección</b><span id="lblDir">—</span></div>
+        </div>
+        <div class="info-row">
+          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div style="flex:1">
+            <b>Horario</b>
+            <div class="hours">
+              <div class="h-row"><span>Lunes a Jueves</span><span>1:00 pm – 10:00 pm</span></div>
+              <div class="h-row"><span>Viernes y Sábado</span><span>1:00 pm – 12:00 am</span></div>
+              <div class="h-row"><span>Domingo</span><span>1:00 pm – 9:00 pm</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div><b>Contacto</b><span id="lblTel">—</span></div>
+        </div>
+        <a id="btnMaps" class="btn-full" href="#" target="_blank" rel="noopener">Abrir en Google Maps</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <img src="assets/logo.png" alt="Aguanile" class="f-logo-img" onerror="this.style.display='none'">
+      <p class="f-tagline">Antojería del mar. Cocina costera, tacos de especialidad y mixología de autor.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Contacto</h5>
+      <ul class="f-list">
+        <li><span id="fDir"></span></li>
+        <li><a id="fTel" href="#">—</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Horario</h5>
+      <ul class="f-list hours-list">
+        <li><span>Lun–Jue</span><b>1pm–10pm</b></li>
+        <li><span>Vie–Sáb</span><b>1pm–12am</b></li>
+        <li><span>Dom</span><b>1pm–9pm</b></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Pide ahora</h5>
+      <ul class="f-list">
+        <li><a href="https://www.rappi.com.mx/" target="_blank" rel="noopener">Rappi</a></li>
+        <li><a href="https://www.ubereats.com/mx" target="_blank" rel="noopener">Uber Eats</a></li>
+        <li><a href="https://www.didifood.com.mx/" target="_blank" rel="noopener">DiDi Food</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <p class="f-note">Precios en pesos mexicanos (MXN) e incluyen impuestos. Las porciones de carne de res, pulpo y camarón se pesan en crudo. Consumo de alcohol exclusivo para mayores de 18 años. Precios sujetos a cambio sin previo aviso.</p>
+    <p class="f-copy">© <span id="fYear"></span> Aguanile · Antojería del Mar · Todos los derechos reservados.</p>
+    <p class="f-copy">Sitio web desarrollado por <a href="https://www.mzgsys.com.mx/main" target="_blank" rel="noopener" class="f-admin-link">MZG Systems</a> </p>
+  </div>
+</footer>
+
+<button class="fab" id="fabCart">Ver pedido · <span id="fabTxt">$0.00</span></button>
+
+<div class="backdrop" id="backdrop"></div>
+
+<aside class="drawer" id="drawer">
+  <div class="dr-head">
+    <h3>Tu pedido <span id="drCount" style="opacity:.7;font-size:14px"></span></h3>
+    <button class="dr-close" id="closeDrawer">×</button>
+  </div>
+  <div class="dr-body" id="drBody"></div>
+  <div class="dr-foot">
+    <div class="tot-row"><span>Subtotal</span><span id="drSub">$0.00</span></div>
+    <div class="tot-row" id="drEnvRow" style="display:none"><span>Envío</span><span id="drEnv">$0.00</span></div>
+    <div class="tot-row big"><span>Total</span><span id="drTotal">$0.00</span></div>
+    <button class="btn-main" id="goCheckout" disabled>Continuar pedido →</button>
+    <button class="btn-ghost2" id="clearCart">Vaciar carrito</button>
+  </div>
+</aside>
+
+<div class="modal" id="itemModal"><div class="modal-card" id="itemCard"></div></div>
+<div class="modal" id="coModal"><div class="modal-card" id="coCard"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* =========================================================
+   CONFIGURACIÓN
+   ========================================================= */
+var CONFIG = {
+  nombre: 'Aguanile',
+  whatsapp: '5215500000000',
+  tel: '+525500000000',
+  direccion: 'Av. del Mar 123, Col. Centro, Ciudad, CP 00000',
+  maps: 'https://maps.google.com/?q=Aguanile+Antojeria+del+Mar',
+  envio: 45,
+  envioGratisDesde: 500,
+  sheetUrl: 'https://script.google.com/macros/s/AKfycbza15kGOsoJsWNAhya72AVxPxFljo_R4By8LC7iSiBdF_51h1-GBk-BF1cuuidc_vHK/exec'
+};
+
+/* =========================================================
+   UTILIDADES BÁSICAS
+   ========================================================= */
+var $ = function(s){ return document.querySelector(s); };
+var $$ = function(s){ return Array.prototype.slice.call(document.querySelectorAll(s)); };
+var money = function(n){ return new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN',minimumFractionDigits:2}).format(n||0); };
+var esc = function(s){ return String(s||'').replace(/[&<>"']/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); };
+var basePrice = function(it){ return it.sizes ? Math.min.apply(null, it.sizes.map(function(s){return s.p;})) : it.p; };
+var hasSizes = function(it){ return !!it.sizes; };
+var itemImg = function(it){ return 'assets/menu/' + it.id + '.jpg'; };
+
+/* =========================================================
+   MENÚ COMPLETO
+   ========================================================= */
+var MENU = [
+  { id:'empezar', name:"Pa' Empezar", short:"Pa' Empezar", icon:'utensils',
+    note:'Porciones de carne de res, pulpo y camarón pesadas en crudo.',
+    groups:[{ items:[
+      {id:'empanada', n:'Empanada', d:'Elige tu relleno: salpicón, jaibá o camarón.', p:59},
+      {id:'chich-ribeye', n:'Chicharrón de Ribeye', d:'Ribeye crujiente con sal de la casa.', p:320, u:'220 g', tags:['compartir']},
+      {id:'chich-pulpo', n:'Chicharrón de Pulpo', d:'Pulpo crujiente por fuera, jugoso por dentro.', p:390, u:'300 g', tags:['compartir']},
+      {id:'cam-rellenos', n:'Camarones Rellenos', d:'Rellenos de mariscos y queso gratinado.', p:295, u:'6 pz'},
+      {id:'cam-pelar', n:"Camarón Pa' Pelar", d:'Camarón fresco, listo para pelar.', p:195, u:'6 pz'},
+      {id:'jaiba-frank', n:'Jaibá a la Frank', d:'Jaibá gratinada al estilo de la casa.', p:230, u:'170 g'},
+      {id:'palomitas', n:'Palomitas de Camarón', d:'Bocaditos de camarón empanizados.', p:190, u:'120 g', tags:['kids']},
+      {id:'torre', n:'Torre de Mariscos', d:'Torre para compartir con lo mejor del mar.', p:390, u:'450 g', tags:['compartir']},
+      {id:'carnitas-atun', n:'Carnitas de Atún', d:'Atún cocido a fuego lento.', p:390, u:'300 g', tags:['compartir']},
+      {id:'queso-fundido', n:'Queso Fundido', d:'Elige tu extra.', tags:['compartir'],
+        sizes:[{l:'Natural',p:190},{l:'Con chorizo',p:220},{l:'Con camarones',p:240},{l:'Con marlín pastor',p:275}]}
+    ]}]
+  },
+  { id:'cocteles', name:'Cocteles, Ceviches y Bowls', short:'Ceviches', icon:'martini',
+    note:'Pídelos chicos o grandes. Los bowls son porciones de 250 g.',
+    groups:[{ items:[
+      {id:'coctel-camaron', n:'Coctel de Camarón', d:'Camarón, salsa de la casa y aguacate.', sizes:[{l:'Chico',p:95},{l:'Grande',p:175}]},
+      {id:'vuelve-vida', n:'Vuelve a la Vida', d:'Camarón, pulpo y jaibá en salsa de la casa.', sizes:[{l:'Chico',p:115},{l:'Grande',p:210}]},
+      {id:'cev-pescado', n:'Ceviche de Pescado', d:'Pescado fresco marinado en limón.', sizes:[{l:'Chico',p:80},{l:'Grande',p:155}]},
+      {id:'cev-camaron', n:'Ceviche de Camarón', d:'Camarón marinado con la receta de la casa.', sizes:[{l:'Chico',p:90},{l:'Grande',p:175}]},
+      {id:'cev-mixto', n:'Ceviche Mixto', d:'Pescado, camarón y pulpo.', sizes:[{l:'Chico',p:115},{l:'Grande',p:210}]},
+      {id:'cev-atun', n:'Ceviche de Atún', d:'Atún fresco, soya y ajonjolí.', sizes:[{l:'Chico',p:130},{l:'Grande',p:240}]},
+      {id:'bowl-camaron', n:'Bowl de Camarón', d:'Camarón, pepino, aguacate, zanahoria, cebolla morada, salsa ponzu y aderezo mayo sriracha.', p:285, u:'250 g'},
+      {id:'bowl-atun', n:'Bowl de Atún', d:'Atún, pepino, aguacate, mango, salsa ponzu y aderezo mayo sriracha.', p:380, u:'250 g'},
+      {id:'extra-pulpo', n:'Extra de Pulpo', d:'Agrega pulpo a cualquier platillo.', sizes:[{l:'30 g',p:40},{l:'45 g',p:65}]}
+    ]}]
+  },
+  { id:'caldos', name:'Caldos y Cazuelas', short:'Caldos', icon:'bowl',
+    note:'Calientes, reconfortantes y servidos al momento.',
+    groups:[{ items:[
+      {id:'caldo-camaron', n:'Caldo de Camarón', d:'Caldo tradicional con camarón fresco.', sizes:[{l:'300 ml',p:95},{l:'450 ml',p:165}]},
+      {id:'cazuela', n:'Cazuela de Mariscos', d:'Camarón, pulpo, jaibá y pescado.', tags:['compartir'], sizes:[{l:'300 ml',p:95},{l:'450 ml',p:165}]},
+      {id:'caldo-pescado', n:'Caldo de Pescado', d:'Pescado fresco en caldo de la casa.', sizes:[{l:'300 ml',p:90},{l:'450 ml',p:140}]}
+    ]}]
+  },
+  { id:'aguachiles', name:'Aguachiles', short:'Aguachiles', icon:'flame',
+    note:'Todos en porción de 200 g. Preparados al momento.',
+    groups:[{ items:[
+      {id:'aguanegra', n:'Aguanegra', d:'Salsa negra de la casa, cebolla morada y aguacate.', p:300, u:'200 g', tags:['chef','picante']},
+      {id:'aguaverde', n:'Aguaverde', d:'Salsa verde, cilantro y pepino.', p:300, u:'200 g', tags:['picante']},
+      {id:'aguaroja', n:'Aguaroja', d:'Chile rojo, limón y cebolla morada.', p:300, u:'200 g', tags:['picante']},
+      {id:'aguachile-ribeye', n:'Aguachile de Ribeye', d:'Ribeye en aguachile.', p:265, u:'200 g', tags:['picante']}
+    ]}]
+  },
+  { id:'tostadas', name:'Tostadas', short:'Tostadas', icon:'toast',
+    note:'Precio por pieza.',
+    groups:[{ items:[
+      {id:'tos-cev-pescado', n:'Tostada de Ceviche de Pescado', p:55, u:'1 pz'},
+      {id:'tos-cev-camaron', n:'Tostada de Ceviche de Camarón', p:65, u:'1 pz'},
+      {id:'tos-marlin', n:'Tostada de Marlín', p:79, u:'1 pz'},
+      {id:'tos-atun', n:'Tostada de Atún', p:89, u:'1 pz'},
+      {id:'tos-aguanegra', n:'Tostada Aguanegra', p:89, u:'1 pz', tags:['picante']},
+      {id:'tos-aguaroja', n:'Tostada Aguaroja', p:89, u:'1 pz', tags:['picante']},
+      {id:'tos-aguaverde', n:'Tostada Aguaverde', p:89, u:'1 pz', tags:['picante']},
+      {id:'tos-barracuda', n:'Tostada Barracuda', p:115, u:'1 pz', tags:['chef']},
+      {id:'tos-jaiba', n:'Tostada Jaiba Brava', p:115, u:'1 pz', tags:['picante']}
+    ]}]
+  },
+  { id:'antojitos', name:'Antojitos Mexicanos', short:'Antojitos', icon:'utensils',
+    note:'Antojitos que provocan más antojos.',
+    groups:[
+      { name:'Quesadillas', items:[
+        {id:'q-cam-gober', n:'Quesadilla de Camarón Gobernador', p:55, u:'1 pz'},
+        {id:'q-pulpo-mole', n:'Quesadilla de Pulpo en Mole', p:85, u:'1 pz'},
+        {id:'q-cam-chipotle', n:'Quesadilla de Camarones al Chipotle', p:55, u:'1 pz', tags:['picante']}
+      ]},
+      { name:'Gordita Frita', items:[
+        {id:'g-cam-norteno', n:'Gordita de Camarón Norteño', p:69, u:'1 pz'},
+        {id:'g-cam-lodo', n:'Gordita de Camarón en Lodo', p:55, u:'1 pz'},
+        {id:'g-pulpo-ado', n:'Gordita de Pulpo en Adobo', p:85, u:'1 pz'}
+      ]},
+      { name:'Sopes, Enchiladas y Flautas', items:[
+        {id:'s-marlin-pastor', n:'Sope de Marlín al Pastor', p:69, u:'1 pz', tags:['chef']},
+        {id:'s-discada', n:'Sope Discada de Mariscos', p:59, u:'1 pz'},
+        {id:'s-norteno', n:'Sope Norteño', p:59, u:'1 pz'},
+        {id:'s-ranchero', n:'Sope Ranchero', p:55, u:'1 pz'},
+        {id:'e-suiza-salmon', n:'Enchilada Suiza de Salmón', p:85, u:'1 pz'},
+        {id:'e-roja-camaron', n:'Enchilada Roja de Camarón', p:69, u:'1 pz'},
+        {id:'f-marlin', n:'Flauta de Marlín', p:69, u:'1 pz'}
+      ]}
+    ]
+  },
+  { id:'tacos', name:'Tacos', short:'Tacos', icon:'taco',
+    note:'El mar también sabe enrollarse con tortilla.',
+    groups:[
+      { name:'A las Brasas', items:[
+        {id:'t-camaron', n:'Taco de Camarón', p:55, u:'1 pz'},
+        {id:'t-pescado', n:'Taco de Pescado', p:49, u:'1 pz'},
+        {id:'t-pulpo', n:'Taco de Pulpo', p:85, u:'1 pz'},
+        {id:'t-salmon', n:'Taco de Salmón', p:75, u:'1 pz'},
+        {id:'t-atun', n:'Taco de Atún', p:75, u:'1 pz'}
+      ]},
+      { name:'Ensenada', items:[
+        {id:'te-camaron', n:'Taco Ensenada de Camarón', p:59, u:'1 pz'},
+        {id:'te-pescado', n:'Taco Ensenada de Pescado', p:49, u:'1 pz'}
+      ]},
+      { name:'Embarazados', items:[
+        {id:'tb-pescado', n:'Taco Embarazado de Pescado', p:59, u:'1 pz'},
+        {id:'tb-pulpo', n:'Taco Embarazado de Pulpo', p:85, u:'1 pz'},
+        {id:'tb-camaron', n:'Taco Embarazado de Camarón', p:59, u:'1 pz'}
+      ]},
+      { name:'Empanizados', items:[
+        {id:'tz-camaron', n:'Taco Empanizado de Camarón', p:55, u:'1 pz'},
+        {id:'tz-pescado', n:'Taco Empanizado de Pescado', p:49, u:'1 pz'}
+      ]}
+    ]
+  },
+  { id:'especialidad', name:'Tacos de Especialidad', short:'Especialidad', icon:'star',
+    note:'Las creaciones de la casa.',
+    groups:[{ items:[
+      {id:'e-gobernador', n:'Taco Gobernador', d:'Camarón, queso y chile poblano.', p:55, u:'1 pz', tags:['chef']},
+      {id:'e-carnitas-atun', n:'Taco de Carnitas de Atún', p:85, u:'1 pz', tags:['chef']},
+      {id:'e-pulpo-ado', n:'Taco de Pulpo en Adobo', p:85, u:'1 pz', tags:['chef']},
+      {id:'e-cecina', n:'Taco de Cecina', p:49, u:'1 pz'},
+      {id:'e-cecina-lodo', n:'Taco de Cecina en Lodo', p:55, u:'1 pz'},
+      {id:'e-aguanile', n:'Taco Aguanile', p:65, u:'1 pz'},
+      {id:'e-arrachera', n:'Taco de Arrachera', p:69, u:'1 pz'},
+      {id:'e-chich-ribeye', n:'Taco de Chicharrón de Ribeye', p:75, u:'1 pz'},
+      {id:'e-chich-pulpo', n:'Taco de Chicharrón de Pulpo', p:85, u:'1 pz'},
+      {id:'e-discada', n:'Taco Discada de Mariscos', p:59, u:'1 pz'},
+      {id:'e-cam-ranchero', n:'Taco de Camarón Ranchero', p:55, u:'1 pz'},
+      {id:'e-cam-norteno', n:'Taco Camarón Norteño', p:69, u:'1 pz'},
+      {id:'e-norteno', n:'Taco Norteño', p:75, u:'1 pz'},
+      {id:'e-huasteco', n:'Taco Huasteco', p:59, u:'1 pz'},
+      {id:'e-flauta-marlin', n:'Taco Flauta de Marlín', p:59, u:'1 pz'},
+      {id:'e-marlin-queso', n:'Taco Marlín Queso', p:69, u:'1 pz'},
+      {id:'e-marlin-pastor', n:'Taco Marlín al Pastor', p:69, u:'1 pz'},
+      {id:'e-costa-queso', n:'Extra: Costa de Queso', p:12, u:'50 g'}
+    ]}]
+  },
+  { id:'mixologia', name:'Mixología', short:'Mixología', icon:'martini',
+    note:'Precio por vaso de 480 ml o litro.',
+    groups:[{ items:[
+      {id:'mx-palomazo', n:'Palomazo', sizes:[{l:'Vaso 480 ml',p:105},{l:'Litro',p:190}]},
+      {id:'mx-marea', n:'Marea Picante', tags:['picante'], sizes:[{l:'Vaso 480 ml',p:100},{l:'Litro',p:190}]},
+      {id:'mx-tamarindo', n:'Tamarindo Blaze', tags:['picante'], sizes:[{l:'Vaso 480 ml',p:90},{l:'Litro',p:175}]},
+      {id:'mx-margarita', n:'Margarita Aguanile', sizes:[{l:'Vaso 480 ml',p:95},{l:'Litro',p:180}]},
+      {id:'mx-bandera', n:'Bandera Negra', tags:['picante'], sizes:[{l:'Vaso 480 ml',p:100},{l:'Litro',p:190}]},
+      {id:'mx-mojito-sandia', n:'Mojito de Sandía', sizes:[{l:'Vaso 480 ml',p:85},{l:'Litro',p:160}]},
+      {id:'mx-mojito-coco', n:'Mojito de Coco-Jengibre', sizes:[{l:'Vaso 480 ml',p:85},{l:'Litro',p:160}]}
+    ]}]
+  },
+  { id:'mocktails', name:'Mocktails', short:'Mocktails', icon:'cup',
+    note:'Sin alcohol, con todo el sabor.',
+    groups:[{ items:[
+      {id:'mk-sandia', n:'Refresh de Sandía', p:65, u:'480 ml', tags:['sin-alcohol']},
+      {id:'mk-pepino', n:'Refresh de Pepino', p:65, u:'480 ml', tags:['sin-alcohol']},
+      {id:'mk-jengibre', n:'Refresh de Jengibre', p:65, u:'480 ml', tags:['sin-alcohol']}
+    ]}]
+  },
+  { id:'cervezas', name:'Cervezas', short:'Cervezas', icon:'beer',
+    note:'Todas servidas bien frías.',
+    groups:[{ items:[
+      {id:'cv-corona', n:'Corona', p:40, u:'355 ml'},
+      {id:'cv-victoria', n:'Victoria', p:40, u:'355 ml'},
+      {id:'cv-michelob', n:'Michelob Ultra', p:45, u:'355 ml'},
+      {id:'cv-negra', n:'Negra Modelo', p:49, u:'355 ml'},
+      {id:'cv-modelo', n:'Modelo Especial', p:49, u:'355 ml'},
+      {id:'cv-pacifico', n:'Pacífico Suave', p:40, u:'355 ml'}
+    ]}]
+  },
+  { id:'micheladas', name:'Micheladas Aguanile', short:'Micheladas', icon:'beer',
+    note:'Más frías que tu jefe cuando pides vacaciones.',
+    groups:[{ items:[
+      {id:'mi-aguanile', n:'Michelada Aguanile', p:130, u:'960 ml'},
+      {id:'mi-pepino', n:'Pepino Chela', p:130, u:'960 ml'},
+      {id:'mi-patochela', n:'Patochela', p:145, u:'960 ml'},
+      {id:'mi-chamochela', n:'Chamochela', p:110, u:'960 ml'},
+      {id:'mi-prep-che', n:'Preparado de Chelada', p:25},
+      {id:'mi-prep-beer', n:'Preparado de Beermato', p:45},
+      {id:'mi-prep-mi', n:'Preparado de Michelada', p:35}
+    ]}]
+  },
+  { id:'destilados', name:'Destilados y Licores', short:'Destilados', icon:'whiskey',
+    note:'Servicio de 45 ml. Mayores de 18 años.',
+    groups:[
+      { name:'Tequilas', items:[
+        {id:'d-maestro', n:'Maestro Dobel', p:140, u:'45 ml'},
+        {id:'d-donjulio', n:'Don Julio 70', p:150, u:'45 ml'},
+        {id:'d-cuervo', n:'José Cuervo Tradicional', p:95, u:'45 ml'}
+      ]},
+      { name:'Whisky', items:[
+        {id:'d-etiroja', n:'Etiqueta Roja', p:100, u:'45 ml'},
+        {id:'d-etinegra', n:'Etiqueta Negra', p:135, u:'45 ml'},
+        {id:'d-buchanans', n:"Buchanan's 12", p:135, u:'45 ml'}
+      ]},
+      { name:'Ron', items:[
+        {id:'d-bacardi', n:'Bacardí Blanco', p:90, u:'45 ml'},
+        {id:'d-flordecana', n:'Flor de Caña 4 Años Gold', p:95, u:'45 ml'},
+        {id:'d-zacapa', n:'Zacapa 23', p:195, u:'45 ml'}
+      ]},
+      { name:'Brandy, Mezcal y Vodka', items:[
+        {id:'d-torres', n:'Brandy Torres 10', p:100, u:'45 ml'},
+        {id:'d-conejos', n:'Mezcal 400 Conejos Joven', p:120, u:'45 ml'},
+        {id:'d-absolut', n:'Vodka Absolut', p:90, u:'45 ml'},
+        {id:'d-greygoose', n:'Vodka Grey Goose', p:150, u:'45 ml'},
+        {id:'d-smirnoff', n:'Vodka Smirnoff', p:80, u:'45 ml'}
+      ]}
+    ]
+  },
+  { id:'cocteleria', name:'Coctelería', short:'Coctelería', icon:'wine',
+    note:'Clásicos bien preparados.',
+    groups:[{ items:[
+      {id:'c-mojito', n:'Mojito Clásico', p:85, u:'480 ml'},
+      {id:'c-pina', n:'Piña Colada', p:90, u:'480 ml'},
+      {id:'c-fresa', n:'Fresa Colada', p:110, u:'480 ml'},
+      {id:'c-bull', n:'Bull', p:85, u:'480 ml'},
+      {id:'c-margarita', n:'Margarita', p:85, u:'360 ml'},
+      {id:'c-babymango', n:'Baby Mango', p:85, u:'480 ml'},
+      {id:'c-mezcalita', n:'Mezcalita de Jamaica', p:85, u:'480 ml'},
+      {id:'c-paloma', n:'Paloma', p:85, u:'480 ml'},
+      {id:'c-vampiro', n:'Vampiro', p:85, u:'480 ml'}
+    ]}]
+  },
+  { id:'sin-alcohol', name:'Aguas, Refrescos y Café', short:'Refrescos', icon:'cup',
+    note:'Preparados al momento y bien fríos.',
+    groups:[
+      { name:'Aguas Frescas', items:[
+        {id:'a-limonada', n:'Limonada', p:50, u:'480 ml', tags:['sin-alcohol']},
+        {id:'a-naranjada', n:'Naranjada', p:55, u:'480 ml', tags:['sin-alcohol']},
+        {id:'a-jamaica', n:'Agua de Jamaica', p:55, u:'480 ml', tags:['sin-alcohol']},
+        {id:'a-fresa', n:'Agua de Fresa', p:55, u:'480 ml', tags:['sin-alcohol']},
+        {id:'a-pepino', n:'Agua de Pepino', p:55, u:'480 ml', tags:['sin-alcohol']}
+      ]},
+      { name:'Refrescos', items:[
+        {id:'r-coca', n:'Coca Cola', p:40, u:'355 ml', tags:['sin-alcohol']},
+        {id:'r-cocalight', n:'Coca Cola Light', p:40, u:'355 ml', tags:['sin-alcohol']},
+        {id:'r-cocazero', n:'Coca Cola Sin Azúcar', p:40, u:'355 ml', tags:['sin-alcohol']},
+        {id:'r-sprite', n:'Sprite', p:40, u:'355 ml', tags:['sin-alcohol']},
+        {id:'r-delaware', n:'Delaware', p:40, u:'355 ml', tags:['sin-alcohol']},
+        {id:'r-sidral', n:'Sidral Mundet', p:40, u:'355 ml', tags:['sin-alcohol']},
+        {id:'r-fresca', n:'Fresca', p:40, u:'355 ml', tags:['sin-alcohol']},
+        {id:'r-agua-natural', n:'Agua Natural', p:35, u:'600 ml', tags:['sin-alcohol']},
+        {id:'r-agua-mineral', n:'Agua Mineral', p:45, u:'600 ml', tags:['sin-alcohol']}
+      ]},
+      { name:'Café', items:[
+        {id:'cf-carajillo', n:'Carajillo', p:110, u:'360 ml'},
+        {id:'cf-carajillo-baileys', n:'Carajillo de Baileys', p:120, u:'360 ml'},
+        {id:'cf-piquete', n:'Café con Piquete Aguanile', p:120, u:'360 ml'},
+        {id:'cf-americano', n:'Americano', p:45, u:'240 ml', tags:['sin-alcohol']},
+        {id:'cf-espresso', n:'Espresso', p:35, u:'60 ml', tags:['sin-alcohol']}
+      ]}
+    ]
+  },
+  { id:'kids', name:'Menú Kids', short:'Kids', icon:'smile',
+    note:'Para los más pequeños.',
+    groups:[{ items:[
+      {id:'k-dedos', n:'Dedos de Pescado', p:90, u:'130 g', tags:['kids']},
+      {id:'k-palomitas', n:'Palomitas de Camarón Kids', p:95, u:'100 g', tags:['kids']},
+      {id:'k-nuggets', n:'Nuggets de Pollo', p:89, u:'180 g', tags:['kids']},
+      {id:'k-tacos', n:'Tacos de Cecina Kids', p:90, u:'110 g', tags:['kids']}
+    ]}]
+  },
+  { id:'postres', name:'Postres', short:'Postres', icon:'iceCream',
+    note:'El final dulce.',
+    groups:[{ items:[
+      {id:'p-platanos', n:'Plátanos Fritos', p:60},
+      {id:'p-flan', n:'Flan de la Casa', p:50},
+      {id:'p-torre', n:'Torre de Plátano Helada', p:85, tags:['compartir']},
+      {id:'p-tartaletas', n:'Tartaletas de Queso de Temporada', p:65}
+    ]}]
+  }
+];
+
+/* =========================================================
+   ICONOS SVG
+   ========================================================= */
+var SVG = {
+  utensils:'<path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>',
+  martini:'<path d="M8 22h8M12 11v11m7-18-7 8-7-8z"/>',
+  bowl:'<path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z"/><path d="M7 21h10"/><path d="M19.5 12 22 6"/>',
+  flame:'<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>',
+  toast:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.5"/>',
+  taco:'<path d="M2 15a10 10 0 0 1 20 0v3H2z"/><path d="M6 13c1.5-1.5 3.5-2 6-2s4.5.5 6 2"/>',
+  star:'<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>',
+  cup:'<path d="m6 8 1.75 12.28a2 2 0 0 0 2 1.72h4.54a2 2 0 0 0 2-1.72L18 8"/><path d="M5 8h14"/><path d="M7 15a6.47 6.47 0 0 1 5 0 6.47 6.47 0 0 0 5 0"/><path d="m12 8 1-6h2"/>',
+  beer:'<path d="M17 11h1a3 3 0 0 1 0 6h-1"/><path d="M9 12v6M13 12v6"/><path d="M14 7.5c-1 0-1.44.5-3 .5s-2-.5-3-.5-1.72.5-2.5.5a2.5 2.5 0 0 1 0-5c.78 0 1.57.5 2.5.5S9.44 3 11 3s2 .5 3 .5 2-.5 3-.5a2.5 2.5 0 0 1 0 5c-.78 0-1.5-.5-3-.5Z"/><path d="M5 8v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8"/>',
+  whiskey:'<path d="M6 4h12l-1 16a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1z"/><path d="M6 12h12"/>',
+  wine:'<path d="M8 22h8"/><path d="M7 10h10"/><path d="M12 15v7"/><path d="M12 15a5 5 0 0 0 5-5c0-2-.5-4-2-8H9c-1.5 4-2 6-2 8a5 5 0 0 0 5 5Z"/>',
+  smile:'<circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" x2="9.01" y1="9" y2="9"/><line x1="15" x2="15.01" y1="9" y2="9"/>',
+  iceCream:'<path d="m7 11 4.08 10.35a1 1 0 0 0 1.84 0L17 11"/><path d="M17 7A5 5 0 0 0 7 7"/><path d="M17 7a2 2 0 0 1 0 4H7a2 2 0 0 1 0-4"/>',
+  users:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>',
+  plus:'<path d="M12 5v14M5 12h14"/>',
+  minus:'<path d="M5 12h14"/>',
+  trash:'<path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>',
+  close:'<path d="M18 6 6 18M6 6l12 12"/>',
+  checkCircle:'<circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>',
+  xCircle:'<circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/>',
+  message:'<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>',
+  arrowRight:'<path d="M5 12h14M12 5l7 7-7 7"/>',
+  menu:'<path d="M3 12h18M3 6h18M3 18h18"/>',
+  scooter:'<circle cx="6" cy="17" r="3"/><circle cx="18" cy="17" r="3"/><path d="M9 17h6"/><path d="M6 14V6a2 2 0 0 1 2-2h4l3 6"/>',
+  bag:'<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" x2="21" y1="6" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>',
+  cart:'<circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/>'
+};
+function ico(name, size){
+  size = size || 20;
+  if(!SVG[name]) return '';
+  return '<svg class="ico" width="'+size+'" height="'+size+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+SVG[name]+'</svg>';
+}
+
+/* =========================================================
+   ESTADO
+   ========================================================= */
+var state = { cart:[], mode:'domicilio', query:'', filter:'all', customer:{} };
+var FILTERS = [
+  {k:'all', l:'Todo', i:'utensils'},
+  {k:'chef', l:'Del chef', i:'star'},
+  {k:'picante', l:'Picante', i:'flame'},
+  {k:'compartir', l:'Compartir', i:'users'},
+  {k:'sin-alcohol', l:'Sin alcohol', i:'cup'},
+  {k:'kids', l:'Kids', i:'smile'}
+];
+var MODE_LABEL = { local:'Comer aquí', llevar:'Para llevar', domicilio:'A domicilio' };
+var MODE_ICON = { local:'utensils', llevar:'bag', domicilio:'scooter' };
+
+/* Índice de platillos */
+var INDEX = {};
+MENU.forEach(function(sec){
+  sec.groups.forEach(function(g){
+    g.items.forEach(function(it){
+      it._sec = sec.id;
+      it._grp = g.name || null;
+      it._catIcon = sec.icon;
+      INDEX[it.id] = it;
+    });
+  });
+});
+
+/* =========================================================
+   STORAGE
+   ========================================================= */
+var store = {
+  get: function(k,d){ try{ var v = localStorage.getItem('aguanile_'+k); return v ? JSON.parse(v) : d; }catch(e){ return d; } },
+  set: function(k,v){ try{ localStorage.setItem('aguanile_'+k, JSON.stringify(v)); }catch(e){} }
+};
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+function toast(msg, iconName){
+  var t = $('#toast');
+  t.innerHTML = (iconName ? ico(iconName, 20) : '') + '<span>'+esc(msg)+'</span>';
+  t.classList.add('on');
+  clearTimeout(toast._t);
+  toast._t = setTimeout(function(){ t.classList.remove('on'); }, 2400);
+}
+
+/* =========================================================
+   RENDER: TARJETA DE PLATILLO
+   ========================================================= */
+function itemCard(it){
+  var from = hasSizes(it) && it.sizes.length > 1;
+  var tags = it.tags || [];
+  var img = itemImg(it);
+  var badges = '';
+  if(tags.indexOf('chef') !== -1)    badges += '<span class="badge chef">Chef</span>';
+  if(tags.indexOf('picante') !== -1) badges += '<span class="badge pic">Picante</span>';
+  return '<article class="card">'
+    + '<div class="thumb">'
+      + '<div class="thumb-fallback">'+ico(it._catIcon, 44)+'</div>'
+      + '<img src="'+esc(img)+'" alt="'+esc(it.n)+'" loading="lazy" onerror="this.style.display=\'none\'">'
+      + badges
+    + '</div>'
+    + '<div class="card-body">'
+      + '<h4>'+esc(it.n)+'</h4>'
+      + (it.d ? '<p>'+esc(it.d)+'</p>' : '<p></p>')
+      + (it.u ? '<span class="unit">'+esc(it.u)+'</span>' : '')
+      + '<div class="card-foot">'
+        + '<div class="price">'+(from ? '<small>desde</small> ' : '') + money(basePrice(it))+'</div>'
+        + '<button class="add" data-add="'+it.id+'" aria-label="Agregar">'+ico('plus',20)+'</button>'
+      + '</div>'
+    + '</div></article>';
+}
+
+/* =========================================================
+   RENDER: MENÚ COMPLETO
+   ========================================================= */
+function renderMenu(){
+  var html = '';
+  var total = 0;
+  MENU.forEach(function(sec){
+    var inner = '';
+    sec.groups.forEach(function(g){
+      var items = g.items.filter(function(it){
+        if(state.filter !== 'all' && (it.tags||[]).indexOf(state.filter) === -1) return false;
+        if(state.query){
+          var q = state.query.toLowerCase();
+          var hay = (it.n + ' ' + (it.d||'') + ' ' + (g.name||'')).toLowerCase();
+          if(hay.indexOf(q) === -1) return false;
+        }
+        return true;
+      });
+      if(!items.length) return;
+      total += items.length;
+      if(g.name) inner += '<h3 class="grp-title">'+esc(g.name)+'</h3>';
+      inner += '<div class="grid">'+items.map(itemCard).join('')+'</div>';
+    });
+    if(!inner) return;
+    html += '<div class="menu-cat" id="cat-'+sec.id+'">'
+      + '<h3>'+ico(sec.icon,28)+' '+esc(sec.name)+'</h3>'
+      + (sec.note ? '<p class="note">'+esc(sec.note)+'</p>' : '')
+      + inner
+      + '</div>';
+  });
+  var cont = document.getElementById('menuRender');
+  if(!cont) return;
+  cont.innerHTML = html;
+  var noRes = document.getElementById('noResults');
+  if(noRes) noRes.classList.toggle('hide', total > 0);
+}
+
+/* =========================================================
+   RENDER: FILTROS
+   ========================================================= */
+function renderFilters(){
+  var h = FILTERS.map(function(f){
+    return '<button class="chip'+(state.filter===f.k?' active':'')+'" data-filter="'+f.k+'">'+ico(f.i,15)+' '+f.l+'</button>';
+  }).join('') + '<span style="width:1px;background:var(--linea);margin:4px;flex-shrink:0"></span>';
+  MENU.forEach(function(s){
+    h += '<button class="chip" data-sec="'+s.id+'">'+ico(s.icon,15)+' '+esc(s.short)+'</button>';
+  });
+  var cont = document.getElementById('filters');
+  if(cont) cont.innerHTML = h;
+}
+
+/* =========================================================
+   CARRITO
+   ========================================================= */
+function addToCart(item, variant, qty, note){
+  qty = qty || 1;
+  var key = item.id + '||' + (variant ? variant.l : '');
+  var price = variant ? variant.p : item.p;
+  var found = null;
+  for(var i=0;i<state.cart.length;i++){
+    if(state.cart[i].key === key){ found = state.cart[i]; break; }
+  }
+  if(found){ found.q += qty; if(note) found.note = note; }
+  else state.cart.push({ key:key, id:item.id, n:item.n, v: variant ? variant.l : null, p: price, q: qty, note: note||'' });
+  saveCart(); renderCart();
+  toast(item.n + (variant ? ' ('+variant.l+')' : '') + ' agregado', 'checkCircle');
+}
+function changeQty(key, delta){
+  for(var i=0;i<state.cart.length;i++){
+    if(state.cart[i].key === key){
+      state.cart[i].q += delta;
+      if(state.cart[i].q <= 0) state.cart.splice(i,1);
+      break;
+    }
+  }
+  saveCart(); renderCart();
+}
+function removeItem(key){
+  state.cart = state.cart.filter(function(c){ return c.key !== key; });
+  saveCart(); renderCart(); toast('Producto eliminado', 'trash');
+}
+function saveCart(){ store.set('cart', state.cart); store.set('mode', state.mode); }
+function getSubtotal(){ return state.cart.reduce(function(s,c){ return s + c.p*c.q; }, 0); }
+function getEnvio(){
+  if(state.mode !== 'domicilio') return 0;
+  var st = getSubtotal();
+  return (st >= CONFIG.envioGratisDesde || st === 0) ? 0 : CONFIG.envio;
+}
+function getTotal(){ return getSubtotal() + getEnvio(); }
+
+function renderCart(){
+  var n = state.cart.reduce(function(s,c){ return s+c.q; }, 0);
+  $('#drCount').textContent = n ? '('+n+')' : '';
+  $('#cartCountInline').textContent = n;
+  $('#goCart').style.display = n ? 'inline-flex' : 'none';
+  $('#fabTxt').textContent = money(getSubtotal());
+  $('#fabCart').classList.toggle('on', n > 0);
+  $('#drSub').textContent = money(getSubtotal());
+  $('#drEnvRow').style.display = state.mode==='domicilio' ? 'flex' : 'none';
+  $('#drEnv').textContent = (getEnvio() === 0 && state.mode==='domicilio') ? 'GRATIS' : money(getEnvio());
+  $('#drTotal').textContent = money(getTotal());
+  $('#goCheckout').disabled = n === 0;
+
+  var body = $('#drBody');
+  if(!state.cart.length){
+    body.innerHTML = '<div class="empty-cart">'
+      + '<div style="color:#C8D2E0">'+ico('cart',60)+'</div>'
+      + '<p>Tu pedido está vacío</p>'
+      + '<p style="font-size:12.5px;font-weight:500">Explora el menú y agrega tus antojos.</p></div>';
+  } else {
+    body.innerHTML = '<div class="mode-mini">'
+        + ['local','llevar','domicilio'].map(function(m){
+            return '<button data-mmode="'+m+'" class="'+(state.mode===m?'active':'')+'">'+ico(MODE_ICON[m],18)+' '+MODE_LABEL[m]+'</button>';
+          }).join('')
+      + '</div>'
+      + state.cart.map(function(c){
+        var it = INDEX[c.id];
+        var img = it ? itemImg(it) : '';
+        var catIcon = it ? it._catIcon : 'utensils';
+        return '<div class="ci">'
+          + '<div class="ci-thumb">'+ico(catIcon,22)
+            + '<img src="'+esc(img)+'" alt="" loading="lazy" onerror="this.style.display=\'none\'">'
+          + '</div>'
+          + '<div class="ci-main">'
+            + '<h5>'+esc(c.n)+'</h5>'
+            + (c.v ? '<div class="ci-var">'+esc(c.v)+'</div>' : '')
+            + (c.note ? '<div class="ci-note">"'+esc(c.note)+'"</div>' : '')
+            + '<div class="ci-row">'
+              + '<div class="qty">'
+                + '<button data-q="'+c.key+'" data-d="-1">'+ico('minus',14)+'</button>'
+                + '<span>'+c.q+'</span>'
+                + '<button data-q="'+c.key+'" data-d="1">'+ico('plus',14)+'</button>'
+              + '</div>'
+              + '<div class="ci-price">'+money(c.p*c.q)+'</div>'
+            + '</div>'
+          + '</div>'
+          + '<button class="ci-del" data-del="'+c.key+'">'+ico('trash',16)+'</button>'
+        + '</div>';
+      }).join('');
+  }
+  saveCart();
+}
+
+/* =========================================================
+   MODAL PRODUCTO
+   ========================================================= */
+function openItem(id){
+  var it = INDEX[id]; if(!it) return;
+  var variants = it.sizes || null;
+  var img = itemImg(it);
+  var media = '<div style="position:absolute;inset:0;display:grid;place-items:center;color:#B8CBE6">'+ico(it._catIcon,64)+'</div>'
+    + '<img src="'+esc(img)+'" alt="'+esc(it.n)+'" onerror="this.style.display=\'none\'">';
+  var opts = '';
+  if(variants){
+    opts = '<div class="opt-title">Elige una opción</div>' + variants.map(function(v,i){
+      return '<div class="opt'+(i===0?' sel':'')+'" data-opt="'+i+'">'
+        + '<span class="opt-name"><span class="opt-dot"></span>'+esc(v.l)+'</span>'
+        + '<span class="opt-price">'+money(v.p)+'</span>'
+      + '</div>';
+    }).join('');
+  }
+  $('#itemCard').innerHTML =
+    '<div class="m-hero">'+media
+      + '<button class="m-close" data-close="itemModal">'+ico('close',20)+'</button>'
+    + '</div>'
+    + '<div class="m-body">'
+      + '<h3>'+esc(it.n)+'</h3>'
+      + (it.d ? '<p class="desc">'+esc(it.d)+'</p>' : '')
+      + (it.u ? '<p class="desc" style="margin-top:-8px"><span class="unit">'+esc(it.u)+'</span></p>' : '')
+      + opts
+      + '<div class="opt-title" style="margin-top:16px">Cantidad</div>'
+      + '<div class="m-qty">'
+        + '<div class="qty">'
+          + '<button data-mq="-1">'+ico('minus',16)+'</button>'
+          + '<span id="mQty">1</span>'
+          + '<button data-mq="1">'+ico('plus',16)+'</button>'
+        + '</div>'
+        + '<div class="price" id="mTotal">'+money(variants ? variants[0].p : it.p)+'</div>'
+      + '</div>'
+      + '<div class="field"><label>Notas para la cocina (opcional)</label>'
+        + '<textarea id="mNote" placeholder="Sin cebolla, extra limón..." maxlength="160"></textarea></div>'
+      + '<button class="btn-main" id="mAdd">Agregar · <span id="mAddPrice">'+money(variants ? variants[0].p : it.p)+'</span></button>'
+    + '</div>';
+
+  var mState = { variant: variants ? 0 : null, qty: 1 };
+  function priceOf(){ return variants ? variants[mState.variant].p : it.p; }
+  function refresh(){
+    $('#mQty').textContent = mState.qty;
+    $('#mTotal').textContent = money(priceOf()*mState.qty);
+    $('#mAddPrice').textContent = money(priceOf()*mState.qty);
+  }
+  $$('#itemCard .opt').forEach(function(o){
+    o.addEventListener('click', function(){
+      $$('#itemCard .opt').forEach(function(x){ x.classList.remove('sel'); });
+      o.classList.add('sel');
+      mState.variant = +o.dataset.opt;
+      refresh();
+    });
+  });
+  $$('#itemCard [data-mq]').forEach(function(b){
+    b.addEventListener('click', function(){
+      mState.qty = Math.max(1, Math.min(30, mState.qty + (+b.dataset.mq)));
+      refresh();
+    });
+  });
+  $('#mAdd').addEventListener('click', function(){
+    var note = $('#mNote').value.trim();
+    addToCart(it, variants ? variants[mState.variant] : null, mState.qty, note);
+    closeModal('itemModal');
+  });
+  openModal('itemModal');
+}
+
+/* =========================================================
+   CHECKOUT
+   ========================================================= */
+function buildOrderPayload(){
+  var c = state.customer;
+  var folio = 'AG-' + Date.now().toString(36).toUpperCase().slice(-6);
+  var items = state.cart.map(function(i){
+    return { nombre:i.n, variante:i.v, cantidad:i.q, precioUnitario:i.p, importe:i.p*i.q, nota:i.note||'' };
+  });
+  return {
+    folio: folio, fecha: new Date().toISOString(), modo: MODE_LABEL[state.mode],
+    cliente: c.nombre||'', telefono: c.tel||'',
+    direccion: state.mode === 'domicilio' ? (c.dir||'') : '',
+    referencias: state.mode === 'domicilio' ? (c.ref||'') : '',
+    mesa: state.mode === 'local' ? (c.mesa||'') : '',
+    hora: state.mode === 'llevar' ? (c.hora||'') : '',
+    notas: c.notas||'', items: JSON.stringify(items),
+    subtotal: getSubtotal(), envio: getEnvio(), propina: 0, total: getTotal(),
+    estado: 'Pendiente'
+  };
+}
+async function sendOrderToSheet(payload){
+  await fetch(CONFIG.sheetUrl, {
+    method:'POST', mode:'no-cors',
+    headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body: JSON.stringify(payload)
+  });
+}
+function openCheckout(){
+  if(!state.cart.length) return;
+  var c = state.customer;
+  var form = '';
+  if(state.mode === 'local'){
+    form = '<div class="field"><label>Número de mesa</label><input id="coMesa" placeholder="Ej. 7" value="'+esc(c.mesa||'')+'"></div>';
+  } else if(state.mode === 'llevar'){
+    form = '<div class="field"><label>¿A qué hora pasas?</label><input id="coHora" placeholder="Ej. 8:30 pm" value="'+esc(c.hora||'')+'"></div>';
+  } else {
+    form = '<div class="field"><label>Teléfono</label><input id="coTel" placeholder="55 1234 5678" value="'+esc(c.tel||'')+'"></div>'
+      + '<div class="field"><label>Dirección</label><input id="coDir" placeholder="Calle, número, colonia" value="'+esc(c.dir||'')+'"></div>'
+      + '<div class="field"><label>Referencias</label><input id="coRef" placeholder="Portón azul..." value="'+esc(c.ref||'')+'"></div>';
+  }
+  var items = state.cart.map(function(i){
+    return '<div class="row"><span>'+i.q+'× '+esc(i.n)+(i.v?' ('+esc(i.v)+')':'')+'</span><span>'+money(i.p*i.q)+'</span></div>';
+  }).join('');
+
+  $('#coCard').innerHTML =
+    '<div class="m-body">'
+    + '<button class="m-close" data-close="coModal">'+ico('close',20)+'</button>'
+    + '<h3 style="padding-right:40px">Finalizar pedido</h3>'
+    + '<p class="desc">'+MODE_LABEL[state.mode]+' · '+state.cart.reduce(function(s,i){return s+i.q;},0)+' artículo(s)</p>'
+    + '<div class="summary">'+items
+      + '<div class="row"><span>Subtotal</span><span>'+money(getSubtotal())+'</span></div>'
+      + (state.mode==='domicilio' ? '<div class="row"><span>Envío</span><span>'+(getEnvio()===0?'GRATIS':money(getEnvio()))+'</span></div>' : '')
+      + '<div class="row total"><span>Total</span><span>'+money(getTotal())+'</span></div>'
+    + '</div>'
+    + '<div class="sec-title">Tus datos</div>'
+    + '<div class="field"><label>Nombre</label><input id="coNombre" placeholder="¿Cómo te llamamos?" value="'+esc(c.nombre||'')+'"></div>'
+    + form
+    + '<div class="field"><label>Notas (opcional)</label><textarea id="coNotas" maxlength="200">'+esc(c.notas||'')+'</textarea></div>'
+    + '<button class="btn-main" id="sendOrder">Enviar pedido a cocina</button>'
+    + '<p style="text-align:center;font-size:11.5px;color:var(--gris);margin-top:12px">Tu pedido llega directo a nuestro equipo.</p>'
+    + '</div>';
+
+  ['coNombre','coMesa','coHora','coTel','coDir','coRef','coNotas'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) el.addEventListener('input', saveCustomer);
+  });
+  $('#sendOrder').addEventListener('click', handleSend);
+  openModal('coModal');
+}
+function saveCustomer(){
+  var map = {coNombre:'nombre', coMesa:'mesa', coHora:'hora', coTel:'tel', coDir:'dir', coRef:'ref', coNotas:'notas'};
+  Object.keys(map).forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) state.customer[map[id]] = el.value.trim();
+  });
+  store.set('customer', state.customer);
+}
+async function handleSend(){
+  saveCustomer();
+  var btn = $('#sendOrder');
+  var payload = buildOrderPayload();
+  if(state.mode === 'domicilio' && !state.customer.dir){ toast('Falta la dirección de entrega','xCircle'); return; }
+  if(!state.customer.nombre){ toast('Falta tu nombre','xCircle'); return; }
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Enviando…';
+  try{ await sendOrderToSheet(payload); }catch(e){ console.warn(e); }
+  showSuccess(payload);
+}
+function showSuccess(payload){
+  var waText = buildWhatsappText(payload);
+  var waUrl = 'https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(waText);
+  $('#coCard').innerHTML =
+    '<div class="m-body success-msg">'
+    + '<button class="m-close" data-close="coModal">'+ico('close',20)+'</button>'
+    + '<div class="ic">'+ico('checkCircle',72)+'</div>'
+    + '<h3>¡Pedido enviado!</h3>'
+    + '<div class="folio">'+esc(payload.folio)+'</div>'
+    + '<p class="desc">Confirmado. Envíanos el resumen por WhatsApp para agilizar.</p>'
+    + '<a class="btn-main" style="text-decoration:none;margin-top:14px" href="'+waUrl+'" target="_blank" rel="noopener">Confirmar por WhatsApp</a>'
+    + '<button class="btn-ghost2" id="closeSuccess">Cerrar</button>'
+    + '</div>';
+  $('#closeSuccess').addEventListener('click', function(){
+    state.cart = []; saveCart(); renderCart();
+    closeModal('coModal'); toast('¡Gracias por tu pedido!','checkCircle');
+  });
+}
+function buildWhatsappText(p){
+  var L = [];
+  L.push('*PEDIDO '+p.folio+' — '+CONFIG.nombre.toUpperCase()+'*');
+  L.push('_'+p.modo+'_');
+  if(p.cliente) L.push('Cliente: '+p.cliente);
+  if(p.mesa) L.push('Mesa: '+p.mesa);
+  if(p.hora) L.push('Hora: '+p.hora);
+  if(p.telefono) L.push('Tel: '+p.telefono);
+  if(p.direccion) L.push('Dirección: '+p.direccion);
+  if(p.referencias) L.push('Ref: '+p.referencias);
+  if(p.notas) L.push('Notas: '+p.notas);
+  L.push('');
+  L.push('*PRODUCTOS*');
+  state.cart.forEach(function(i){
+    L.push('- '+i.q+'× '+i.n+(i.v?' ('+i.v+')':'')+' — '+money(i.p*i.q));
+    if(i.note) L.push('    ↳ '+i.note);
+  });
+  L.push('');
+  L.push('Subtotal: '+money(p.subtotal));
+  if(state.mode==='domicilio') L.push('Envío: '+(p.envio===0?'GRATIS':money(p.envio)));
+  L.push('*TOTAL: '+money(p.total)+'*');
+  return L.join('\n');
+}
+
+/* =========================================================
+   MODALES / DRAWER
+   ========================================================= */
+function openModal(id){ document.getElementById(id).classList.add('on'); document.body.style.overflow='hidden'; }
+function closeModal(id){ document.getElementById(id).classList.remove('on'); if(!document.querySelector('.drawer.on')) document.body.style.overflow=''; }
+function openDrawer(){ $('#drawer').classList.add('on'); $('#backdrop').classList.add('on'); document.body.style.overflow='hidden'; }
+function closeDrawer(){ $('#drawer').classList.remove('on'); $('#backdrop').classList.remove('on'); document.body.style.overflow=''; }
+
+/* =========================================================
+   EVENTOS GLOBALES
+   ========================================================= */
+document.addEventListener('click', function(e){
+  var t = e.target;
+  var addBtn = t.closest ? t.closest('[data-add]') : null;
+  if(addBtn){
+    var it = INDEX[addBtn.dataset.add];
+    if(it){ hasSizes(it) ? openItem(it.id) : addToCart(it, null, 1); }
+    return;
+  }
+  var qBtn = t.closest ? t.closest('[data-q]') : null;
+  if(qBtn){ changeQty(qBtn.dataset.q, +qBtn.dataset.d); return; }
+  var delBtn = t.closest ? t.closest('[data-del]') : null;
+  if(delBtn){ removeItem(delBtn.dataset.del); return; }
+  var modeBtn = t.closest ? t.closest('[data-mmode]') : null;
+  if(modeBtn){
+    state.mode = modeBtn.dataset.mmode; renderCart();
+    toast(MODE_LABEL[state.mode], MODE_ICON[state.mode]);
+    return;
+  }
+  var chip = t.closest ? t.closest('.chip') : null;
+  if(chip){
+    if(chip.dataset.filter){
+      state.filter = state.filter === chip.dataset.filter ? 'all' : chip.dataset.filter;
+      renderFilters(); renderMenu();
+    } else if(chip.dataset.sec){
+      var el = document.getElementById('cat-'+chip.dataset.sec);
+      if(el) window.scrollTo({ top: el.offsetTop - 160, behavior:'smooth' });
+    }
+    return;
+  }
+  var cls = t.closest ? t.closest('[data-close]') : null;
+  if(cls){ closeModal(cls.dataset.close); return; }
+  if(t.classList && t.classList.contains('modal')){ closeModal(t.id); return; }
+});
+
+/* =========================================================
+   ARRANQUE
+   ========================================================= */
+function boot(){
+  state.cart = store.get('cart', []) || [];
+  state.mode = store.get('mode', 'domicilio') || 'domicilio';
+  state.customer = store.get('customer', {}) || {};
+  state.cart = state.cart.filter(function(c){ return INDEX[c.id]; });
+
+  var burger = document.getElementById('burger');
+  if(burger) burger.innerHTML = ico('menu', 22);
+
+  renderFilters();
+  renderMenu();
+  renderCart();
+
+  /* Enlaces dinámicos */
+  var wa = document.getElementById('waLink'); if(wa) wa.href = 'https://wa.me/' + CONFIG.whatsapp;
+  var tel = document.getElementById('telLink'); if(tel) tel.href = 'tel:' + CONFIG.tel;
+  var fTel = document.getElementById('fTel'); if(fTel){ fTel.href = 'tel:' + CONFIG.tel; fTel.textContent = CONFIG.tel; }
+  var fDir = document.getElementById('fDir'); if(fDir) fDir.textContent = CONFIG.direccion;
+  var lblTel = document.getElementById('lblTel'); if(lblTel) lblTel.textContent = CONFIG.tel;
+  var lblDir = document.getElementById('lblDir'); if(lblDir) lblDir.textContent = CONFIG.direccion;
+  var btnMaps = document.getElementById('btnMaps'); if(btnMaps) btnMaps.href = CONFIG.maps;
+  var fYear = document.getElementById('fYear'); if(fYear) fYear.textContent = new Date().getFullYear();
+
+  /* Listeners */
+  var q = document.getElementById('q');
+  if(q) q.addEventListener('input', function(e){
+    state.query = e.target.value.trim();
+    var cq = document.getElementById('clearQ');
+    if(cq) cq.classList.toggle('hide', !state.query);
+    renderMenu();
+  });
+  var clearQ = document.getElementById('clearQ');
+  if(clearQ) clearQ.addEventListener('click', function(){
+    document.getElementById('q').value = '';
+    state.query = '';
+    clearQ.classList.add('hide');
+    renderMenu();
+    document.getElementById('q').focus();
+  });
+  var goCart = document.getElementById('goCart'); if(goCart) goCart.addEventListener('click', openDrawer);
+  var fabCart = document.getElementById('fabCart'); if(fabCart) fabCart.addEventListener('click', openDrawer);
+  var closeDrawerBtn = document.getElementById('closeDrawer'); if(closeDrawerBtn) closeDrawerBtn.addEventListener('click', closeDrawer);
+  var backdrop = document.getElementById('backdrop'); if(backdrop) backdrop.addEventListener('click', closeDrawer);
+  var goCheckout = document.getElementById('goCheckout'); if(goCheckout) goCheckout.addEventListener('click', function(){ closeDrawer(); setTimeout(openCheckout, 220); });
+  var clearCart = document.getElementById('clearCart'); if(clearCart) clearCart.addEventListener('click', function(){
+    if(!state.cart.length) return;
+    if(confirm('¿Vaciar todo el pedido?')){
+      state.cart = []; saveCart(); renderCart(); toast('Carrito vaciado','trash');
+    }
+  });
+  if(burger) burger.addEventListener('click', function(){
+    document.getElementById('mobileNav').classList.toggle('on');
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){ closeModal('itemModal'); closeModal('coModal'); closeDrawer(); }
+  });
+}
+
+if(document.readyState === 'loading'){
+  document.addEventListener('DOMContentLoaded', boot);
+} else {
+  boot();
+}
+</script>
+</body>
+</html>
