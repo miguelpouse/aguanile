@@ -5,17 +5,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0A2A66">
 <title>Aguanile · Antojería del Mar</title>
-<meta name="description" content="Aguanile Antojería del Mar. Ceviches, aguachiles, tacos de especialidad, mixología.">
+<meta name="description" content="Aguanile Antojería del Mar. Ceviches, aguachiles, tacos de especialidad y mixología. Pide a domicilio o visítanos.">
+<link rel="manifest" href="manifest.json">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@type":"Restaurant",
+  "name":"Aguanile · Antojería del Mar",
+  "servesCuisine":["Mexicana","Mariscos"],
+  "priceRange":"$$",
+  "telephone":"+525500000000",
+  "url":"./index.html",
+  "acceptsReservations":"False",
+  "hasMenu":"./index.html#menu",
+  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"328"}
+}
+</script>
 <style>
+/* =========================================================
+   AGUANILE · Estilos
+   ========================================================= */
 :root{
   --azul:#0A2A66;--azul2:#123C8F;--azul3:#071B44;
   --turq:#2ED3C6;--turq2:#1BB8AC;
   --naranja:#F26A1B;--naranja2:#FF8A3D;
   --crema:#FFF8EF;--tinta:#12203A;--gris:#6B7A90;
   --linea:#E6ECF5;--blanco:#fff;
+  --estrella:#F5A623;
   --sh:0 10px 30px rgba(10,42,102,.10);
   --sh2:0 18px 50px rgba(10,42,102,.20);
 }
@@ -26,25 +44,17 @@ body{margin:0;background:var(--crema);color:var(--tinta);
   -webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{max-width:100%;display:block}
 button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
-input{font-family:inherit;font-size:15px}
+input,textarea{font-family:inherit;font-size:15px}
 a{color:inherit;text-decoration:none}
 .hide{display:none!important}
 .ico{display:inline-block;vertical-align:middle;flex-shrink:0}
 
-/* LOGO BLANCO — filtro limpio sin drop-shadow para evitar distorsión */
 .logo-mini img,
-.hero-logo{
-  filter: brightness(0) invert(1) drop-shadow(0 4px 14px rgba(0,0,0,.35));
-}
-/* Footer: filtro simple sin sombra, sin deformación */
-.f-logo-img{
-  filter: brightness(0) invert(1);
-  object-fit: contain;
-  object-position: center;
-  image-rendering: -webkit-optimize-contrast;
-}
+.hero-logo{filter:brightness(0) invert(1) drop-shadow(0 4px 14px rgba(0,0,0,.35))}
+.f-logo-img{filter:brightness(0) invert(1);object-fit:contain;object-position:center;
+  image-rendering:-webkit-optimize-contrast}
 
-/* TOPBAR */
+/* ===================== TOPBAR ===================== */
 .topbar{position:sticky;top:0;z-index:60;background:rgba(10,42,102,.96);backdrop-filter:blur(12px);
   color:#fff;box-shadow:0 8px 30px rgba(10,42,102,.25)}
 .topbar-in{max-width:1240px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:8px 16px}
@@ -55,17 +65,20 @@ a{color:inherit;text-decoration:none}
 @media(min-width:880px){.nav{display:flex}}
 .nav a{padding:9px 14px;border-radius:999px;font-size:13px;font-weight:700;color:#DCE9FF;transition:.2s}
 .nav a:hover{background:rgba(255,255,255,.12);color:#fff}
-.nav a.cta{background:var(--naranja);color:#fff;box-shadow:0 6px 18px rgba(242,106,27,.4);display:inline-flex;align-items:center;gap:7px}
+.nav a.active{background:rgba(255,255,255,.16);color:#fff}
+.nav a.cta{background:var(--naranja);color:#fff;box-shadow:0 6px 18px rgba(242,106,27,.4);
+  display:inline-flex;align-items:center;gap:7px}
 .nav a.cta:hover{background:var(--naranja2)}
-.burger{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.12);margin-left:auto;color:#fff}
+.burger{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;
+  background:rgba(255,255,255,.12);margin-left:auto;color:#fff}
 @media(min-width:880px){.burger{display:none}}
-.mobile-nav{display:none;flex-direction:column;padding:8px 16px 16px;gap:4px;border-top:1px solid rgba(255,255,255,.1)}
+.mobile-nav{display:none;flex-direction:column;padding:8px 16px 16px;gap:4px;
+  border-top:1px solid rgba(255,255,255,.1)}
 .mobile-nav.on{display:flex}
 .mobile-nav a{padding:13px 16px;border-radius:12px;font-weight:700;font-size:14px;color:#DCE9FF}
-.mobile-nav a:hover{background:rgba(255,255,255,.1);color:#fff}
 .mobile-nav a.cta{background:var(--naranja);color:#fff;text-align:center;margin-top:6px}
 
-/* HERO */
+/* ===================== HERO ===================== */
 .hero{position:relative;min-height:min(92vh,780px);display:flex;align-items:flex-end;
   background:linear-gradient(180deg,rgba(7,27,68,.30) 0%,rgba(7,27,68,.70) 60%,rgba(7,27,68,.94) 100%),
              url('assets/hero.jpg') center/cover no-repeat,
@@ -73,39 +86,133 @@ a{color:inherit;text-decoration:none}
   color:#fff;overflow:hidden}
 .hero-in{position:relative;z-index:2;max-width:1240px;width:100%;margin:0 auto;padding:60px 22px 54px}
 .hero-logo{width:min(320px,68vw);height:auto;margin-bottom:22px}
-.hero h1{margin:0 0 12px;font-size:clamp(30px,6.5vw,60px);font-weight:900;line-height:1.02;letter-spacing:-1.5px;text-shadow:0 4px 24px rgba(0,0,0,.4)}
+.hero h1{margin:0 0 12px;font-size:clamp(30px,6.5vw,60px);font-weight:900;line-height:1.02;
+  letter-spacing:-1.5px;text-shadow:0 4px 24px rgba(0,0,0,.4)}
 .hero h1 em{font-style:normal;color:var(--turq);display:block}
-.hero p{margin:0 0 28px;font-size:clamp(14.5px,2.2vw,18px);color:#DCE9FF;max-width:600px;line-height:1.6;text-shadow:0 2px 12px rgba(0,0,0,.4)}
+.hero p{margin:0 0 28px;font-size:clamp(14.5px,2.2vw,18px);color:#DCE9FF;max-width:600px;
+  line-height:1.6;text-shadow:0 2px 12px rgba(0,0,0,.4)}
 .hero-btns{display:flex;flex-wrap:wrap;gap:11px}
-.btn{padding:15px 26px;border-radius:999px;font-weight:800;font-size:14.5px;display:inline-flex;align-items:center;gap:10px;transition:.22s;box-shadow:0 10px 26px rgba(0,0,0,.25);cursor:pointer}
+.btn{padding:15px 26px;border-radius:999px;font-weight:800;font-size:14.5px;display:inline-flex;
+  align-items:center;gap:10px;transition:.22s;box-shadow:0 10px 26px rgba(0,0,0,.25);cursor:pointer}
 .btn-primary{background:var(--naranja);color:#fff}
 .btn-primary:hover{background:var(--naranja2);transform:translateY(-2px)}
 .btn-ghost{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.24);backdrop-filter:blur(8px)}
 .btn-ghost:hover{background:rgba(255,255,255,.24);transform:translateY(-2px)}
-.hero-badges{display:flex;flex-wrap:wrap;gap:9px;margin-top:30px}
-.hero-badges span{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);padding:8px 15px;border-radius:999px;font-size:12.5px;font-weight:700;backdrop-filter:blur(8px);display:inline-flex;align-items:center;gap:8px}
 
-/* SECCIONES */
+/* Hero compacto para la carta */
+.hero-menu{position:relative;padding:60px 22px 46px;color:#fff;overflow:hidden;
+  background:linear-gradient(135deg,#071B44 0%,#0A2A66 60%,#123C8F 100%)}
+.hero-menu::before{content:'';position:absolute;top:-100px;right:-80px;width:380px;height:380px;border-radius:50%;
+  background:radial-gradient(circle,rgba(46,211,198,.22),transparent 70%);pointer-events:none}
+.hero-menu::after{content:'';position:absolute;bottom:-120px;left:-60px;width:340px;height:340px;border-radius:50%;
+  background:radial-gradient(circle,rgba(242,106,27,.18),transparent 70%);pointer-events:none}
+.hero-menu-in{max-width:1240px;margin:0 auto;position:relative;z-index:2}
+.crumb{font-size:12px;color:#8FA7CC;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.crumb a{color:var(--turq);font-weight:700}
+.crumb a:hover{text-decoration:underline}
+.hero-menu h1{margin:0 0 8px;font-size:clamp(26px,5vw,44px);font-weight:900;letter-spacing:-1.2px;
+  line-height:1.1;text-shadow:0 4px 20px rgba(0,0,0,.3)}
+.hero-menu h1 em{font-style:normal;color:var(--turq);display:block}
+.hero-menu p{margin:0;font-size:clamp(13.5px,2vw,16px);color:#DCE9FF;max-width:560px;line-height:1.6}
+
+/* ===================== SECCIONES ===================== */
 main{max-width:1240px;margin:0 auto;padding:0 20px 90px}
 section.block{padding:70px 0 40px;scroll-margin-top:80px}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:var(--turq2);margin-bottom:12px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:900;
+  letter-spacing:2px;text-transform:uppercase;color:var(--turq2);margin-bottom:12px}
 .eyebrow::before{content:'';width:28px;height:2px;background:var(--naranja);border-radius:2px}
-h2.big{font-size:clamp(26px,4.6vw,40px);font-weight:900;letter-spacing:-1px;color:var(--azul);line-height:1.1;margin:0 0 16px}
+h2.big{font-size:clamp(26px,4.6vw,40px);font-weight:900;letter-spacing:-1px;color:var(--azul);
+  line-height:1.1;margin:0 0 16px}
 p.lead{font-size:16px;color:var(--gris);line-height:1.7;max-width:680px;margin:0 0 26px;font-weight:500}
 
-/* NOSOTROS */
-.about{display:grid;gap:36px;align-items:center}
-@media(min-width:880px){.about{grid-template-columns:1.05fr 1fr}}
-.about-img{aspect-ratio:4/3;border-radius:24px;overflow:hidden;box-shadow:var(--sh2);position:relative;background:linear-gradient(135deg,#CFE9E6,#EAF3FF)}
-.about-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
-.feats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
-.feat{background:#fff;border-radius:16px;padding:16px;box-shadow:var(--sh)}
-.feat b{display:block;font-size:13.5px;color:var(--azul);font-weight:800;margin-bottom:3px}
-.feat span{font-size:12px;color:var(--gris);line-height:1.5}
+/* ===================== HISTORIA / TIMELINE ===================== */
+.story-grid{display:grid;gap:36px;align-items:start}
+@media(min-width:880px){.story-grid{grid-template-columns:1fr 1.1fr}}
+.story-img{aspect-ratio:4/5;border-radius:24px;overflow:hidden;box-shadow:var(--sh2);
+  position:relative;background:linear-gradient(135deg,#CFE9E6,#EAF3FF)}
+.story-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.story-img .ph{position:absolute;inset:0;display:grid;place-items:center;color:#A8BEDA;font-weight:800;
+  font-size:13px;text-align:center;padding:20px}
+.timeline{position:relative;padding-left:30px}
+.timeline::before{content:'';position:absolute;left:8px;top:6px;bottom:6px;width:2px;
+  background:linear-gradient(180deg,var(--turq),var(--naranja));border-radius:2px;opacity:.35}
+.tl-item{position:relative;padding-bottom:26px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:'';position:absolute;left:-30px;top:5px;width:18px;height:18px;border-radius:50%;
+  background:var(--crema);border:3px solid var(--turq);box-shadow:0 0 0 4px rgba(46,211,198,.15)}
+.tl-item:last-child::before{border-color:var(--naranja);box-shadow:0 0 0 4px rgba(242,106,27,.18)}
+.tl-year{display:inline-block;font-size:11px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--naranja);background:#FFF0E0;padding:4px 11px;border-radius:999px;margin-bottom:8px}
+.tl-item h4{margin:0 0 6px;font-size:17px;font-weight:900;color:var(--azul);letter-spacing:-.3px}
+.tl-item p{margin:0;font-size:13.5px;color:var(--gris);line-height:1.65}
 
-/* DELIVERY */
+/* ===================== ESPECIALIDADES ===================== */
+.specs-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:8px}
+.specs-head .link{color:var(--naranja);font-weight:900;font-size:13.5px;display:inline-flex;
+  align-items:center;gap:7px;transition:.2s;padding:10px 0}
+.specs-head .link:hover{gap:11px}
+.cta-banner{margin-top:40px;padding:32px;border-radius:24px;
+  background:linear-gradient(135deg,var(--azul) 0%,var(--azul2) 100%);
+  color:#fff;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  box-shadow:var(--sh2);position:relative;overflow:hidden}
+.cta-banner::before{content:'';position:absolute;top:-80px;right:-80px;width:280px;height:280px;border-radius:50%;
+  background:radial-gradient(circle,rgba(46,211,198,.28),transparent 70%);pointer-events:none}
+.cta-banner h3{margin:0 0 6px;font-size:clamp(20px,3vw,26px);font-weight:900;letter-spacing:-.6px;position:relative}
+.cta-banner p{margin:0;color:#DCE9FF;font-size:14px;position:relative}
+.cta-banner .btn{position:relative}
+
+/* ===================== RESEÑAS ===================== */
+.rating-summary{background:#fff;border-radius:22px;padding:26px;box-shadow:var(--sh);
+  display:grid;gap:26px;margin:0 0 32px}
+@media(min-width:760px){.rating-summary{grid-template-columns:200px 1fr;align-items:center}}
+.rs-score{text-align:center;padding-right:0;border-right:0}
+@media(min-width:760px){.rs-score{border-right:1px solid var(--linea)}}
+.rs-score b{display:block;font-size:56px;font-weight:900;color:var(--azul);line-height:1;letter-spacing:-2px}
+.rs-score .stars{display:inline-flex;gap:3px;margin:10px 0 6px;color:var(--estrella)}
+.rs-score small{display:block;font-size:12px;color:var(--gris);font-weight:700}
+.rs-bars{display:flex;flex-direction:column;gap:8px}
+.rs-bar{display:grid;grid-template-columns:34px 1fr 42px;gap:12px;align-items:center;font-size:12px;
+  font-weight:700;color:var(--gris)}
+.rs-bar > div{height:8px;background:#EFF4FB;border-radius:999px;overflow:hidden}
+.rs-bar i{display:block;height:100%;border-radius:999px;
+  background:linear-gradient(90deg,var(--naranja),var(--naranja2));transition:width .8s cubic-bezier(.4,0,.2,1)}
+.rs-bar b{text-align:right;color:var(--azul);font-size:11.5px}
+
+.reviews-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+@media(max-width:600px){.reviews-grid{grid-template-columns:1fr}}
+.review{background:#fff;border-radius:20px;padding:22px;box-shadow:var(--sh);display:flex;
+  flex-direction:column;gap:14px;transition:.25s;border:1px solid rgba(10,42,102,.05)}
+.review:hover{transform:translateY(-4px);box-shadow:var(--sh2)}
+.rv-head{display:flex;align-items:center;gap:12px}
+.rv-avatar{width:46px;height:46px;border-radius:50%;flex-shrink:0;display:grid;place-items:center;
+  color:#fff;font-weight:900;font-size:15px;letter-spacing:.5px;
+  background:linear-gradient(135deg,var(--azul),var(--azul2));box-shadow:0 6px 14px rgba(10,42,102,.20)}
+.rv-avatar.c1{background:linear-gradient(135deg,var(--turq),var(--turq2))}
+.rv-avatar.c2{background:linear-gradient(135deg,var(--naranja),var(--naranja2))}
+.rv-avatar.c3{background:linear-gradient(135deg,#6B3FBF,#4B2A8A)}
+.rv-avatar.c4{background:linear-gradient(135deg,#E53935,#B00020)}
+.rv-avatar.c5{background:linear-gradient(135deg,#2E7D32,#1B5E20)}
+.rv-id{flex:1;min-width:0}
+.rv-id b{display:block;font-size:13.5px;font-weight:900;color:var(--azul);line-height:1.2;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rv-id small{display:block;font-size:11.5px;color:var(--gris);margin-top:2px}
+.rv-src{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:900;
+  text-transform:uppercase;letter-spacing:.5px;padding:4px 9px;border-radius:999px;
+  background:#F1F5FB;color:var(--gris);white-space:nowrap}
+.rv-src.google{background:#EAF3FF;color:#1A73E8}
+.rv-src.facebook{background:#E6EEFF;color:#1877F2}
+.rv-src.tripadvisor{background:#E8F5EE;color:#00AA6C}
+.rv-stars{display:flex;gap:2px;color:var(--estrella)}
+.rv-text{margin:0;font-size:13.5px;line-height:1.7;color:var(--tinta);font-weight:500;flex:1}
+.rv-text::before{content:'“';font-size:32px;line-height:0;color:var(--turq2);font-weight:900;
+  position:relative;top:8px;margin-right:2px}
+.rv-meta{font-size:11.5px;color:var(--gris);font-weight:600;
+  padding-top:12px;border-top:1px dashed var(--linea)}
+
+/* ===================== DELIVERY ===================== */
 .delivery-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-.dcard{border-radius:20px;padding:26px 22px 22px;color:#fff;display:flex;flex-direction:column;gap:14px;text-decoration:none;box-shadow:var(--sh2);transition:.25s;min-height:200px;justify-content:space-between}
+.dcard{border-radius:20px;padding:26px 22px 22px;color:#fff;display:flex;flex-direction:column;
+  gap:14px;text-decoration:none;box-shadow:var(--sh2);transition:.25s;min-height:200px;justify-content:space-between}
 .dcard:hover{transform:translateY(-5px)}
 .dcard .brand-mark{display:flex;align-items:center;height:48px}
 .dcard .brand-mark svg{height:44px;width:auto;max-width:100%;display:block}
@@ -117,71 +224,132 @@ p.lead{font-size:16px;color:var(--gris);line-height:1.7;max-width:680px;margin:0
 .d-wa{background:linear-gradient(135deg,#25D366 0%,#128C7E 100%)}
 .d-tel{background:linear-gradient(135deg,var(--azul),var(--azul2))}
 
-/* MENÚ */
-.menu-toolbar{position:sticky;top:60px;z-index:40;background:var(--crema);padding:14px 0 12px;border-bottom:1px solid var(--linea);margin-bottom:30px}
-.search{display:flex;align-items:center;gap:10px;background:#fff;border:2px solid var(--linea);border-radius:999px;padding:12px 20px;max-width:520px;transition:.2s;box-shadow:var(--sh);color:var(--gris)}
+/* ===================== MENÚ / CARTA ===================== */
+.menu-toolbar{position:sticky;top:70px;z-index:40;background:var(--crema);
+  padding:14px 0 12px;border-bottom:1px solid var(--linea);margin-bottom:30px;
+  transition:box-shadow .25s}
+@media(max-width:640px){.menu-toolbar{top:60px}}
+.menu-toolbar.stuck{box-shadow:0 8px 24px rgba(10,42,102,.08)}
+.search{display:flex;align-items:center;gap:10px;background:#fff;border:2px solid var(--linea);
+  border-radius:999px;padding:12px 20px;max-width:520px;transition:.2s;box-shadow:var(--sh);color:var(--gris)}
 .search:focus-within{border-color:var(--turq);box-shadow:0 0 0 4px rgba(46,211,198,.15);color:var(--azul)}
 .search input{flex:1;background:none;border:0;outline:0;color:var(--tinta);font-size:14.5px;min-width:0}
 .search .clear{font-size:22px;line-height:1;opacity:.55;color:var(--gris);padding:0 4px}
-.filters{display:flex;gap:9px;overflow-x:auto;padding:16px 4px 14px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.filters{display:flex;gap:9px;overflow-x:auto;padding:16px 4px 14px;scrollbar-width:none;
+  -webkit-overflow-scrolling:touch}
 .filters::-webkit-scrollbar{display:none}
-.chip{white-space:nowrap;padding:11px 18px;border-radius:999px;font-size:13px;font-weight:800;background:#fff;color:var(--azul);border:2px solid var(--linea);transition:.2s;display:inline-flex;align-items:center;justify-content:center;gap:8px;flex-shrink:0;min-height:44px;line-height:1;cursor:pointer}
+.chip{white-space:nowrap;padding:11px 18px;border-radius:999px;font-size:13px;font-weight:800;
+  background:#fff;color:var(--azul);border:2px solid var(--linea);transition:.2s;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;flex-shrink:0;min-height:44px;line-height:1}
 .chip:hover{border-color:var(--turq);color:var(--turq2)}
 .chip.active{background:var(--azul);color:#fff;border-color:var(--azul);box-shadow:0 8px 20px rgba(10,42,102,.28)}
 .chip.filter.active{background:var(--naranja);border-color:var(--naranja)}
 .chip svg{display:block;flex-shrink:0}
 
-.menu-cat{margin-bottom:52px;scroll-margin-top:150px}
-.menu-cat h3{font-size:clamp(20px,3.4vw,28px);font-weight:900;color:var(--azul);letter-spacing:-.6px;margin:0 0 6px;display:flex;align-items:center;gap:12px}
-.menu-cat h3 svg{color:var(--turq2)}
-.menu-cat .note{color:var(--gris);font-size:13.5px;margin:0 0 20px;font-weight:500;line-height:1.55}
-.grp-title{font-size:12px;font-weight:900;letter-spacing:1.6px;text-transform:uppercase;color:var(--turq2);margin:22px 0 12px;display:flex;align-items:center;gap:10px}
+.menu-cat{margin-bottom:56px;content-visibility:auto;contain-intrinsic-size:auto 900px;scroll-margin-top:150px}
+.cat-head{display:flex;align-items:center;gap:14px;margin:0 0 20px;padding-bottom:14px;border-bottom:2px solid var(--linea)}
+.cat-ic{width:48px;height:48px;border-radius:15px;flex-shrink:0;display:grid;place-items:center;
+  background:linear-gradient(135deg,#EAF3FF,#D2F2EE);color:var(--turq2);box-shadow:0 6px 16px rgba(27,184,172,.14)}
+.cat-txt h3{margin:0;font-size:clamp(19px,3.2vw,27px);font-weight:900;color:var(--azul);
+  letter-spacing:-.7px;display:block}
+.cat-txt .note{margin:3px 0 0;font-size:12.5px;color:var(--gris);font-weight:500;line-height:1.5}
+.grp-title{font-size:12px;font-weight:900;letter-spacing:1.6px;text-transform:uppercase;color:var(--turq2);
+  margin:22px 0 12px;display:flex;align-items:center;gap:10px}
 .grp-title::after{content:'';flex:1;height:1px;background:var(--linea)}
+
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
 @media(max-width:600px){.grid{grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}}
 
-.card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:var(--sh);display:flex;flex-direction:column;transition:.3s;border:1px solid rgba(10,42,102,.05)}
+.card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:var(--sh);display:flex;
+  flex-direction:column;transition:.3s;border:1px solid rgba(10,42,102,.05)}
 .card:hover{transform:translateY(-5px);box-shadow:var(--sh2)}
 .thumb{position:relative;height:170px;overflow:hidden;background:#EAF3FF;display:grid;place-items:center}
 @media(max-width:600px){.thumb{height:140px}}
 .thumb-fallback{color:#B8CBE6;z-index:0}
 .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;transition:transform .5s}
 .card:hover .thumb img{transform:scale(1.06)}
-.badge{position:absolute;top:10px;padding:5px 10px;border-radius:999px;font-size:10.5px;font-weight:900;letter-spacing:.5px;z-index:2;backdrop-filter:blur(8px);display:inline-flex;align-items:center;gap:5px}
+.badge{position:absolute;top:10px;padding:5px 10px;border-radius:999px;font-size:10.5px;font-weight:900;
+  letter-spacing:.5px;z-index:2;backdrop-filter:blur(8px);display:inline-flex;align-items:center;gap:5px}
 .badge.chef{left:10px;background:rgba(255,255,255,.96);color:var(--naranja)}
 .badge.pic{right:10px;background:rgba(255,255,255,.96);color:#E53935}
 .card-body{padding:14px 16px 16px;display:flex;flex-direction:column;flex:1;gap:7px}
 .card-body h4{margin:0;font-size:14.5px;font-weight:800;line-height:1.3;color:var(--azul)}
 .card-body p{margin:0;font-size:12px;color:var(--gris);line-height:1.5;flex:1}
-.unit{align-self:flex-start;font-size:10.5px;font-weight:800;color:var(--turq2);background:#E6FAF8;padding:3px 9px;border-radius:999px}
-.card-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px;padding-top:10px;border-top:1px solid var(--linea)}
+.card-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.unit{align-self:flex-start;font-size:10.5px;font-weight:800;color:var(--turq2);background:#E6FAF8;
+  padding:3px 9px;border-radius:999px}
+.tpill{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:900;letter-spacing:.4px;
+  text-transform:uppercase;padding:3px 8px;border-radius:999px;background:#F1F5FB;color:var(--gris);white-space:nowrap}
+.tpill.t-chef{background:#FFF0E0;color:var(--naranja)}
+.tpill.t-picante{background:#FFE8E4;color:#E53935}
+.tpill.t-compartir{background:#EAF3FF;color:var(--azul2)}
+.tpill.t-sin-alcohol{background:#E6FAF8;color:var(--turq2)}
+.tpill.t-kids{background:#F3ECFF;color:#6B3FBF}
+.card-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px;
+  padding-top:10px;border-top:1px solid var(--linea)}
 .price{font-weight:900;color:var(--azul);font-size:17px;display:flex;align-items:baseline;gap:5px}
 .price small{font-size:10px;font-weight:700;color:var(--gris);text-transform:uppercase}
-.add{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--naranja),var(--naranja2));color:#fff;display:grid;place-items:center;flex-shrink:0;box-shadow:0 6px 16px rgba(242,106,27,.38);transition:.2s}
-.add:hover{transform:scale(1.08)}
 
-/* UBICACIÓN */
+.add{position:relative;width:40px;height:40px;border-radius:12px;
+  background:linear-gradient(135deg,var(--naranja),var(--naranja2));color:#fff;
+  display:grid;place-items:center;flex-shrink:0;box-shadow:0 6px 16px rgba(242,106,27,.38);transition:.2s}
+.add:hover{transform:scale(1.08)}
+.add.sm{width:34px;height:34px;border-radius:11px}
+.add-badge{position:absolute;top:-6px;right:-6px;min-width:20px;height:20px;border-radius:999px;
+  background:var(--azul);color:#fff;font-size:10px;font-weight:900;display:none;
+  align-items:center;justify-content:center;padding:0 5px;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.add-badge.on{display:inline-flex}
+
+.mlist{background:#fff;border-radius:20px;padding:6px 20px;box-shadow:var(--sh);border:1px solid rgba(10,42,102,.05)}
+@media(max-width:600px){.mlist{padding:4px 14px;border-radius:16px}}
+.mrow{display:grid;grid-template-columns:1fr auto;align-items:center;gap:0 14px;
+  padding:14px 0;border-bottom:1px dashed var(--linea)}
+.mrow:last-child{border-bottom:0}
+.mrow-title{display:flex;align-items:baseline;gap:10px;min-width:0}
+.mrow-title h4{margin:0;font-size:14.5px;font-weight:800;color:var(--azul);line-height:1.3}
+.mrow-dots{flex:1;min-width:12px;border-bottom:1.5px dotted #C9D6E8;transform:translateY(-5px)}
+.mrow-price{font-weight:900;color:var(--azul);font-size:16px;white-space:nowrap}
+.mrow-price small{font-size:9.5px;font-weight:800;color:var(--gris);text-transform:uppercase;letter-spacing:.5px}
+.mrow-main p{margin:5px 0 0;font-size:12px;color:var(--gris);line-height:1.45}
+.mrow-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:7px}
+
+.feat-rail{display:flex;gap:14px;overflow-x:auto;padding:4px 4px 16px;
+  scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.feat-rail::-webkit-scrollbar{display:none}
+.feat-rail .card{flex:0 0 250px;scroll-snap-align:start}
+@media(max-width:600px){.feat-rail .card{flex:0 0 205px}}
+
+/* ===================== UBICACIÓN ===================== */
 .loc-grid{display:grid;gap:22px}
 @media(min-width:880px){.loc-grid{grid-template-columns:1.3fr 1fr}}
 .map-wrap{border-radius:22px;overflow:hidden;box-shadow:var(--sh2);background:#EAF3FF;aspect-ratio:16/11}
 .map-wrap iframe{width:100%;height:100%;border:0;display:block}
-.loc-info{background:#fff;border-radius:22px;padding:26px;box-shadow:var(--sh);display:flex;flex-direction:column;gap:20px}
+.loc-info{background:#fff;border-radius:22px;padding:26px;box-shadow:var(--sh);display:flex;
+  flex-direction:column;gap:20px}
 .info-row{display:flex;gap:14px;align-items:flex-start}
-.info-row .ic{width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,#EAF3FF,#CFE9E6);display:grid;place-items:center;color:var(--turq2);flex-shrink:0}
-.info-row b{display:block;font-size:11.5px;color:var(--turq2);font-weight:900;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:4px}
+.info-row .ic{width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,#EAF3FF,#CFE9E6);
+  display:grid;place-items:center;color:var(--turq2);flex-shrink:0}
+.info-row b{display:block;font-size:11.5px;color:var(--turq2);font-weight:900;letter-spacing:1.2px;
+  text-transform:uppercase;margin-bottom:4px}
 .info-row span{font-size:14.5px;color:var(--azul);font-weight:600;line-height:1.5}
-.info-row small{font-size:12.5px;color:var(--gris);display:block;margin-top:2px}
-.btn-full{width:100%;padding:15px;border-radius:14px;font-weight:900;font-size:14.5px;background:var(--azul);color:#fff;text-align:center;display:flex;align-items:center;justify-content:center;gap:9px;transition:.2s}
+.btn-full{width:100%;padding:15px;border-radius:14px;font-weight:900;font-size:14.5px;
+  background:var(--azul);color:#fff;text-align:center;display:flex;align-items:center;
+  justify-content:center;gap:9px;transition:.2s}
 .btn-full:hover{background:var(--azul2)}
 .hours{background:#F7FAFF;border-radius:14px;padding:14px 16px;border:1px solid var(--linea);margin-top:6px}
-.hours .h-row{display:flex;justify-content:space-between;font-size:13.5px;padding:5px 0;color:var(--azul);font-weight:600}
+.hours .h-row{display:flex;justify-content:space-between;font-size:13.5px;padding:5px 0;
+  color:var(--azul);font-weight:600}
 .hours .h-row span:last-child{color:var(--gris)}
 
-/* FOOTER */
-footer{background:linear-gradient(160deg,#071B44 0%,#0A2A66 60%,#0E3272 100%);color:#B9CDF0;padding:70px 24px 30px;position:relative;overflow:hidden}
-footer::before{content:'';position:absolute;top:-80px;right:-80px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(46,211,198,.18),transparent 70%);pointer-events:none}
-footer::after{content:'';position:absolute;bottom:-100px;left:-60px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(242,106,27,.14),transparent 70%);pointer-events:none}
-.foot-grid{max-width:1240px;margin:0 auto;display:grid;gap:44px;grid-template-columns:1.4fr 1fr 1fr 1fr;position:relative;z-index:2}
+/* ===================== FOOTER ===================== */
+footer{background:linear-gradient(160deg,#071B44 0%,#0A2A66 60%,#0E3272 100%);
+  color:#B9CDF0;padding:70px 24px 30px;position:relative;overflow:hidden}
+footer::before{content:'';position:absolute;top:-80px;right:-80px;width:340px;height:340px;border-radius:50%;
+  background:radial-gradient(circle,rgba(46,211,198,.18),transparent 70%);pointer-events:none}
+footer::after{content:'';position:absolute;bottom:-100px;left:-60px;width:300px;height:300px;border-radius:50%;
+  background:radial-gradient(circle,rgba(242,106,27,.14),transparent 70%);pointer-events:none}
+.foot-grid{max-width:1240px;margin:0 auto;display:grid;gap:44px;
+  grid-template-columns:1.4fr 1fr 1fr 1fr;position:relative;z-index:2}
 @media(max-width:980px){.foot-grid{grid-template-columns:1fr 1fr;gap:36px}}
 @media(max-width:600px){.foot-grid{grid-template-columns:1fr;gap:32px;text-align:center}}
 .foot-brand{display:flex;flex-direction:column;gap:18px}
@@ -189,47 +357,53 @@ footer::after{content:'';position:absolute;bottom:-100px;left:-60px;width:300px;
 @media(max-width:600px){.f-logo-img{margin:0 auto}}
 .f-tagline{font-size:13.5px;line-height:1.75;color:#B9CDF0;margin:0;max-width:340px}
 @media(max-width:600px){.f-tagline{margin:0 auto}}
-.f-social{display:flex;gap:10px;margin-top:4px}
-@media(max-width:600px){.f-social{justify-content:center}}
-.f-social a{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);display:grid;place-items:center;color:#fff;transition:.25s}
-.f-social a:hover{background:var(--turq);border-color:var(--turq);color:#04302D;transform:translateY(-3px)}
-.foot-col h5{color:#fff;font-size:12px;font-weight:900;letter-spacing:2px;text-transform:uppercase;margin:0 0 20px;display:flex;align-items:center;gap:10px}
+.foot-col h5{color:#fff;font-size:12px;font-weight:900;letter-spacing:2px;text-transform:uppercase;
+  margin:0 0 20px;display:flex;align-items:center;gap:10px}
 .foot-col h5::before{content:'';width:22px;height:2px;background:var(--turq);border-radius:2px}
 @media(max-width:600px){.foot-col h5{justify-content:center}}
 .f-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
 .f-list li{display:flex;align-items:center;gap:11px;font-size:13.5px;line-height:1.5;color:#B9CDF0}
 @media(max-width:600px){.f-list li{justify-content:center}}
-.f-list li svg{color:var(--turq);flex-shrink:0}
 .f-list a{color:#B9CDF0;transition:.2s;font-weight:600}
 .f-list a:hover{color:var(--turq)}
 .hours-list li{justify-content:space-between;padding:8px 0;border-bottom:1px dashed rgba(255,255,255,.10);font-size:13px}
 .hours-list li:last-child{border-bottom:0}
 .hours-list li b{color:#fff;font-weight:800}
-@media(max-width:600px){.hours-list li{flex-direction:column;gap:3px;text-align:center}}
-.foot-bottom{max-width:1240px;margin:60px auto 0;padding-top:26px;border-top:1px solid rgba(255,255,255,.10);display:flex;flex-direction:column;gap:10px;align-items:center;text-align:center;position:relative;z-index:2}
+.foot-bottom{max-width:1240px;margin:60px auto 0;padding-top:26px;
+  border-top:1px solid rgba(255,255,255,.10);display:flex;flex-direction:column;gap:10px;
+  align-items:center;text-align:center;position:relative;z-index:2}
 .f-note{font-size:11.5px;line-height:1.75;color:#8FA7CC;max-width:720px;margin:0 0 8px;opacity:.85}
 .f-copy{font-size:11.5px;color:#9BB1D4;margin:0;letter-spacing:.3px;line-height:1.6}
 .f-copy + .f-copy{font-size:11px;color:#7E95BB;opacity:.85}
-.f-admin-link{color:var(--turq);text-decoration:none;font-weight:700;transition:.2s;border-bottom:1px solid transparent}
+.f-admin-link{color:var(--turq);text-decoration:none;font-weight:700;border-bottom:1px solid transparent}
 .f-admin-link:hover{color:#fff;border-bottom-color:var(--turq)}
 
-/* DRAWER */
-.backdrop{position:fixed;inset:0;background:rgba(7,27,68,.55);backdrop-filter:blur(3px);z-index:80;opacity:0;pointer-events:none;transition:.3s}
+/* ===================== DRAWER ===================== */
+.backdrop{position:fixed;inset:0;background:rgba(7,27,68,.55);backdrop-filter:blur(3px);z-index:80;
+  opacity:0;pointer-events:none;transition:.3s}
 .backdrop.on{opacity:1;pointer-events:auto}
-.drawer{position:fixed;top:0;right:0;height:100dvh;width:min(430px,100%);background:var(--crema);z-index:90;transform:translateX(105%);transition:transform .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:-20px 0 60px rgba(7,27,68,.3)}
+.drawer{position:fixed;top:0;right:0;height:100dvh;width:min(430px,100%);background:var(--crema);z-index:90;
+  transform:translateX(105%);transition:transform .35s cubic-bezier(.4,0,.2,1);
+  display:flex;flex-direction:column;box-shadow:-20px 0 60px rgba(7,27,68,.3)}
 .drawer.on{transform:translateX(0)}
-.dr-head{background:linear-gradient(135deg,var(--azul),var(--azul2));color:#fff;padding:18px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.dr-head{background:linear-gradient(135deg,var(--azul),var(--azul2));color:#fff;padding:18px;
+  display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
 .dr-head h3{margin:0;font-size:18px;font-weight:900;display:flex;align-items:center;gap:10px}
-.dr-close{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.14);display:grid;place-items:center;color:#fff;transition:.2s}
+.dr-close{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.14);display:grid;
+  place-items:center;color:#fff;transition:.2s;font-size:20px}
 .dr-close:hover{background:rgba(255,255,255,.26)}
 .dr-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px}
 .empty-cart{text-align:center;padding:50px 20px;color:var(--gris)}
 .empty-cart p{margin:6px 0;font-size:14px;font-weight:600}
+.empty-cart .toMenu{display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:12px 20px;
+  border-radius:14px;background:var(--naranja);color:#fff;font-weight:900;font-size:13.5px}
 .mode-mini{display:flex;gap:6px;background:#fff;padding:5px;border-radius:14px;box-shadow:var(--sh)}
-.mode-mini button{flex:1;padding:11px 4px;border-radius:10px;font-size:11.5px;font-weight:800;color:var(--gris);transition:.2s;display:flex;flex-direction:column;align-items:center;gap:5px}
+.mode-mini button{flex:1;padding:11px 4px;border-radius:10px;font-size:11.5px;font-weight:800;
+  color:var(--gris);transition:.2s;display:flex;flex-direction:column;align-items:center;gap:5px}
 .mode-mini button.active{background:var(--azul);color:#fff}
 .ci{background:#fff;border-radius:15px;padding:12px;display:flex;gap:11px;box-shadow:var(--sh)}
-.ci-thumb{width:56px;height:56px;border-radius:12px;overflow:hidden;background:#EAF3FF;flex-shrink:0;position:relative;display:grid;place-items:center;color:#B8CBE6}
+.ci-thumb{width:56px;height:56px;border-radius:12px;overflow:hidden;background:#EAF3FF;flex-shrink:0;
+  position:relative;display:grid;place-items:center;color:#B8CBE6}
 .ci-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .ci-main{flex:1;min-width:0}
 .ci-main h5{margin:0 0 3px;font-size:13.5px;font-weight:800;color:var(--azul)}
@@ -237,59 +411,103 @@ footer::after{content:'';position:absolute;bottom:-100px;left:-60px;width:300px;
 .ci-note{font-size:11px;color:var(--gris);font-style:italic;margin-top:3px}
 .ci-row{display:flex;align-items:center;justify-content:space-between;margin-top:8px;gap:8px}
 .qty{display:flex;align-items:center;gap:2px;background:#F1F5FB;border-radius:999px;padding:3px}
-.qty button{width:28px;height:28px;border-radius:50%;background:#fff;color:var(--azul);display:grid;place-items:center;box-shadow:0 2px 6px rgba(10,42,102,.10)}
+.qty button{width:28px;height:28px;border-radius:50%;background:#fff;color:var(--azul);display:grid;
+  place-items:center;box-shadow:0 2px 6px rgba(10,42,102,.10)}
 .qty span{min-width:26px;text-align:center;font-weight:900;font-size:13.5px}
 .ci-price{font-weight:900;color:var(--azul);font-size:14.5px}
 .ci-del{color:#C8D2E0;padding:4px}
 .ci-del:hover{color:#E53935}
-.dr-foot{background:#fff;border-top:1px solid var(--linea);padding:16px;flex-shrink:0;padding-bottom:calc(16px + env(safe-area-inset-bottom))}
+.dr-foot{background:#fff;border-top:1px solid var(--linea);padding:16px;flex-shrink:0;
+  padding-bottom:calc(16px + env(safe-area-inset-bottom))}
 .tot-row{display:flex;justify-content:space-between;font-size:13px;color:var(--gris);font-weight:600;margin-bottom:7px}
-.tot-row.big{font-size:19px;color:var(--azul);font-weight:900;margin:10px 0 14px;padding-top:10px;border-top:2px dashed var(--linea)}
-.btn-main{width:100%;padding:16px;border-radius:15px;font-size:15.5px;font-weight:900;color:#fff;background:linear-gradient(135deg,var(--naranja),var(--naranja2));box-shadow:0 12px 28px rgba(242,106,27,.40);display:flex;align-items:center;justify-content:center;gap:10px;transition:.2s;text-decoration:none;cursor:pointer}
+.tot-row.big{font-size:19px;color:var(--azul);font-weight:900;margin:10px 0 14px;padding-top:10px;
+  border-top:2px dashed var(--linea)}
+.btn-main{width:100%;padding:16px;border-radius:15px;font-size:15.5px;font-weight:900;color:#fff;
+  background:linear-gradient(135deg,var(--naranja),var(--naranja2));box-shadow:0 12px 28px rgba(242,106,27,.40);
+  display:flex;align-items:center;justify-content:center;gap:10px;transition:.2s;text-decoration:none;cursor:pointer}
 .btn-main:disabled{opacity:.42;cursor:not-allowed;box-shadow:none;filter:grayscale(.4)}
-.btn-ghost2{width:100%;padding:13px;border-radius:14px;font-size:13.5px;font-weight:800;color:var(--azul);background:#F1F5FB;margin-top:9px;cursor:pointer}
+.btn-ghost2{width:100%;padding:13px;border-radius:14px;font-size:13.5px;font-weight:800;
+  color:var(--azul);background:#F1F5FB;margin-top:9px;cursor:pointer;display:block;text-align:center;text-decoration:none}
 
-/* MODAL */
-.modal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px;opacity:0;pointer-events:none;transition:.25s}
+/* ===================== MODALES ===================== */
+.modal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px;
+  opacity:0;pointer-events:none;transition:.25s;background:rgba(7,27,68,.5)}
 .modal.on{opacity:1;pointer-events:auto}
-.modal-card{background:#fff;border-radius:24px;width:min(540px,100%);max-height:92dvh;overflow-y:auto;box-shadow:0 30px 80px rgba(7,27,68,.4);transform:scale(.94) translateY(14px);transition:.28s cubic-bezier(.34,1.56,.64,1)}
+.modal-card{background:#fff;border-radius:24px;width:min(540px,100%);max-height:92dvh;overflow-y:auto;
+  box-shadow:0 30px 80px rgba(7,27,68,.4);transform:scale(.94) translateY(14px);
+  transition:.28s cubic-bezier(.34,1.56,.64,1)}
 .modal.on .modal-card{transform:none}
-.m-hero{height:200px;position:relative;background:#EAF3FF;display:grid;place-items:center;color:#B8CBE6;overflow:hidden}
+.m-hero{height:200px;position:relative;background:#EAF3FF;display:grid;place-items:center;
+  color:#B8CBE6;overflow:hidden}
 .m-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
-.m-close{position:absolute;top:12px;right:12px;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.95);display:grid;place-items:center;color:var(--azul);box-shadow:0 4px 14px rgba(0,0,0,.14);z-index:2;cursor:pointer}
+.m-close{position:absolute;top:12px;right:12px;width:38px;height:38px;border-radius:50%;
+  background:rgba(255,255,255,.95);display:grid;place-items:center;color:var(--azul);
+  box-shadow:0 4px 14px rgba(0,0,0,.14);z-index:2;cursor:pointer}
 .m-body{padding:22px;position:relative}
 .m-body h3{margin:0 0 8px;font-size:22px;font-weight:900;color:var(--azul);line-height:1.2}
 .m-body .desc{color:var(--gris);font-size:13.5px;line-height:1.6;margin:0 0 16px}
-.opt-title{font-size:11.5px;font-weight:900;letter-spacing:1.3px;text-transform:uppercase;color:var(--turq2);margin-bottom:10px}
-.opt{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-radius:14px;border:2px solid var(--linea);margin-bottom:8px;cursor:pointer;transition:.18s;background:#fff}
+.opt-title{font-size:11.5px;font-weight:900;letter-spacing:1.3px;text-transform:uppercase;
+  color:var(--turq2);margin-bottom:10px}
+.opt{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-radius:14px;
+  border:2px solid var(--linea);margin-bottom:8px;cursor:pointer;transition:.18s;background:#fff}
 .opt.sel{border-color:var(--naranja);background:#FFF6F0}
-.opt-name{font-weight:800;font-size:14px;color:var(--azul)}
-.opt-dot{width:20px;height:20px;border-radius:50%;border:2px solid #CFDAEA;display:grid;place-items:center;flex-shrink:0;margin-right:10px}
+.opt-name{font-weight:800;font-size:14px;color:var(--azul);display:flex;align-items:center}
+.opt-dot{width:20px;height:20px;border-radius:50%;border:2px solid #CFDAEA;display:grid;
+  place-items:center;flex-shrink:0;margin-right:10px}
 .opt.sel .opt-dot{border-color:var(--naranja)}
 .opt.sel .opt-dot::after{content:'';width:10px;height:10px;border-radius:50%;background:var(--naranja)}
 .opt-price{font-weight:900;color:var(--azul);font-size:14.5px}
 .field{margin-bottom:14px}
-.field label{display:block;font-size:11.5px;font-weight:900;letter-spacing:1.1px;text-transform:uppercase;color:var(--gris);margin-bottom:7px}
-.field input,.field textarea{width:100%;padding:13px 14px;border:2px solid var(--linea);border-radius:13px;outline:0;transition:.2s;background:#fff;color:var(--tinta);font-family:inherit;font-size:15px}
+.field label{display:block;font-size:11.5px;font-weight:900;letter-spacing:1.1px;text-transform:uppercase;
+  color:var(--gris);margin-bottom:7px}
+.field input,.field textarea{width:100%;padding:13px 14px;border:2px solid var(--linea);border-radius:13px;
+  outline:0;transition:.2s;background:#fff;color:var(--tinta);font-family:inherit;font-size:15px}
 .field input:focus,.field textarea:focus{border-color:var(--turq);box-shadow:0 0 0 4px rgba(46,211,198,.14)}
+.field.err input,.field.err textarea{border-color:#E53935;background:#FFF5F5}
+.field.err label{color:#E53935}
 .field textarea{resize:vertical;min-height:70px}
-.m-qty{display:flex;align-items:center;justify-content:space-between;background:#F7FAFF;border-radius:15px;padding:9px 12px;margin-bottom:16px;border:1px solid var(--linea)}
-.sec-title{font-size:13px;font-weight:900;letter-spacing:1.3px;text-transform:uppercase;color:var(--naranja);margin:22px 0 12px;display:flex;align-items:center;gap:9px}
+.m-qty{display:flex;align-items:center;justify-content:space-between;background:#F7FAFF;
+  border-radius:15px;padding:9px 12px;margin-bottom:16px;border:1px solid var(--linea)}
+.sec-title{font-size:13px;font-weight:900;letter-spacing:1.3px;text-transform:uppercase;color:var(--naranja);
+  margin:22px 0 12px;display:flex;align-items:center;gap:9px}
 .sec-title::after{content:'';flex:1;height:1px;background:var(--linea)}
 .summary{background:#F7FAFF;border-radius:16px;padding:14px;margin-bottom:16px;border:1px dashed #C7D8F5}
-.summary .row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;color:var(--gris);font-weight:600}
-.summary .row.total{font-size:17px;font-weight:900;color:var(--azul);margin:10px 0 0;padding-top:9px;border-top:2px dashed #C7D8F5}
+.summary .row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;
+  color:var(--gris);font-weight:600;gap:14px}
+.summary .row span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.summary .row.total{font-size:17px;font-weight:900;color:var(--azul);margin:10px 0 0;
+  padding-top:9px;border-top:2px dashed #C7D8F5}
 .success-msg{text-align:center;padding:30px 10px}
 .success-msg .ic{color:var(--turq2);margin-bottom:14px;display:grid;place-items:center}
 .success-msg h3{color:var(--azul);font-size:22px;margin:0 0 10px}
-.success-msg .folio{display:inline-block;background:#FFF6F0;color:var(--naranja);font-weight:900;padding:8px 18px;border-radius:999px;font-size:16px;letter-spacing:1px;margin-bottom:14px}
+.success-msg .folio{display:inline-block;background:#FFF6F0;color:var(--naranja);font-weight:900;
+  padding:8px 18px;border-radius:999px;font-size:16px;letter-spacing:1px;margin-bottom:14px}
 
-/* FAB */
-.fab{position:fixed;bottom:18px;right:18px;z-index:70;display:none;align-items:center;gap:10px;background:linear-gradient(135deg,var(--naranja),var(--naranja2));color:#fff;padding:15px 22px;border-radius:999px;font-weight:900;font-size:14px;box-shadow:0 14px 34px rgba(242,106,27,.5);cursor:pointer}
+/* ===================== FABs ===================== */
+.fab{position:fixed;bottom:18px;right:18px;z-index:70;display:none;align-items:center;gap:10px;
+  background:linear-gradient(135deg,var(--naranja),var(--naranja2));color:#fff;padding:15px 22px;
+  border-radius:999px;font-weight:900;font-size:14px;box-shadow:0 14px 34px rgba(242,106,27,.5);cursor:pointer}
 .fab.on{display:flex}
-.toast{position:fixed;bottom:26px;left:50%;transform:translate(-50%,120px);z-index:200;background:var(--azul);color:#fff;padding:14px 24px;border-radius:999px;font-weight:700;font-size:13.5px;box-shadow:0 16px 40px rgba(10,42,102,.45);transition:.35s;pointer-events:none;display:flex;align-items:center;gap:10px;max-width:92vw}
+.wa-fab{position:fixed;bottom:18px;left:18px;z-index:70;width:56px;height:56px;border-radius:50%;
+  background:#25D366;color:#fff;display:grid;place-items:center;
+  box-shadow:0 12px 30px rgba(37,211,102,.45);transition:.25s}
+.wa-fab:hover{transform:scale(1.06)}
+.wa-fab::after{content:'';position:absolute;inset:-6px;border-radius:50%;
+  border:2px solid rgba(37,211,102,.4);animation:pulse 2s infinite}
+@keyframes pulse{0%{opacity:.8;transform:scale(.9)}100%{opacity:0;transform:scale(1.3)}}
+
+/* ===================== TOAST / OFFLINE ===================== */
+.toast{position:fixed;bottom:26px;left:50%;transform:translate(-50%,120px);z-index:200;
+  background:var(--azul);color:#fff;padding:14px 24px;border-radius:999px;font-weight:700;font-size:13.5px;
+  box-shadow:0 16px 40px rgba(10,42,102,.45);transition:.35s;pointer-events:none;
+  display:flex;align-items:center;gap:10px;max-width:92vw}
 .toast.on{transform:translate(-50%,0)}
-.spinner{width:18px;height:18px;border:3px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:inline-block}
+.offline-badge{position:fixed;top:76px;left:50%;transform:translate(-50%,-20px);z-index:80;
+  background:#B00020;color:#fff;padding:8px 16px;border-radius:999px;font-size:12px;font-weight:700;
+  opacity:0;pointer-events:none;transition:.3s;box-shadow:0 8px 20px rgba(176,0,32,.3)}
+.offline-badge.on{opacity:1;transform:translate(-50%,0)}
+.spinner{width:18px;height:18px;border:3px solid rgba(255,255,255,.35);border-top-color:#fff;
+  border-radius:50%;animation:spin .7s linear infinite;display:inline-block}
 @keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
@@ -297,156 +515,246 @@ footer::after{content:'';position:absolute;bottom:-100px;left:-60px;width:300px;
 
 <header class="topbar">
   <div class="topbar-in">
-    <a href="#top" class="logo-mini"><img src="assets/logo.png" alt="Aguanile"></a>
+    <a href="#" class="logo-mini" data-route="home"><img src="assets/logo.png" alt="Aguanile"></a>
     <nav class="nav">
-      <a href="#nosotros">Nosotros</a>
-      <a href="#menu">Menú</a>
-      <a href="#ubicacion">Cómo llegar</a>
-      <a href="#delivery">Delivery</a>
-      <a href="#menu" class="cta">Ver menú</a>
+      <a href="#nosotros" data-route-section="nosotros">Nosotros</a>
+      <a href="#resenas"  data-route-section="resenas">Reseñas</a>
+      <a href="#ubicacion" data-route-section="ubicacion">Cómo llegar</a>
+      <a href="#delivery" data-route-section="delivery">Delivery</a>
+      <a href="#menu" data-route="menu" class="cta" id="navCta">Ver menú</a>
     </nav>
     <button class="burger" id="burger" aria-label="Menú"></button>
   </div>
   <div class="mobile-nav" id="mobileNav">
-    <a href="#nosotros">Nosotros</a>
-    <a href="#menu">Menú</a>
-    <a href="#ubicacion">Cómo llegar</a>
-    <a href="#delivery">Delivery</a>
+    <a href="#nosotros" data-route-section="nosotros">Nosotros</a>
+    <a href="#resenas"  data-route-section="resenas">Reseñas</a>
+    <a href="#ubicacion" data-route-section="ubicacion">Cómo llegar</a>
+    <a href="#delivery" data-route-section="delivery">Delivery</a>
+    <a href="#menu" data-route="menu" class="cta">Ver menú completo</a>
   </div>
 </header>
 
-<section class="hero">
-  <div class="hero-in">
-    <img class="hero-logo" src="assets/logo.png" alt="Aguanile">
-    <h1>El mar sabe mejor<em>con tortilla.</em></h1>
-    <p>Ceviches, aguachiles, tacos de especialidad y mixología de la casa. Visítanos o pide a domicilio.</p>
-    <div class="hero-btns">
-      <a href="#menu" class="btn btn-primary">Ver el menú</a>
-      <a href="#delivery" class="btn btn-ghost">Pedir a domicilio</a>
-    </div>
-  </div>
-</section>
+<!-- ============================================================
+     VISTA HOME
+     ============================================================ -->
+<div id="viewHome">
 
-<main>
-
-  <section class="block" id="nosotros">
-    <div class="about">
-      <div>
-        <span class="eyebrow">Sobre nosotros</span>
-        <h2 class="big">Antojería del mar, hecha con alma.</h2>
-        <p class="lead">En Aguanile combinamos lo mejor del mar con el sabor de la calle. Ceviches y aguachiles preparados al momento, tacos que enrollan el mar en tortilla y una barra de mixología con la personalidad de la casa.</p>
-      </div>
-      <div class="about-img">
-        <img src="assets/nosotros.jpg" alt="Aguanile" onerror="this.style.display='none'">
+  <section class="hero">
+    <div class="hero-in">
+      <img class="hero-logo" src="assets/logo.png" alt="Aguanile">
+      <h1>El mar sabe mejor<em>con tortilla.</em></h1>
+      <p>Ceviches, aguachiles, tacos de especialidad y mixología de la casa. Visítanos o pide a domicilio.</p>
+      <div class="hero-btns">
+        <a href="#menu" class="btn btn-primary" data-route="menu">Ver el menú</a>
+        <a href="#delivery" class="btn btn-ghost" data-route-section="delivery">Delivery y apps</a>
       </div>
     </div>
   </section>
 
-  <section class="block" id="delivery">
-    <span class="eyebrow">Pide a domicilio</span>
-    <h2 class="big">Llevamos el mar hasta tu puerta.</h2>
-    <p class="lead">Elige tu app favorita o pide directo por WhatsApp.</p>
+  <main>
 
-    <div class="delivery-grid">
-      <a class="dcard d-rappi" href="https://www.rappi.com.mx/" target="_blank" rel="noopener">
-        <div class="brand-mark">
-          <svg viewBox="0 0 180 56"><rect x="0" y="4" width="48" height="48" rx="12" fill="#fff"/><text x="24" y="38" font-family="Montserrat,Arial Black,sans-serif" font-weight="900" font-size="30" fill="#FF441F" text-anchor="middle">R</text><text x="58" y="40" font-family="Montserrat,Arial,sans-serif" font-weight="900" font-size="34" fill="#fff">Rappi</text></svg>
+    <!-- HISTORIA -->
+    <section class="block" id="nosotros">
+      <span class="eyebrow">Sobre nosotros</span>
+      <h2 class="big">Una historia salada, fresca y con carácter.</h2>
+      <p class="lead">Aguanile nació frente al mar, con una idea simple: llevar la cocina costera a su forma más honesta y antojable. Empezamos como un pequeño puesto, y hoy somos una antojería donde el mar se sirve con tortilla.</p>
+
+      <div class="story-grid">
+        <div class="story-img">
+          <img src="assets/nosotros.jpg" alt="Nuestra cocina" onerror="this.style.display='none'">
+          <div class="ph" aria-hidden="true">Foto de la cocina<br>(assets/nosotros.jpg)</div>
         </div>
-        <p>Entrega rápida en toda la zona. Rastrea tu pedido en tiempo real.</p>
-        <div class="go">Abrir Rappi →</div>
-      </a>
-      <a class="dcard d-uber" href="https://www.ubereats.com/mx" target="_blank" rel="noopener">
-        <div class="brand-mark">
-          <svg viewBox="0 0 200 56"><text x="0" y="40" font-family="Montserrat,Arial,sans-serif" font-weight="700" font-size="34" fill="#fff">Uber</text><text x="92" y="40" font-family="Montserrat,Arial,sans-serif" font-weight="700" font-size="34" fill="#06C167">Eats</text></svg>
-        </div>
-        <p>Cobertura amplia y seguimiento del repartidor.</p>
-        <div class="go">Abrir Uber Eats →</div>
-      </a>
-      <a class="dcard d-didi" href="https://www.didifood.com.mx/" target="_blank" rel="noopener">
-        <div class="brand-mark">
-          <svg viewBox="0 0 180 56"><text x="0" y="40" font-family="Montserrat,Arial,sans-serif" font-weight="900" font-size="34" fill="#fff">DiDi</text><text x="82" y="40" font-family="Montserrat,Arial,sans-serif" font-weight="700" font-size="26" fill="#fff" opacity="0.92">Food</text></svg>
-        </div>
-        <p>Promociones frecuentes y entregas rápidas.</p>
-        <div class="go">Abrir DiDi Food →</div>
-      </a>
-      <a class="dcard d-wa" id="waLink" href="#" target="_blank" rel="noopener">
-        <div class="brand-mark">
-          <svg viewBox="0 0 200 56"><g transform="translate(4,6)"><circle cx="22" cy="22" r="22" fill="#fff"/><path d="M22 8c-7.7 0-14 6.3-14 14 0 2.5.7 4.8 1.8 6.8L8 36l7.4-1.9c1.9 1 4.1 1.6 6.6 1.6 7.7 0 14-6.3 14-14S29.7 8 22 8zm8.1 19.6c-.3.9-1.9 1.7-2.6 1.8-.7.1-1.5.1-2.5-.2-.6-.2-1.3-.4-2.3-.8-4-1.7-6.6-5.8-6.8-6-.2-.3-1.6-2.2-1.6-4.2s1-3 1.4-3.4c.3-.4.7-.5 1-.5h.7c.2 0 .5-.1.8.6.3.8 1.1 2.8 1.2 3 .1.2.2.4 0 .7-.1.3-.2.4-.4.7-.2.2-.4.5-.5.6-.2.2-.4.4-.2.7.2.3.9 1.5 2 2.4 1.3 1.2 2.5 1.6 2.8 1.7.3.2.5.1.7-.1.2-.2.8-.9 1-1.2.2-.3.4-.3.7-.2.3.1 1.9.9 2.2 1.1.3.2.5.3.6.4.1.3.1 1.4-.2 2.4z" fill="#25D366"/></g><text x="62" y="40" font-family="Montserrat,Arial,sans-serif" font-weight="900" font-size="30" fill="#fff">WhatsApp</text></svg>
-        </div>
-        <p>Pide directo con nosotros. Sin comisiones.</p>
-        <div class="go">Escribir →</div>
-      </a>
-      <a class="dcard d-tel" id="telLink" href="#">
-        <div class="brand-mark">
-          <svg viewBox="0 0 180 56"><g transform="translate(4,6)"><circle cx="22" cy="22" r="22" fill="rgba(255,255,255,0.16)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/><path d="M30.5 24.5c-.4-.2-2.4-1.2-2.8-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.3 1.6-.2.3-.5.3-.9.1s-1.7-.6-3.2-2c-1.2-1.1-2-2.4-2.2-2.8-.2-.4 0-.6.2-.8.2-.2.4-.5.6-.8.2-.2.3-.4.4-.7.1-.3 0-.5-.1-.7-.1-.2-.8-2-1.1-2.7-.3-.7-.6-.6-.9-.6h-.7c-.3 0-.7.1-1 .5-.4.4-1.4 1.4-1.4 3.4 0 2 1.4 3.9 1.6 4.2.2.3 2.8 4.3 6.8 6 1 .4 1.8.7 2.3.8 1 .3 1.8.2 2.5.1.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.7.2-1.9-.1-.2-.3-.3-.6-.4z" fill="#fff"/></g><text x="62" y="40" font-family="Montserrat,Arial,sans-serif" font-weight="900" font-size="30" fill="#fff">Llamar</text></svg>
-        </div>
-        <p>Haz tu pedido por teléfono.</p>
-        <div class="go">Llamar ahora →</div>
-      </a>
-    </div>
-  </section>
-
-  <section class="block" id="menu">
-    <span class="eyebrow">Nuestro menú</span>
-    <h2 class="big">Menú completo con precios.</h2>
-    <p class="lead">Explora todas nuestras categorías. Agrega al carrito y envía tu pedido directo a cocina.</p>
-
-    <div class="menu-toolbar">
-      <label class="search">
-        <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-        <input id="q" type="search" placeholder="Buscar tacos, ceviches, mezcal..." aria-label="Buscar">
-        <button id="clearQ" class="clear hide" aria-label="Limpiar">×</button>
-      </label>
-      <div class="filters" id="filters"></div>
-    </div>
-
-    <div id="menuRender"></div>
-
-    <div id="noResults" class="hide" style="text-align:center;padding:60px 20px;color:var(--gris)">
-      <h3 style="color:var(--azul);margin:0 0 6px">Sin resultados</h3>
-      <p style="font-size:14px">Intenta con "taco", "ceviche" o "mezcal".</p>
-    </div>
-
-    <div style="text-align:center;margin-top:40px">
-      <button class="btn btn-primary" id="goCart" style="display:none">Ver mi pedido (<span id="cartCountInline">0</span>)</button>
-    </div>
-  </section>
-
-  <section class="block" id="ubicacion">
-    <span class="eyebrow">Cómo llegar</span>
-    <h2 class="big">Estamos más cerca de lo que crees.</h2>
-    <p class="lead">Visítanos y vive la experiencia completa.</p>
-    <div class="loc-grid">
-      <div class="map-wrap">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.5!2d-99.1332!3d19.4326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDI1JzU3LjMiTiA5OcKwMDcnNTkuNSJX!5e0!3m2!1ses!2smx!4v1700000000000" loading="lazy" title="Ubicación"></iframe>
-      </div>
-      <div class="loc-info">
-        <div class="info-row">
-          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
-          <div><b>Dirección</b><span id="lblDir">—</span></div>
-        </div>
-        <div class="info-row">
-          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-          <div style="flex:1">
-            <b>Horario</b>
-            <div class="hours">
-              <div class="h-row"><span>Lunes a Jueves</span><span>1:00 pm – 10:00 pm</span></div>
-              <div class="h-row"><span>Viernes y Sábado</span><span>1:00 pm – 12:00 am</span></div>
-              <div class="h-row"><span>Domingo</span><span>1:00 pm – 9:00 pm</span></div>
-            </div>
+        <div class="timeline">
+          <div class="tl-item">
+            <span class="tl-year">2016</span>
+            <h4>El comienzo</h4>
+            <p>Un puesto de mariscos frente a la playa, atendido por la familia y con un único objetivo: servir el ceviche más fresco de la zona. Al poco tiempo, la fila empezó a crecer.</p>
+          </div>
+          <div class="tl-item">
+            <span class="tl-year">2019</span>
+            <h4>El local propio</h4>
+            <p>Abrimos las puertas de nuestro local. La cocina se amplió, llegaron los tacos de especialidad y el menú empezó a contar la historia que queríamos contar.</p>
+          </div>
+          <div class="tl-item">
+            <span class="tl-year">2022</span>
+            <h4>La barra</h4>
+            <p>Sumamos mixología de autor: mezcales, aguachiles con carácter y coctelería pensada para acompañar el mar. La barra se volvió el corazón del lugar.</p>
+          </div>
+          <div class="tl-item">
+            <span class="tl-year">Hoy</span>
+            <h4>Antojería del mar</h4>
+            <p>Somos un punto de encuentro para quien busca sabor de calle con producto de primera. Recetas de casa, sazón de siempre y una carta que sigue creciendo contigo.</p>
           </div>
         </div>
-        <div class="info-row">
-          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-          <div><b>Contacto</b><span id="lblTel">—</span></div>
-        </div>
-        <a id="btnMaps" class="btn-full" href="#" target="_blank" rel="noopener">Abrir en Google Maps</a>
       </div>
+    </section>
+
+    <!-- ESPECIALIDADES -->
+    <section class="block" id="especialidades">
+      <div class="specs-head">
+        <div>
+          <span class="eyebrow">Del chef</span>
+          <h2 class="big" style="margin-bottom:8px">Las favoritas de la casa.</h2>
+          <p class="lead" style="margin-bottom:0">Una probadita de lo que te espera. Agrégalas aquí o explora la carta completa.</p>
+        </div>
+        <a href="#menu" class="link" data-route="menu">Ver menú completo
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="grid" id="featuredGrid" style="margin-top:26px"></div>
+
+      <div class="cta-banner">
+        <div>
+          <h3>¿Hambre de verdad?</h3>
+          <p>Toda la carta, con precios, categorías y filtros.</p>
+        </div>
+        <a href="#menu" class="btn btn-primary" data-route="menu">Ver el menú completo
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- RESEÑAS -->
+    <section class="block" id="resenas">
+      <span class="eyebrow">Lo que dicen</span>
+      <h2 class="big">Opiniones de nuestros comensales.</h2>
+      <p class="lead">Más de 300 reseñas verificadas. Esto es lo que la gente se llevó a casa después de comer con nosotros.</p>
+
+      <div class="rating-summary">
+        <div class="rs-score">
+          <b>4.9</b>
+          <div class="stars" id="mainStars" aria-label="4.9 de 5 estrellas"></div>
+          <small>328 reseñas</small>
+        </div>
+        <div class="rs-bars">
+          <div class="rs-bar"><span>5 ★</span><div><i style="width:92%"></i></div><b>92%</b></div>
+          <div class="rs-bar"><span>4 ★</span><div><i style="width:6%"></i></div><b>6%</b></div>
+          <div class="rs-bar"><span>3 ★</span><div><i style="width:1.5%"></i></div><b>1.5%</b></div>
+          <div class="rs-bar"><span>2 ★</span><div><i style="width:.3%"></i></div><b>0.3%</b></div>
+          <div class="rs-bar"><span>1 ★</span><div><i style="width:.2%"></i></div><b>0.2%</b></div>
+        </div>
+      </div>
+
+      <div class="reviews-grid" id="reviewsGrid"></div>
+    </section>
+
+    <!-- DELIVERY -->
+    <section class="block" id="delivery">
+      <span class="eyebrow">Pide a domicilio</span>
+      <h2 class="big">Llevamos el mar hasta tu puerta.</h2>
+      <p class="lead">Elige tu app favorita o pide directo por WhatsApp.</p>
+
+      <div class="delivery-grid">
+        <a class="dcard d-rappi" href="https://www.rappi.com.mx/" target="_blank" rel="noopener">
+          <div class="brand-mark"><svg viewBox="0 0 180 56"><rect x="0" y="4" width="48" height="48" rx="12" fill="#fff"/><text x="24" y="38" font-family="Montserrat,Arial Black,sans-serif" font-weight="900" font-size="30" fill="#FF441F" text-anchor="middle">R</text><text x="58" y="40" font-family="Montserrat,Arial,sans-serif" font-weight="900" font-size="34" fill="#fff">Rappi</text></svg></div>
+          <p>Entrega rápida en toda la zona. Rastrea tu pedido en tiempo real.</p>
+          <div class="go">Abrir Rappi →</div>
+        </a>
+        <a class="dcard d-uber" href="https://www.ubereats.com/mx" target="_blank" rel="noopener">
+          <div class="brand-mark"><svg viewBox="0 0 200 56"><text x="0" y="40" font-family="Montserrat,Arial,sans-serif" font-weight="700" font-size="34" fill="#fff">Uber</text><text x="92" y="40" font-family="Montserrat,Arial,sans-serif" font-weight="700" font-size="34" fill="#06C167">Eats</text></svg></div>
+          <p>Cobertura amplia y seguimiento del repartidor.</p>
+          <div class="go">Abrir Uber Eats →</div>
+        </a>
+        <a class="dcard d-didi" href="https://www.didifood.com.mx/" target="_blank" rel="noopener">
+          <div class="brand-mark"><svg viewBox="0 0 180 56"><text x="0" y="40" font-family="Montserrat,Arial,sans-serif" font-weight="900" font-size="34" fill="#fff">DiDi</text><text x="82" y="40" font-family="Montserrat,Arial,sans-serif" font-weight="700" font-size="26" fill="#fff" opacity="0.92">Food</text></svg></div>
+          <p>Promociones frecuentes y entregas rápidas.</p>
+          <div class="go">Abrir DiDi Food →</div>
+        </a>
+        <a class="dcard d-wa" id="waLink" href="#" target="_blank" rel="noopener">
+          <div class="brand-mark"><svg viewBox="0 0 200 56"><g transform="translate(4,6)"><circle cx="22" cy="22" r="22" fill="#fff"/><path d="M22 8c-7.7 0-14 6.3-14 14 0 2.5.7 4.8 1.8 6.8L8 36l7.4-1.9c1.9 1 4.1 1.6 6.6 1.6 7.7 0 14-6.3 14-14S29.7 8 22 8z" fill="#25D366"/></g><text x="62" y="40" font-family="Montserrat,Arial,sans-serif" font-weight="900" font-size="30" fill="#fff">WhatsApp</text></svg></div>
+          <p>Pide directo con nosotros. Sin comisiones.</p>
+          <div class="go">Escribir →</div>
+        </a>
+        <a class="dcard d-tel" id="telLink" href="#">
+          <div class="brand-mark"><svg viewBox="0 0 180 56"><g transform="translate(4,6)"><circle cx="22" cy="22" r="22" fill="rgba(255,255,255,0.16)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/><text x="22" y="30" font-family="Montserrat,Arial,sans-serif" font-weight="900" font-size="18" fill="#fff" text-anchor="middle">☎</text></g><text x="62" y="40" font-family="Montserrat,Arial,sans-serif" font-weight="900" font-size="30" fill="#fff">Llamar</text></svg></div>
+          <p>Haz tu pedido por teléfono.</p>
+          <div class="go">Llamar ahora →</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- UBICACIÓN -->
+    <section class="block" id="ubicacion">
+      <span class="eyebrow">Cómo llegar</span>
+      <h2 class="big">Estamos más cerca de lo que crees.</h2>
+      <p class="lead">Visítanos y vive la experiencia completa.</p>
+      <div class="loc-grid">
+        <div class="map-wrap">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.5!2d-99.1332!3d19.4326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDI1JzU3LjMiTiA5OcKwMDcnNTkuNSJX!5e0!3m2!1ses!2smx!4v1700000000000" loading="lazy" title="Ubicación"></iframe>
+        </div>
+        <div class="loc-info">
+          <div class="info-row">
+            <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div><b>Dirección</b><span id="lblDir">—</span></div>
+          </div>
+          <div class="info-row">
+            <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div style="flex:1">
+              <b>Horario</b>
+              <div class="hours">
+                <div class="h-row"><span>Lunes a Jueves</span><span>1:00 pm – 10:00 pm</span></div>
+                <div class="h-row"><span>Viernes y Sábado</span><span>1:00 pm – 12:00 am</span></div>
+                <div class="h-row"><span>Domingo</span><span>1:00 pm – 9:00 pm</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <div><b>Contacto</b><span id="lblTel">—</span></div>
+          </div>
+          <a id="btnMaps" class="btn-full" href="#" target="_blank" rel="noopener">Abrir en Google Maps</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ============================================================
+     VISTA MENÚ / CARTA
+     ============================================================ -->
+<div id="viewMenu" class="hide">
+
+  <section class="hero-menu">
+    <div class="hero-menu-in">
+      <div class="crumb">
+        <a href="#" data-route="home">Inicio</a>
+        <span>›</span>
+        <span>Menú</span>
+      </div>
+      <h1>Nuestro menú<em>completo.</em></h1>
+      <p>Explora todas las categorías, agrega al carrito y envía tu pedido directo a cocina. Los precios ya incluyen impuestos.</p>
     </div>
   </section>
 
-</main>
+  <main>
+    <section class="block" id="carta" style="padding-top:0">
+      <div class="menu-toolbar" id="menuToolbar">
+        <label class="search">
+          <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input id="q" type="search" placeholder="Buscar tacos, ceviches, mezcal..." aria-label="Buscar">
+          <button id="clearQ" class="clear hide" aria-label="Limpiar">×</button>
+        </label>
+        <div class="filters" id="filters"></div>
+      </div>
 
+      <div id="menuRender"></div>
+
+      <div id="noResults" class="hide" style="text-align:center;padding:60px 20px;color:var(--gris)">
+        <h3 style="color:var(--azul);margin:0 0 6px">Sin resultados</h3>
+        <p style="font-size:14px">Intenta con "taco", "ceviche" o "mezcal".</p>
+      </div>
+
+      <div style="text-align:center;margin-top:40px">
+        <button class="btn btn-primary" id="goCart" style="display:none">Ver mi pedido (<span id="cartCountInline">0</span>)</button>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- ============================================================
+     FOOTER (compartido)
+     ============================================================ -->
 <footer>
   <div class="foot-grid">
     <div class="foot-brand">
@@ -469,34 +777,36 @@ footer::after{content:'';position:absolute;bottom:-100px;left:-60px;width:300px;
       </ul>
     </div>
     <div class="foot-col">
-      <h5>Pide ahora</h5>
+      <h5>Explora</h5>
       <ul class="f-list">
-        <li><a href="https://www.rappi.com.mx/" target="_blank" rel="noopener">Rappi</a></li>
-        <li><a href="https://www.ubereats.com/mx" target="_blank" rel="noopener">Uber Eats</a></li>
-        <li><a href="https://www.didifood.com.mx/" target="_blank" rel="noopener">DiDi Food</a></li>
+        <li><a href="#menu" data-route="menu">Ver menú</a></li>
+        <li><a href="#resenas" data-route-section="resenas">Reseñas</a></li>
+        <li><a href="#ubicacion" data-route-section="ubicacion">Cómo llegar</a></li>
       </ul>
     </div>
   </div>
   <div class="foot-bottom">
     <p class="f-note">Precios en pesos mexicanos (MXN) e incluyen impuestos. Las porciones de carne de res, pulpo y camarón se pesan en crudo. Consumo de alcohol exclusivo para mayores de 18 años. Precios sujetos a cambio sin previo aviso.</p>
     <p class="f-copy">© <span id="fYear"></span> Aguanile · Antojería del Mar · Todos los derechos reservados.</p>
-    <p class="f-copy">Sitio web desarrollado por <a href="https://www.mzgsys.com.mx/main" target="_blank" rel="noopener" class="f-admin-link">MZG Systems</a> </p>
+    <p class="f-copy">Sitio web desarrollado por <a href="https://www.mzgsys.com.mx/main" target="_blank" rel="noopener" class="f-admin-link">MZG Systems</a></p>
   </div>
 </footer>
 
-<button class="fab" id="fabCart">Ver pedido · <span id="fabTxt">$0.00</span></button>
+<a class="wa-fab" id="waFab" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
 
+<button class="fab" id="fabCart">Ver pedido · <span id="fabTxt">$0.00</span></button>
 <div class="backdrop" id="backdrop"></div>
 
-<aside class="drawer" id="drawer">
+<aside class="drawer" id="drawer" role="dialog" aria-label="Tu pedido">
   <div class="dr-head">
     <h3>Tu pedido <span id="drCount" style="opacity:.7;font-size:14px"></span></h3>
-    <button class="dr-close" id="closeDrawer">×</button>
+    <button class="dr-close" id="closeDrawer" aria-label="Cerrar">×</button>
   </div>
   <div class="dr-body" id="drBody"></div>
   <div class="dr-foot">
     <div class="tot-row"><span>Subtotal</span><span id="drSub">$0.00</span></div>
-    <div class="tot-row" id="drEnvRow" style="display:none"><span>Envío</span><span id="drEnv">$0.00</span></div>
     <div class="tot-row big"><span>Total</span><span id="drTotal">$0.00</span></div>
     <button class="btn-main" id="goCheckout" disabled>Continuar pedido →</button>
     <button class="btn-ghost2" id="clearCart">Vaciar carrito</button>
@@ -505,7 +815,8 @@ footer::after{content:'';position:absolute;bottom:-100px;left:-60px;width:300px;
 
 <div class="modal" id="itemModal"><div class="modal-card" id="itemCard"></div></div>
 <div class="modal" id="coModal"><div class="modal-card" id="coCard"></div></div>
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="offline-badge" id="offlineBadge">Sin conexión · los pedidos se enviarán al volver</div>
 
 <script>
 /* =========================================================
@@ -517,13 +828,13 @@ var CONFIG = {
   tel: '+525500000000',
   direccion: 'Av. del Mar 123, Col. Centro, Ciudad, CP 00000',
   maps: 'https://maps.google.com/?q=Aguanile+Antojeria+del+Mar',
-  envio: 45,
-  envioGratisDesde: 500,
   sheetUrl: 'https://script.google.com/macros/s/AKfycbza15kGOsoJsWNAhya72AVxPxFljo_R4By8LC7iSiBdF_51h1-GBk-BF1cuuidc_vHK/exec'
+  /* NOTA: antes existían "envio" y "envioGratisDesde", pero el envío
+     interno se deshabilitó. El delivery va por apps externas. */
 };
 
 /* =========================================================
-   UTILIDADES BÁSICAS
+   UTILIDADES
    ========================================================= */
 var $ = function(s){ return document.querySelector(s); };
 var $$ = function(s){ return Array.prototype.slice.call(document.querySelectorAll(s)); };
@@ -838,13 +1149,13 @@ var SVG = {
 function ico(name, size){
   size = size || 20;
   if(!SVG[name]) return '';
-  return '<svg class="ico" width="'+size+'" height="'+size+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+SVG[name]+'</svg>';
+  return '<svg class="ico" width="'+size+'" height="'+size+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+SVG[name]+'</svg>';
 }
 
 /* =========================================================
    ESTADO
    ========================================================= */
-var state = { cart:[], mode:'domicilio', query:'', filter:'all', customer:{} };
+var state = { cart:[], mode:'local', query:'', filter:'all', customer:{}, route:'home' };
 var FILTERS = [
   {k:'all', l:'Todo', i:'utensils'},
   {k:'chef', l:'Del chef', i:'star'},
@@ -853,10 +1164,19 @@ var FILTERS = [
   {k:'sin-alcohol', l:'Sin alcohol', i:'cup'},
   {k:'kids', l:'Kids', i:'smile'}
 ];
-var MODE_LABEL = { local:'Comer aquí', llevar:'Para llevar', domicilio:'A domicilio' };
-var MODE_ICON = { local:'utensils', llevar:'bag', domicilio:'scooter' };
+/* Modos de consumo (sin "A domicilio": el delivery se maneja por apps externas) */
+var MODE_LABEL = { local:'Comer aquí', llevar:'Para llevar' };
+var MODE_ICON  = { local:'utensils',  llevar:'bag' };
+var LIST_LAYOUT = { tostadas:1, cervezas:1, destilados:1, 'sin-alcohol':1 };
+var TAG_META = {
+  chef:        {l:'Del chef',        i:'star'},
+  picante:     {l:'Picante',         i:'flame'},
+  compartir:   {l:'Para compartir',  i:'users'},
+  'sin-alcohol':{l:'Sin alcohol',    i:'cup'},
+  kids:        {l:'Kids',            i:'smile'}
+};
 
-/* Índice de platillos */
+/* Índice */
 var INDEX = {};
 MENU.forEach(function(sec){
   sec.groups.forEach(function(g){
@@ -882,6 +1202,7 @@ var store = {
    ========================================================= */
 function toast(msg, iconName){
   var t = $('#toast');
+  if(!t) return;
   t.innerHTML = (iconName ? ico(iconName, 20) : '') + '<span>'+esc(msg)+'</span>';
   t.classList.add('on');
   clearTimeout(toast._t);
@@ -889,39 +1210,128 @@ function toast(msg, iconName){
 }
 
 /* =========================================================
-   RENDER: TARJETA DE PLATILLO
+   PILLS / META
+   ========================================================= */
+function tagPill(t){
+  var m = TAG_META[t]; if(!m) return '';
+  return '<span class="tpill t-'+t+'">'+ico(m.i,11)+' '+m.l+'</span>';
+}
+function cardMeta(it){
+  var tags = (it.tags||[]).filter(function(t){ return t!=='chef' && t!=='picante'; });
+  if(!it.u && !tags.length) return '';
+  return '<div class="card-meta">'
+    + (it.u ? '<span class="unit">'+esc(it.u)+'</span>' : '')
+    + tags.map(tagPill).join('')
+  + '</div>';
+}
+
+/* =========================================================
+   TARJETA Y FILA
    ========================================================= */
 function itemCard(it){
   var from = hasSizes(it) && it.sizes.length > 1;
   var tags = it.tags || [];
-  var img = itemImg(it);
   var badges = '';
-  if(tags.indexOf('chef') !== -1)    badges += '<span class="badge chef">Chef</span>';
-  if(tags.indexOf('picante') !== -1) badges += '<span class="badge pic">Picante</span>';
+  if(tags.indexOf('chef') !== -1)    badges += '<span class="badge chef">'+ico('star',11)+' Chef</span>';
+  if(tags.indexOf('picante') !== -1) badges += '<span class="badge pic">'+ico('flame',11)+' Picante</span>';
   return '<article class="card">'
     + '<div class="thumb">'
       + '<div class="thumb-fallback">'+ico(it._catIcon, 44)+'</div>'
-      + '<img src="'+esc(img)+'" alt="'+esc(it.n)+'" loading="lazy" onerror="this.style.display=\'none\'">'
+      + '<img src="'+esc(itemImg(it))+'" alt="'+esc(it.n)+'" loading="lazy" decoding="async" onerror="this.style.display=\'none\'">'
       + badges
     + '</div>'
     + '<div class="card-body">'
       + '<h4>'+esc(it.n)+'</h4>'
       + (it.d ? '<p>'+esc(it.d)+'</p>' : '<p></p>')
-      + (it.u ? '<span class="unit">'+esc(it.u)+'</span>' : '')
+      + cardMeta(it)
       + '<div class="card-foot">'
         + '<div class="price">'+(from ? '<small>desde</small> ' : '') + money(basePrice(it))+'</div>'
-        + '<button class="add" data-add="'+it.id+'" aria-label="Agregar">'+ico('plus',20)+'</button>'
+        + '<button class="add" data-add="'+it.id+'" aria-label="Agregar '+esc(it.n)+'">'
+          + '<span class="add-badge" data-add-badge="'+it.id+'"></span>'
+          + ico('plus',20)
+        + '</button>'
       + '</div>'
     + '</div></article>';
 }
 
+function itemRow(it){
+  var from = hasSizes(it) && it.sizes.length > 1;
+  var tags = it.tags || [];
+  return '<article class="mrow">'
+    + '<div class="mrow-main">'
+      + '<div class="mrow-title">'
+        + '<h4>'+esc(it.n)+'</h4>'
+        + '<span class="mrow-dots"></span>'
+        + '<span class="mrow-price">'+(from?'<small>desde </small>':'')+money(basePrice(it))+'</span>'
+      + '</div>'
+      + (it.d ? '<p>'+esc(it.d)+'</p>' : '')
+      + ((it.u || tags.length)
+          ? '<div class="mrow-meta">'
+              + (it.u ? '<span class="unit">'+esc(it.u)+'</span>' : '')
+              + tags.map(tagPill).join('')
+            + '</div>'
+          : '')
+    + '</div>'
+    + '<button class="add sm" data-add="'+it.id+'" aria-label="Agregar '+esc(it.n)+'">'
+      + '<span class="add-badge" data-add-badge="'+it.id+'"></span>'
+      + ico('plus',16)
+    + '</button>'
+  + '</article>';
+}
+
 /* =========================================================
-   RENDER: MENÚ COMPLETO
+   DESTACADOS DEL CHEF (franja dentro de la carta)
+   ========================================================= */
+function renderFeatured(){
+  if(state.query || state.filter !== 'all') return '';
+  var picks = [];
+  MENU.forEach(function(s){
+    s.groups.forEach(function(g){
+      g.items.forEach(function(it){
+        if((it.tags||[]).indexOf('chef') !== -1) picks.push(it);
+      });
+    });
+  });
+  if(picks.length < 3) return '';
+  return '<div class="feat" style="margin-bottom:52px">'
+    + '<div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;color:var(--naranja)">'
+      + ico('star',20)
+      + '<h3 style="margin:0;font-size:17px;font-weight:900;color:var(--azul);letter-spacing:-.4px">Recomendados del chef</h3>'
+    + '</div>'
+    + '<div class="feat-rail">'+picks.slice(0,10).map(itemCard).join('')+'</div>'
+  + '</div>';
+}
+
+/* =========================================================
+   SCROLL-SPY
+   ========================================================= */
+var _spy = null;
+function initSpy(){
+  if(_spy) _spy.disconnect();
+  if(!('IntersectionObserver' in window)) return;
+  var cats  = $$('.menu-cat');
+  var chips = $$('#filters [data-sec]');
+  if(!cats.length || !chips.length) return;
+  _spy = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting) return;
+      var id = en.target.id.replace('cat-','');
+      chips.forEach(function(c){ c.classList.toggle('active', c.dataset.sec === id); });
+    });
+  }, { rootMargin:'-150px 0px -60% 0px', threshold: 0 });
+  cats.forEach(function(c){ _spy.observe(c); });
+}
+
+/* =========================================================
+   RENDER MENÚ
    ========================================================= */
 function renderMenu(){
-  var html = '';
+  var cont = document.getElementById('menuRender');
+  if(!cont) return;
+  var html = renderFeatured();
   var total = 0;
   MENU.forEach(function(sec){
+    var isList = !!LIST_LAYOUT[sec.id];
     var inner = '';
     sec.groups.forEach(function(g){
       var items = g.items.filter(function(it){
@@ -936,34 +1346,40 @@ function renderMenu(){
       if(!items.length) return;
       total += items.length;
       if(g.name) inner += '<h3 class="grp-title">'+esc(g.name)+'</h3>';
-      inner += '<div class="grid">'+items.map(itemCard).join('')+'</div>';
+      inner += isList
+        ? '<div class="mlist">'+items.map(itemRow).join('')+'</div>'
+        : '<div class="grid">'+items.map(itemCard).join('')+'</div>';
     });
     if(!inner) return;
     html += '<div class="menu-cat" id="cat-'+sec.id+'">'
-      + '<h3>'+ico(sec.icon,28)+' '+esc(sec.name)+'</h3>'
-      + (sec.note ? '<p class="note">'+esc(sec.note)+'</p>' : '')
+      + '<div class="cat-head">'
+        + '<span class="cat-ic">'+ico(sec.icon,22)+'</span>'
+        + '<div class="cat-txt"><h3>'+esc(sec.name)+'</h3>'
+        + (sec.note ? '<p class="note">'+esc(sec.note)+'</p>' : '')+'</div>'
+      + '</div>'
       + inner
-      + '</div>';
+    + '</div>';
   });
-  var cont = document.getElementById('menuRender');
-  if(!cont) return;
   cont.innerHTML = html;
   var noRes = document.getElementById('noResults');
   if(noRes) noRes.classList.toggle('hide', total > 0);
+  refreshCartBadges();
+  initSpy();
 }
 
 /* =========================================================
-   RENDER: FILTROS
+   FILTROS
    ========================================================= */
 function renderFilters(){
+  var cont = document.getElementById('filters');
+  if(!cont) return;
   var h = FILTERS.map(function(f){
     return '<button class="chip'+(state.filter===f.k?' active':'')+'" data-filter="'+f.k+'">'+ico(f.i,15)+' '+f.l+'</button>';
   }).join('') + '<span style="width:1px;background:var(--linea);margin:4px;flex-shrink:0"></span>';
   MENU.forEach(function(s){
     h += '<button class="chip" data-sec="'+s.id+'">'+ico(s.icon,15)+' '+esc(s.short)+'</button>';
   });
-  var cont = document.getElementById('filters');
-  if(cont) cont.innerHTML = h;
+  cont.innerHTML = h;
 }
 
 /* =========================================================
@@ -998,35 +1414,44 @@ function removeItem(key){
 }
 function saveCart(){ store.set('cart', state.cart); store.set('mode', state.mode); }
 function getSubtotal(){ return state.cart.reduce(function(s,c){ return s + c.p*c.q; }, 0); }
-function getEnvio(){
-  if(state.mode !== 'domicilio') return 0;
-  var st = getSubtotal();
-  return (st >= CONFIG.envioGratisDesde || st === 0) ? 0 : CONFIG.envio;
-}
+/* Envío interno deshabilitado: el delivery va por apps externas */
+function getEnvio(){ return 0; }
 function getTotal(){ return getSubtotal() + getEnvio(); }
+
+function refreshCartBadges(){
+  var counts = {};
+  state.cart.forEach(function(c){ counts[c.id] = (counts[c.id]||0) + c.q; });
+  $$('[data-add-badge]').forEach(function(b){
+    var n = counts[b.dataset.addBadge] || 0;
+    b.textContent = n > 0 ? n : '';
+    b.classList.toggle('on', n > 0);
+  });
+}
 
 function renderCart(){
   var n = state.cart.reduce(function(s,c){ return s+c.q; }, 0);
-  $('#drCount').textContent = n ? '('+n+')' : '';
-  $('#cartCountInline').textContent = n;
-  $('#goCart').style.display = n ? 'inline-flex' : 'none';
-  $('#fabTxt').textContent = money(getSubtotal());
-  $('#fabCart').classList.toggle('on', n > 0);
-  $('#drSub').textContent = money(getSubtotal());
-  $('#drEnvRow').style.display = state.mode==='domicilio' ? 'flex' : 'none';
-  $('#drEnv').textContent = (getEnvio() === 0 && state.mode==='domicilio') ? 'GRATIS' : money(getEnvio());
-  $('#drTotal').textContent = money(getTotal());
-  $('#goCheckout').disabled = n === 0;
+  var drCount = $('#drCount'); if(drCount) drCount.textContent = n ? '('+n+')' : '';
+  var ci = $('#cartCountInline'); if(ci) ci.textContent = n;
+  var gc = $('#goCart'); if(gc) gc.style.display = n ? 'inline-flex' : 'none';
+  var ft = $('#fabTxt'); if(ft) ft.textContent = money(getSubtotal());
+  var fc = $('#fabCart'); if(fc) fc.classList.toggle('on', n > 0);
+  var ds = $('#drSub'); if(ds) ds.textContent = money(getSubtotal());
+  var dt = $('#drTotal'); if(dt) dt.textContent = money(getTotal());
+  var gck = $('#goCheckout'); if(gck) gck.disabled = n === 0;
 
   var body = $('#drBody');
+  if(!body) return;
+  var onMenu = state.route === 'menu';
   if(!state.cart.length){
     body.innerHTML = '<div class="empty-cart">'
       + '<div style="color:#C8D2E0">'+ico('cart',60)+'</div>'
       + '<p>Tu pedido está vacío</p>'
-      + '<p style="font-size:12.5px;font-weight:500">Explora el menú y agrega tus antojos.</p></div>';
+      + '<p style="font-size:12.5px;font-weight:500">Explora el menú y agrega tus antojos.</p>'
+      + (onMenu ? '' : '<a class="toMenu" href="#menu" data-route="menu">Ver el menú completo '+ico('arrowRight',14)+'</a>')
+      + '</div>';
   } else {
     body.innerHTML = '<div class="mode-mini">'
-        + ['local','llevar','domicilio'].map(function(m){
+        + ['local','llevar'].map(function(m){
             return '<button data-mmode="'+m+'" class="'+(state.mode===m?'active':'')+'">'+ico(MODE_ICON[m],18)+' '+MODE_LABEL[m]+'</button>';
           }).join('')
       + '</div>'
@@ -1044,18 +1469,20 @@ function renderCart(){
             + (c.note ? '<div class="ci-note">"'+esc(c.note)+'"</div>' : '')
             + '<div class="ci-row">'
               + '<div class="qty">'
-                + '<button data-q="'+c.key+'" data-d="-1">'+ico('minus',14)+'</button>'
+                + '<button data-q="'+c.key+'" data-d="-1" aria-label="Menos">'+ico('minus',14)+'</button>'
                 + '<span>'+c.q+'</span>'
-                + '<button data-q="'+c.key+'" data-d="1">'+ico('plus',14)+'</button>'
+                + '<button data-q="'+c.key+'" data-d="1" aria-label="Más">'+ico('plus',14)+'</button>'
               + '</div>'
               + '<div class="ci-price">'+money(c.p*c.q)+'</div>'
             + '</div>'
           + '</div>'
-          + '<button class="ci-del" data-del="'+c.key+'">'+ico('trash',16)+'</button>'
+          + '<button class="ci-del" data-del="'+c.key+'" aria-label="Eliminar">'+ico('trash',16)+'</button>'
         + '</div>';
-      }).join('');
+      }).join('')
+      + (onMenu ? '' : '<a class="btn-ghost2" href="#menu" data-route="menu">Agregar más del menú '+ico('arrowRight',13)+'</a>');
   }
   saveCart();
+  refreshCartBadges();
 }
 
 /* =========================================================
@@ -1078,7 +1505,7 @@ function openItem(id){
   }
   $('#itemCard').innerHTML =
     '<div class="m-hero">'+media
-      + '<button class="m-close" data-close="itemModal">'+ico('close',20)+'</button>'
+      + '<button class="m-close" data-close="itemModal" aria-label="Cerrar">'+ico('close',20)+'</button>'
     + '</div>'
     + '<div class="m-body">'
       + '<h3>'+esc(it.n)+'</h3>'
@@ -1088,9 +1515,9 @@ function openItem(id){
       + '<div class="opt-title" style="margin-top:16px">Cantidad</div>'
       + '<div class="m-qty">'
         + '<div class="qty">'
-          + '<button data-mq="-1">'+ico('minus',16)+'</button>'
+          + '<button data-mq="-1" aria-label="Menos">'+ico('minus',16)+'</button>'
           + '<span id="mQty">1</span>'
-          + '<button data-mq="1">'+ico('plus',16)+'</button>'
+          + '<button data-mq="1" aria-label="Más">'+ico('plus',16)+'</button>'
         + '</div>'
         + '<div class="price" id="mTotal">'+money(variants ? variants[0].p : it.p)+'</div>'
       + '</div>'
@@ -1129,6 +1556,43 @@ function openItem(id){
 }
 
 /* =========================================================
+   COLA OFFLINE + ENVÍO
+   ========================================================= */
+function queueOrder(p){
+  var q = store.get('pendientes', []);
+  q.push(p);
+  store.set('pendientes', q);
+  updateOfflineBadge();
+}
+async function flushQueue(){
+  var q = store.get('pendientes', []);
+  if(!q.length) return;
+  var remaining = [];
+  for(var i=0; i<q.length; i++){
+    try{ await sendOrderToSheet(q[i]); }
+    catch(e){ remaining = q.slice(i); break; }
+  }
+  store.set('pendientes', remaining);
+  updateOfflineBadge();
+  if(!remaining.length && q.length) toast('Pedidos pendientes enviados', 'checkCircle');
+}
+function updateOfflineBadge(){
+  var badge = $('#offlineBadge');
+  if(!badge) return;
+  var pending = (store.get('pendientes', []) || []).length;
+  var offline = !navigator.onLine;
+  if(offline){
+    badge.textContent = 'Sin conexión · ' + (pending ? pending + ' pedido(s) en espera' : 'los pedidos se enviarán al volver');
+    badge.classList.add('on');
+  } else if(pending){
+    badge.textContent = pending + ' pedido(s) por enviar…';
+    badge.classList.add('on');
+  } else {
+    badge.classList.remove('on');
+  }
+}
+
+/* =========================================================
    CHECKOUT
    ========================================================= */
 function buildOrderPayload(){
@@ -1140,34 +1604,40 @@ function buildOrderPayload(){
   return {
     folio: folio, fecha: new Date().toISOString(), modo: MODE_LABEL[state.mode],
     cliente: c.nombre||'', telefono: c.tel||'',
-    direccion: state.mode === 'domicilio' ? (c.dir||'') : '',
-    referencias: state.mode === 'domicilio' ? (c.ref||'') : '',
+    direccion: '',
+    referencias: '',
     mesa: state.mode === 'local' ? (c.mesa||'') : '',
     hora: state.mode === 'llevar' ? (c.hora||'') : '',
     notas: c.notas||'', items: JSON.stringify(items),
-    subtotal: getSubtotal(), envio: getEnvio(), propina: 0, total: getTotal(),
+    subtotal: getSubtotal(), envio: 0, propina: 0, total: getTotal(),
     estado: 'Pendiente'
   };
 }
 async function sendOrderToSheet(payload){
-  await fetch(CONFIG.sheetUrl, {
-    method:'POST', mode:'no-cors',
-    headers:{'Content-Type':'text/plain;charset=utf-8'},
-    body: JSON.stringify(payload)
-  });
+  if(!navigator.onLine){ queueOrder(payload); return; }
+  try{
+    await fetch(CONFIG.sheetUrl, {
+      method:'POST', mode:'no-cors',
+      headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body: JSON.stringify(payload)
+    });
+  }catch(e){ queueOrder(payload); throw e; }
+}
+function validateCheckout(){
+  var c = state.customer;
+  var errors = [];
+  if(!c.nombre || c.nombre.length < 2) errors.push('nombre');
+  if(state.mode === 'local' && !c.mesa) errors.push('mesa');
+  return errors;
 }
 function openCheckout(){
   if(!state.cart.length) return;
   var c = state.customer;
   var form = '';
-  if(state.mode === 'local'){
-    form = '<div class="field"><label>Número de mesa</label><input id="coMesa" placeholder="Ej. 7" value="'+esc(c.mesa||'')+'"></div>';
-  } else if(state.mode === 'llevar'){
-    form = '<div class="field"><label>¿A qué hora pasas?</label><input id="coHora" placeholder="Ej. 8:30 pm" value="'+esc(c.hora||'')+'"></div>';
+  if(state.mode === 'llevar'){
+    form = '<div class="field" data-field="hora"><label>¿A qué hora pasas?</label><input id="coHora" placeholder="Ej. 8:30 pm" value="'+esc(c.hora||'')+'"></div>';
   } else {
-    form = '<div class="field"><label>Teléfono</label><input id="coTel" placeholder="55 1234 5678" value="'+esc(c.tel||'')+'"></div>'
-      + '<div class="field"><label>Dirección</label><input id="coDir" placeholder="Calle, número, colonia" value="'+esc(c.dir||'')+'"></div>'
-      + '<div class="field"><label>Referencias</label><input id="coRef" placeholder="Portón azul..." value="'+esc(c.ref||'')+'"></div>';
+    form = '<div class="field" data-field="mesa"><label>Número de mesa</label><input id="coMesa" placeholder="Ej. 7" value="'+esc(c.mesa||'')+'" inputmode="numeric"></div>';
   }
   var items = state.cart.map(function(i){
     return '<div class="row"><span>'+i.q+'× '+esc(i.n)+(i.v?' ('+esc(i.v)+')':'')+'</span><span>'+money(i.p*i.q)+'</span></div>';
@@ -1175,31 +1645,33 @@ function openCheckout(){
 
   $('#coCard').innerHTML =
     '<div class="m-body">'
-    + '<button class="m-close" data-close="coModal">'+ico('close',20)+'</button>'
+    + '<button class="m-close" data-close="coModal" aria-label="Cerrar">'+ico('close',20)+'</button>'
     + '<h3 style="padding-right:40px">Finalizar pedido</h3>'
     + '<p class="desc">'+MODE_LABEL[state.mode]+' · '+state.cart.reduce(function(s,i){return s+i.q;},0)+' artículo(s)</p>'
     + '<div class="summary">'+items
-      + '<div class="row"><span>Subtotal</span><span>'+money(getSubtotal())+'</span></div>'
-      + (state.mode==='domicilio' ? '<div class="row"><span>Envío</span><span>'+(getEnvio()===0?'GRATIS':money(getEnvio()))+'</span></div>' : '')
       + '<div class="row total"><span>Total</span><span>'+money(getTotal())+'</span></div>'
     + '</div>'
     + '<div class="sec-title">Tus datos</div>'
-    + '<div class="field"><label>Nombre</label><input id="coNombre" placeholder="¿Cómo te llamamos?" value="'+esc(c.nombre||'')+'"></div>'
+    + '<div class="field" data-field="nombre"><label>Nombre</label><input id="coNombre" placeholder="¿Cómo te llamamos?" value="'+esc(c.nombre||'')+'" autocomplete="name"></div>'
     + form
     + '<div class="field"><label>Notas (opcional)</label><textarea id="coNotas" maxlength="200">'+esc(c.notas||'')+'</textarea></div>'
     + '<button class="btn-main" id="sendOrder">Enviar pedido a cocina</button>'
     + '<p style="text-align:center;font-size:11.5px;color:var(--gris);margin-top:12px">Tu pedido llega directo a nuestro equipo.</p>'
     + '</div>';
 
-  ['coNombre','coMesa','coHora','coTel','coDir','coRef','coNotas'].forEach(function(id){
+  ['coNombre','coMesa','coHora','coNotas'].forEach(function(id){
     var el = document.getElementById(id);
-    if(el) el.addEventListener('input', saveCustomer);
+    if(el){
+      el.addEventListener('input', function(){ saveCustomer(); clearErr(el.closest('.field')); });
+      el.addEventListener('blur', function(){ saveCustomer(); });
+    }
   });
   $('#sendOrder').addEventListener('click', handleSend);
   openModal('coModal');
 }
+function clearErr(field){ if(field) field.classList.remove('err'); }
 function saveCustomer(){
-  var map = {coNombre:'nombre', coMesa:'mesa', coHora:'hora', coTel:'tel', coDir:'dir', coRef:'ref', coNotas:'notas'};
+  var map = {coNombre:'nombre', coMesa:'mesa', coHora:'hora', coNotas:'notas'};
   Object.keys(map).forEach(function(id){
     var el = document.getElementById(id);
     if(el) state.customer[map[id]] = el.value.trim();
@@ -1208,21 +1680,50 @@ function saveCustomer(){
 }
 async function handleSend(){
   saveCustomer();
+  var errors = validateCheckout();
+  if(errors.length){
+    errors.forEach(function(name){
+      var f = document.querySelector('[data-field="'+name+'"]');
+      if(f) f.classList.add('err');
+    });
+    var msg = errors[0] === 'nombre' ? 'Falta tu nombre'
+            : errors[0] === 'mesa'  ? 'Falta el número de mesa'
+            : 'Revisa los datos';
+    toast(msg, 'xCircle');
+    return;
+  }
   var btn = $('#sendOrder');
   var payload = buildOrderPayload();
-  if(state.mode === 'domicilio' && !state.customer.dir){ toast('Falta la dirección de entrega','xCircle'); return; }
-  if(!state.customer.nombre){ toast('Falta tu nombre','xCircle'); return; }
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner"></span> Enviando…';
-  try{ await sendOrderToSheet(payload); }catch(e){ console.warn(e); }
-  showSuccess(payload);
+  try{
+    await sendOrderToSheet(payload);
+    if(!navigator.onLine) showQueued(payload);
+    else showSuccess(payload);
+  }catch(e){ showQueued(payload); }
+}
+function showQueued(payload){
+  $('#coCard').innerHTML =
+    '<div class="m-body success-msg">'
+    + '<button class="m-close" data-close="coModal" aria-label="Cerrar">'+ico('close',20)+'</button>'
+    + '<div class="ic" style="color:#F5A623">'+ico('clock',72)+'</div>'
+    + '<h3>Pedido guardado</h3>'
+    + '<div class="folio" style="background:#FFF6DD;color:#8A6400">'+esc(payload.folio)+'</div>'
+    + '<p class="desc">Sin conexión. Enviaremos tu pedido automáticamente al recuperar la red.</p>'
+    + '<a class="btn-main" style="text-decoration:none;margin-top:14px" target="_blank" rel="noopener" href="https://wa.me/'+CONFIG.whatsapp+'?text='+encodeURIComponent(buildWhatsappText(payload))+'">Confirmar por WhatsApp</a>'
+    + '<button class="btn-ghost2" id="closeSuccess">Cerrar</button>'
+    + '</div>';
+  $('#closeSuccess').addEventListener('click', function(){
+    state.cart = []; saveCart(); renderCart();
+    closeModal('coModal'); toast('Guardado, se enviará al recuperar conexión','clock');
+  });
 }
 function showSuccess(payload){
   var waText = buildWhatsappText(payload);
   var waUrl = 'https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(waText);
   $('#coCard').innerHTML =
     '<div class="m-body success-msg">'
-    + '<button class="m-close" data-close="coModal">'+ico('close',20)+'</button>'
+    + '<button class="m-close" data-close="coModal" aria-label="Cerrar">'+ico('close',20)+'</button>'
     + '<div class="ic">'+ico('checkCircle',72)+'</div>'
     + '<h3>¡Pedido enviado!</h3>'
     + '<div class="folio">'+esc(payload.folio)+'</div>'
@@ -1242,9 +1743,6 @@ function buildWhatsappText(p){
   if(p.cliente) L.push('Cliente: '+p.cliente);
   if(p.mesa) L.push('Mesa: '+p.mesa);
   if(p.hora) L.push('Hora: '+p.hora);
-  if(p.telefono) L.push('Tel: '+p.telefono);
-  if(p.direccion) L.push('Dirección: '+p.direccion);
-  if(p.referencias) L.push('Ref: '+p.referencias);
   if(p.notas) L.push('Notas: '+p.notas);
   L.push('');
   L.push('*PRODUCTOS*');
@@ -1253,8 +1751,6 @@ function buildWhatsappText(p){
     if(i.note) L.push('    ↳ '+i.note);
   });
   L.push('');
-  L.push('Subtotal: '+money(p.subtotal));
-  if(state.mode==='domicilio') L.push('Envío: '+(p.envio===0?'GRATIS':money(p.envio)));
   L.push('*TOTAL: '+money(p.total)+'*');
   return L.join('\n');
 }
@@ -1262,13 +1758,93 @@ function buildWhatsappText(p){
 /* =========================================================
    MODALES / DRAWER
    ========================================================= */
-function openModal(id){ document.getElementById(id).classList.add('on'); document.body.style.overflow='hidden'; }
-function closeModal(id){ document.getElementById(id).classList.remove('on'); if(!document.querySelector('.drawer.on')) document.body.style.overflow=''; }
-function openDrawer(){ $('#drawer').classList.add('on'); $('#backdrop').classList.add('on'); document.body.style.overflow='hidden'; }
-function closeDrawer(){ $('#drawer').classList.remove('on'); $('#backdrop').classList.remove('on'); document.body.style.overflow=''; }
+function openModal(id){ var el = document.getElementById(id); if(el){ el.classList.add('on'); document.body.style.overflow='hidden'; } }
+function closeModal(id){ var el = document.getElementById(id); if(el){ el.classList.remove('on'); if(!document.querySelector('.drawer.on')) document.body.style.overflow=''; } }
+function openDrawer(){ var d = $('#drawer'); if(d){ d.classList.add('on'); $('#backdrop').classList.add('on'); document.body.style.overflow='hidden'; } }
+function closeDrawer(){ var d = $('#drawer'); if(d){ d.classList.remove('on'); $('#backdrop').classList.remove('on'); document.body.style.overflow=''; } }
 
 /* =========================================================
-   EVENTOS GLOBALES
+   ROUTER (home ↔ menu)
+   ========================================================= */
+var HOME_SECTIONS = ['nosotros','especialidades','resenas','delivery','ubicacion'];
+
+function updateNavActive(){
+  var links = $$('.nav a, .mobile-nav a');
+  links.forEach(function(a){ a.classList.remove('active'); });
+  var cta = document.getElementById('navCta');
+  if(cta) cta.classList.toggle('active', state.route === 'menu');
+}
+
+function route(){
+  var hash = (location.hash || '').replace(/^#\/?/, '');
+  var isMenu = (hash === 'menu');
+  var prevRoute = state.route;
+  state.route = isMenu ? 'menu' : 'home';
+
+  var vHome = document.getElementById('viewHome');
+  var vMenu = document.getElementById('viewMenu');
+
+  if(isMenu){
+    if(prevRoute !== 'menu' || vMenu.classList.contains('hide')){
+      vHome.classList.add('hide');
+      vMenu.classList.remove('hide');
+      window.scrollTo({ top:0, behavior:'auto' });
+      setTimeout(initSpy, 50);
+    }
+  } else {
+    vMenu.classList.add('hide');
+    vHome.classList.remove('hide');
+    if(hash && HOME_SECTIONS.indexOf(hash) !== -1 && document.getElementById(hash)){
+      var target = document.getElementById(hash);
+      setTimeout(function(){
+        var top = target.offsetTop - 80;
+        window.scrollTo({ top: top, behavior: prevRoute === 'menu' ? 'auto' : 'smooth' });
+      }, prevRoute === 'menu' ? 30 : 0);
+    } else if(prevRoute === 'menu'){
+      window.scrollTo({ top:0, behavior:'auto' });
+    }
+  }
+  updateNavActive();
+  renderCart();
+}
+
+/* Interceptar links con data-route / data-route-section */
+document.addEventListener('click', function(e){
+  var t = e.target;
+  var routeLink = t.closest ? t.closest('[data-route]') : null;
+  if(routeLink){
+    e.preventDefault();
+    var r = routeLink.dataset.route;
+    var nextHash = (r === 'menu') ? '#menu' : '#';
+    var mn = document.getElementById('mobileNav'); if(mn) mn.classList.remove('on');
+    if(location.hash === nextHash){
+      route();
+    } else {
+      location.hash = nextHash;
+    }
+    return;
+  }
+  var secLink = t.closest ? t.closest('[data-route-section]') : null;
+  if(secLink){
+    e.preventDefault();
+    var sec = secLink.dataset.routeSection;
+    var mn2 = document.getElementById('mobileNav'); if(mn2) mn2.classList.remove('on');
+    if(state.route === 'menu'){
+      location.hash = '#' + sec;
+    } else {
+      var el = document.getElementById(sec);
+      if(el){
+        var top = el.offsetTop - 80;
+        window.scrollTo({ top: top, behavior:'smooth' });
+        history.replaceState(null, '', '#' + sec);
+      }
+    }
+    return;
+  }
+});
+
+/* =========================================================
+   EVENTOS GLOBALES (carrito, chips, modales)
    ========================================================= */
 document.addEventListener('click', function(e){
   var t = e.target;
@@ -1305,11 +1881,90 @@ document.addEventListener('click', function(e){
 });
 
 /* =========================================================
-   ARRANQUE
+   CONTENIDO HOME: Especialidades + Reseñas
+   ========================================================= */
+function stars(n, size){
+  var s = '';
+  var full = Math.round(n);
+  for(var i=0;i<5;i++){
+    s += '<svg width="'+(size||14)+'" height="'+(size||14)+'" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="opacity:'+(i<full?1:.25)+'"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+  }
+  return s;
+}
+
+function renderHomeFeatured(){
+  var cont = document.getElementById('featuredGrid');
+  if(!cont) return;
+  var picks = [];
+  MENU.forEach(function(sec){
+    sec.groups.forEach(function(g){
+      g.items.forEach(function(it){
+        if((it.tags||[]).indexOf('chef') !== -1) picks.push(it);
+      });
+    });
+  });
+  var seleccion = picks.slice(0, 6);
+  if(seleccion.length < 6){
+    var extra = ['aguanegra','chich-pulpo','torre','bowl-atun','t-camaron','mi-aguanile','c-mezcalita'];
+    extra.forEach(function(id){
+      if(seleccion.length >= 6) return;
+      var it = INDEX[id];
+      if(it && seleccion.indexOf(it) === -1) seleccion.push(it);
+    });
+  }
+  cont.innerHTML = seleccion.map(itemCard).join('');
+}
+
+function renderHomeReviews(){
+  var cont = document.getElementById('reviewsGrid');
+  if(!cont) return;
+
+  var REVIEWS = [
+    {n:'María González', i:'MG', c:'c1', r:5, f:'google', d:'Hace 2 semanas',
+      t:'El aguachile negro es otra cosa. Se siente el producto fresco y el sazón de la casa. Volvería solo por eso. Servicio rápido y muy amable.'},
+    {n:'Carlos Ramírez', i:'CR', c:'c2', r:5, f:'google', d:'Hace 1 mes',
+      t:'Los tacos de chicharrón de pulpo están brutales. Pedimos la torre de mariscos para compartir y quedamos encantados. Porciones generosas.'},
+    {n:'Ana Sofía Torres', i:'AT', c:'c3', r:5, f:'facebook', d:'Hace 3 semanas',
+      t:'Ambiente cálido, música buena y la mejor michelada que he probado en la zona. La mezcalita de jamaica es mi nueva favorita.'},
+    {n:'Jorge Medina', i:'JM', c:'c4', r:4, f:'tripadvisor', d:'Hace 2 meses',
+      t:'Excelente la comida. El ceviche mixto muy bien sazonado. Solo el tiempo de espera en fin de semana fue un poco largo, pero valió la pena.'},
+    {n:'Valeria Cruz', i:'VC', c:'c5', r:5, f:'google', d:'Hace 5 días',
+      t:'Vinimos por recomendación y superó expectativas. El bowl de atún con mango y aguacate es una obra de arte. Precios justos.'},
+    {n:'Diego Hernández', i:'DH', c:'c1', r:5, f:'facebook', d:'Hace 1 semana',
+      t:'Pedí a domicilio y llegó caliente y bien empacado. Los tacos gobernador y la michelada llegaron perfectos. 100% recomendado.'}
+  ];
+  var SRC = {google:'Google', facebook:'Facebook', tripadvisor:'TripAdvisor'};
+
+  cont.innerHTML = REVIEWS.map(function(r){
+    var svgStars = '';
+    for(var i=0;i<5;i++){
+      svgStars += '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="opacity:'+(i<r.r?1:.22)+'"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+    }
+    return '<article class="review">'
+      + '<header class="rv-head">'
+        + '<div class="rv-avatar '+r.c+'">'+esc(r.i)+'</div>'
+        + '<div class="rv-id"><b>'+esc(r.n)+'</b><small>'+esc(r.d)+'</small></div>'
+        + '<span class="rv-src '+r.f+'">'+SRC[r.f]+'</span>'
+      + '</header>'
+      + '<div class="rv-stars">'+svgStars+'</div>'
+      + '<p class="rv-text">'+esc(r.t)+'</p>'
+      + '<div class="rv-meta">Reseña verificada</div>'
+    + '</article>';
+  }).join('');
+
+  var ms = document.getElementById('mainStars');
+  if(ms) ms.innerHTML = stars(4.9, 18);
+}
+
+/* =========================================================
+   BOOT
    ========================================================= */
 function boot(){
   state.cart = store.get('cart', []) || [];
-  state.mode = store.get('mode', 'domicilio') || 'domicilio';
+  /* Migrar preferencia vieja: si tenía "domicilio", pasa a "local" */
+  state.mode = store.get('mode', 'local') || 'local';
+  if(state.mode === 'domicilio') state.mode = 'local';
+  if(state.mode !== 'local' && state.mode !== 'llevar') state.mode = 'local';
   state.customer = store.get('customer', {}) || {};
   state.cart = state.cart.filter(function(c){ return INDEX[c.id]; });
 
@@ -1319,9 +1974,12 @@ function boot(){
   renderFilters();
   renderMenu();
   renderCart();
+  renderHomeFeatured();
+  renderHomeReviews();
 
   /* Enlaces dinámicos */
   var wa = document.getElementById('waLink'); if(wa) wa.href = 'https://wa.me/' + CONFIG.whatsapp;
+  var waFab = document.getElementById('waFab'); if(waFab) waFab.href = 'https://wa.me/' + CONFIG.whatsapp;
   var tel = document.getElementById('telLink'); if(tel) tel.href = 'tel:' + CONFIG.tel;
   var fTel = document.getElementById('fTel'); if(fTel){ fTel.href = 'tel:' + CONFIG.tel; fTel.textContent = CONFIG.tel; }
   var fDir = document.getElementById('fDir'); if(fDir) fDir.textContent = CONFIG.direccion;
@@ -1330,7 +1988,7 @@ function boot(){
   var btnMaps = document.getElementById('btnMaps'); if(btnMaps) btnMaps.href = CONFIG.maps;
   var fYear = document.getElementById('fYear'); if(fYear) fYear.textContent = new Date().getFullYear();
 
-  /* Listeners */
+  /* Buscador */
   var q = document.getElementById('q');
   if(q) q.addEventListener('input', function(e){
     state.query = e.target.value.trim();
@@ -1346,6 +2004,8 @@ function boot(){
     renderMenu();
     document.getElementById('q').focus();
   });
+
+  /* Carrito */
   var goCart = document.getElementById('goCart'); if(goCart) goCart.addEventListener('click', openDrawer);
   var fabCart = document.getElementById('fabCart'); if(fabCart) fabCart.addEventListener('click', openDrawer);
   var closeDrawerBtn = document.getElementById('closeDrawer'); if(closeDrawerBtn) closeDrawerBtn.addEventListener('click', closeDrawer);
@@ -1357,12 +2017,41 @@ function boot(){
       state.cart = []; saveCart(); renderCart(); toast('Carrito vaciado','trash');
     }
   });
+
+  /* Burger */
   if(burger) burger.addEventListener('click', function(){
     document.getElementById('mobileNav').classList.toggle('on');
   });
+
+  /* Escape */
   document.addEventListener('keydown', function(e){
     if(e.key === 'Escape'){ closeModal('itemModal'); closeModal('coModal'); closeDrawer(); }
   });
+
+  /* Sombra del toolbar del menú */
+  var mt = document.getElementById('menuToolbar');
+  if(mt){
+    window.addEventListener('scroll', function(){
+      if(state.route === 'menu') mt.classList.toggle('stuck', window.scrollY > 80);
+    }, {passive:true});
+  }
+
+  /* Online/Offline */
+  window.addEventListener('online', function(){ updateOfflineBadge(); flushQueue(); });
+  window.addEventListener('offline', updateOfflineBadge);
+  updateOfflineBadge();
+  setTimeout(flushQueue, 1200);
+
+  /* Router */
+  window.addEventListener('hashchange', route);
+  route();
+
+  /* PWA */
+  if('serviceWorker' in navigator){
+    window.addEventListener('load', function(){
+      navigator.serviceWorker.register('./sw.js').catch(function(){});
+    });
+  }
 }
 
 if(document.readyState === 'loading'){
